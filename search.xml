@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Crypto-特殊加密</title>
+      <link href="/2024/08/22/Crypto-%E7%89%B9%E6%AE%8A%E5%8A%A0%E5%AF%86/"/>
+      <url>/2024/08/22/Crypto-%E7%89%B9%E6%AE%8A%E5%8A%A0%E5%AF%86/</url>
+      
+        <content type="html"><![CDATA[<h1 id="SNOW-雪"><a href="#SNOW-雪" class="headerlink" title="SNOW(雪)"></a>SNOW(雪)</h1><ul><li>关于一种txt空白加密的方法：</li></ul><p><img src="/2024/08/22/Crypto-%E7%89%B9%E6%AE%8A%E5%8A%A0%E5%AF%86/%E6%A0%B7%E4%BE%8B.bmp" alt="样例"></p><p>像这样子的，txt文件用winHex打开，发现文字后面大片的空白，猜测是SNOW加密。</p><ul><li><p>工具下载地址：<a href="https://darkside.com.au/snow/">The SNOW Home Page (darkside.com.au)</a></p></li><li><p>使用：将要解密的txt放在同一目录下，还需要知道key，然后利用指令解密：</p><p><code>.\SNOW.EXE -p key -C .\flag.txt</code>   [解密]</p><p><code>.\SNOW.EXE -C -m &quot;message&quot; -p &quot;key&quot; infile outfile</code> [加密]</p><p>加密表示将隐藏文件infile中的message用key加密，储存在outfile中</p></li><li><p>详细的可参考：<a href="https://blog.csdn.net/qq_53079406/article/details/123810053">csdn-blog</a></p></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ctf-crypto </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>记录解决hexo插图失败</title>
       <link href="/2024/08/21/%E8%AE%B0%E5%BD%95%E8%A7%A3%E5%86%B3hexo%E6%8F%92%E5%9B%BE%E7%89%87%E5%A4%B1%E8%B4%A5/"/>
       <url>/2024/08/21/%E8%AE%B0%E5%BD%95%E8%A7%A3%E5%86%B3hexo%E6%8F%92%E5%9B%BE%E7%89%87%E5%A4%B1%E8%B4%A5/</url>
