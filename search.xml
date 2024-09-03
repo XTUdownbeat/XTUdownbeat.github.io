@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>0ctf_2017_babyheap--fastbin_attack</title>
+      <link href="/2024/09/03/0ctf-2017-babyheap-fastbin-attack/"/>
+      <url>/2024/09/03/0ctf-2017-babyheap-fastbin-attack/</url>
+      
+        <content type="html"><![CDATA[<h1 id="0ctf-2017-babyheap"><a href="#0ctf-2017-babyheap" class="headerlink" title="0ctf_2017_babyheap"></a>0ctf_2017_babyheap</h1><p><a href="https://buuoj.cn/challenges#0ctf_2017_babyheap">题目链接</a></p><p><a href="https://libc.rip/download/libc6_2.23-0ubuntu11.2_amd64.so">libc.so文件链接</a></p><h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3><ul><li><font coloe="red">glibc2.24 <strong>fastbin_attack</strong>, <strong>unsortedbin泄露main_arena</strong> ,<strong>Arbitrary Alloc</strong></font></li><li><a href="https://ctf-wiki.org/pwn/linux/user-mode/heap/ptmalloc2/fastbin-attack/">Fastbin Attack - CTF Wiki (ctf-wiki.org)</a></li></ul><h2 id="题目速览："><a href="#题目速览：" class="headerlink" title="题目速览："></a>题目速览：</h2><ul><li><h5 id="典型的堆菜单题目，但是没有后门函数，system函数也没有"><a href="#典型的堆菜单题目，但是没有后门函数，system函数也没有" class="headerlink" title="典型的堆菜单题目，但是没有后门函数，system函数也没有"></a>典型的堆菜单题目，但是没有后门函数，system函数也没有</h5></li></ul><p><img src="/2024/09/03/0ctf-2017-babyheap-fastbin-attack/capture_20240903134306228.bmp"></p><ul><li><h5 id="add："><a href="#add：" class="headerlink" title="add："></a>add：</h5></li></ul><p><img src="/2024/09/03/0ctf-2017-babyheap-fastbin-attack/capture_20240903134348584.bmp"></p><ul><li><h5 id="edit："><a href="#edit：" class="headerlink" title="edit："></a>edit：</h5></li></ul><p><img src="/2024/09/03/0ctf-2017-babyheap-fastbin-attack/capture_20240903134416635.bmp"></p><ul><li><h5 id="delete："><a href="#delete：" class="headerlink" title="delete："></a>delete：</h5></li></ul><p><img src="/2024/09/03/0ctf-2017-babyheap-fastbin-attack/capture_20240903134451923.bmp"></p><ul><li><h5 id="show"><a href="#show" class="headerlink" title="show:"></a>show:</h5></li></ul><p><img src="/2024/09/03/0ctf-2017-babyheap-fastbin-attack/capture_20240903134503547.bmp"></p><h3 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h3><ul><li>漏洞点在edit函数，未对size检查，可以实现任意地址写</li><li>题目开启了PIE,unlink直接out，所以想到fastbin_attack,修改malloc_hook为onegagdet。</li><li>先通过unsortedbin泄露main_arena，即可以得到malloc_hook(相差0x10), arbitrary_alloc错位构造fake_chunk，就可以修改malloc_hook为one_gadget</li><li>但是运用arbitrary_alloc需要uaf修改fastbin中chunk的fd指针，因此需要我们两个地址控制同一个chunk，这个手法看下面调试吧。</li></ul><h2 id="gdb调试："><a href="#gdb调试：" class="headerlink" title="gdb调试："></a>gdb调试：</h2>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ctf-pwn </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ciscn_2019_n_3-uaf</title>
       <link href="/2024/09/02/ciscn-2019-n-3-uaf/"/>
       <url>/2024/09/02/ciscn-2019-n-3-uaf/</url>
