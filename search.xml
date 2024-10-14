@@ -4,6 +4,38 @@
   
     
     <entry>
+      <title>伪随机</title>
+      <link href="/2024/10/14/%E4%BC%AA%E9%9A%8F%E6%9C%BA/"/>
+      <url>/2024/10/14/%E4%BC%AA%E9%9A%8F%E6%9C%BA/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>House_Of_Orange</title>
+      <link href="/2024/10/08/House-Of-Orange/"/>
+      <url>/2024/10/08/House-Of-Orange/</url>
+      
+        <content type="html"><![CDATA[<p><strong>参考</strong>：</p><p><a href="https://ctf-wiki.org/pwn/linux/user-mode/heap/ptmalloc2/house-of-orange/">House of Orange - CTF Wiki (ctf-wiki.org)</a></p><h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1.介绍"></a>1.介绍</h1><p><em><strong>house of orange 在于我们没有free的时候，一样可以达到free的效果，将一个chunk放进unsorted bin中，然后达到泄露libc的效果</strong></em></p><blockquote><p>操作的原理简单来说是当前堆的 top chunk 尺寸不足以满足申请分配的大小的时候，原来的 top chunk 会被释放并被置入 unsorted bin 中，通过这一点可以在没有 free 函数情况下获取到 unsorted bins。</p></blockquote><ul><li><strong>正常情况下malloc的执行过程</strong></li></ul><p>malloc调用位于libc.so中的__int_malloc函数，该函数中以此检查fastbin,small bins,unsorted bin,large bin，若这些都不满足，则在top chunk中找</p><ul><li><strong>top chunk也不满足</strong></li></ul><p>此时会执行sysmalloc分配chunk</p><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="type">void</span> *p = <span class="built_in">sysmalloc</span>(nb, av);</span><br><span class="line">      <span class="keyword">if</span> (p != <span class="literal">NULL</span> &amp;&amp; __builtin_expect (perturb_byte, <span class="number">0</span>))</span><br><span class="line">        <span class="built_in">alloc_perturb</span> (p, bytes);</span><br><span class="line">      <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>但是堆分配有mmap和brk分配方式，<mark>我们要用brk的分配方式拓展chunk<mark>，这样，之前的top chunk就会放到unsorted bin中，这也就达到了house of orange的利用</mark></mark></p><h2 id="一些check"><a href="#一些check" class="headerlink" title="一些check"></a>一些check</h2><ul><li><strong>malloc的大小要小于mmp_.mmap_threshold</strong>(<mark>默认128k<mark>)</mark></mark></li><li>sysmalloc函数对top chunk size的check</li></ul><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">assert</span>((old_top == <span class="built_in">initial_top</span>(av) &amp;&amp; old_size == <span class="number">0</span>) ||</span><br><span class="line">     ((<span class="type">unsigned</span> <span class="type">long</span>) (old_size) &gt;= MINSIZE &amp;&amp;</span><br><span class="line">      <span class="built_in">prev_inuse</span>(old_top) &amp;&amp;</span><br><span class="line">      ((<span class="type">unsigned</span> <span class="type">long</span>)old_end &amp; pagemask) == <span class="number">0</span>));</span><br></pre></td></tr></table></figure><p>简单来说，top chunk的size要大于等于MINSIZE,top chunk的结束地址必须是页对其的，top chunk相邻的前一个chunk必须处于inuse状态。</p><p><font size="4" color="red">总结一下check</font></p><blockquote><p> <mark>伪造的size必须页对其<mark></mark></mark></p><p> <mark>size要大于MINSIZE(0x10)<mark></mark></mark></p><p> <mark>size要小于之后申请的chunk size + MINSIZE<mark></mark></mark></p><p> <mark>size的prev inuse位必须是1<mark></mark></mark></p><p>然后top chunk就会执行_int_free进入unsorted bin中</p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ctf-pwn </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>House_Of_Force</title>
       <link href="/2024/09/26/House-Of-Force/"/>
       <url>/2024/09/26/House-Of-Force/</url>
