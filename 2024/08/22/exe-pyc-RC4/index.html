@@ -136,7 +136,7 @@
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/img/loading.gif" data-original="/images/favicon.png" class="w-full h-full rounded-sm">
+                    <img src="/images/favicon.png" class="w-full h-full rounded-sm">
                 </a>
             
             <a class="logo-title" href="/">
@@ -254,7 +254,7 @@
         
             <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
                 <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/img/loading.gif" data-original="/images/avatar.jpg">
+                    <img src="/images/avatar.jpg">
                 </div>
                 <div class="info flex flex-col justify-between">
                     <div class="author flex items-center">
@@ -326,14 +326,14 @@
 <p>题目来自basectf,如果选手看到了请务必避开。</p>
 <h1 id="转化"><a href="#转化" class="headerlink" title="转化"></a>转化</h1><h2 id="exe-pyc"><a href="#exe-pyc" class="headerlink" title="exe-&gt;pyc"></a>exe-&gt;pyc</h2><ul>
 <li><p>首先明白为什么要从exe-&gt;pyc，见下图：</p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/exe-pyc-RC4/exe%E4%BE%8B%E5%AD%90.bmp" alt="exe例子"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/exe-pyc-RC4/exe%E4%BE%8B%E5%AD%90.bmp" alt="exe例子"></p>
 </li>
 </ul>
 <p>我们发现图片虽然是一个exe,但是程序图标是可以发现是一个.py文件，于是我们要去转化成pyc</p>
 <p><strong>介绍一篇文章看看</strong>：<a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35578171/article/details/138047494?app_version=6.4.5&code=app_1562916241&csdn_share_tail=%7B%22type%22:%22blog%22,%22rType%22:%22article%22,%22rId%22:%22138047494%22,%22source%22:%222302_79260400%22%7D&uLinkId=usr1mkqgl919blen&utm_source=app">csdn-blog <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>觉得麻烦提供一个在线网站：<a class="link" target="_blank" rel="noopener" href="https://pyinstxtractor-web.netlify.app/">PyInstaller Extractor WEB (pyinstxtractor-web.netlify.app) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>自己选择exe文件运行就行，会得到一个压缩包，里面会有pyc文件</p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/exe-pyc-RC4/exe-pyc.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/exe-pyc-RC4/exe-pyc.bmp"></p>
 <h2 id="pyc-py代码："><a href="#pyc-py代码：" class="headerlink" title="pyc-&gt;py代码："></a>pyc-&gt;py代码：</h2><ul>
 <li><p>先了解什么是pyc：我们所看到的pyc文件，其实是PyCodeObject，是Python编译后的结果。当python程序运行时，编译的结果是保存于PyCodeObject，程序运行结束后，Python就将PyCodeObject写入到pyc文件中，这是个字节码文件。[<a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42183408/article/details/88557812">引用 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>]</p>
 </li>
@@ -359,7 +359,7 @@
 <li>正常的直接丢到在线网站分解发现无法分解，发现给的附件里面还有struct文件，上网查了查，发现是给的pyc文件的magic number出现错误</li>
 <li><mark>正确的magic number在struct<mark></mark></mark></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/exe-pyc-RC4/capture_20241014191021381.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/exe-pyc-RC4/capture_20241014191021381.bmp"></p>
 <p><mark>E3前面的就是magic number<mark>,修改或者增添到给的pyc文件，再去网站解密即可。</mark></mark></p>
 
         </div>
@@ -658,7 +658,7 @@
     </div>
 
     <div class="image-viewer-container">
-    /img/loading.gif" data-original="<img src="">
+    <img src="">
 </div>
 
 
@@ -785,18 +785,5 @@
 
 
 
-
-        <style>
-            [bg-lazy] {
-                background-image: none !important;
-                background-color: #eee !important;
-            }
-        </style>
-        <script>
-            window.imageLazyLoadSetting = {
-                isSPA: false,
-                preloadRatio: 1,
-                processImages: null,
-            };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</body>
 </html>

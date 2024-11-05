@@ -142,7 +142,7 @@
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/img/loading.gif" data-original="/images/favicon.png" class="w-full h-full rounded-sm">
+                    <img src="/images/favicon.png" class="w-full h-full rounded-sm">
                 </a>
             
             <a class="logo-title" href="/">
@@ -260,7 +260,7 @@
         
             <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
                 <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/img/loading.gif" data-original="/images/avatar.jpg">
+                    <img src="/images/avatar.jpg">
                 </div>
                 <div class="info flex flex-col justify-between">
                     <div class="author flex items-center">
@@ -336,23 +336,23 @@
 <h2 id="题目速览："><a href="#题目速览：" class="headerlink" title="题目速览："></a>题目速览：</h2><ul>
 <li><h5 id="典型的堆菜单题目，但是没有后门函数，system函数也没有"><a href="#典型的堆菜单题目，但是没有后门函数，system函数也没有" class="headerlink" title="典型的堆菜单题目，但是没有后门函数，system函数也没有"></a>典型的堆菜单题目，但是没有后门函数，system函数也没有</h5></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903134306228.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903134306228.bmp"></p>
 <ul>
 <li><h5 id="add："><a href="#add：" class="headerlink" title="add："></a>add：</h5></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903134348584.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903134348584.bmp"></p>
 <ul>
 <li><h5 id="edit："><a href="#edit：" class="headerlink" title="edit："></a>edit：</h5></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903134416635.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903134416635.bmp"></p>
 <ul>
 <li><h5 id="delete："><a href="#delete：" class="headerlink" title="delete："></a>delete：</h5></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903134451923.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903134451923.bmp"></p>
 <ul>
 <li><h5 id="show"><a href="#show" class="headerlink" title="show:"></a>show:</h5></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903134503547.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903134503547.bmp"></p>
 <h3 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h3><ul>
 <li><strong>漏洞点在edit函数，未对size检查，可以实现任意地址写</strong></li>
 <li>题目开启了PIE,unlink直接out，所以想到fastbin_attack,修改malloc_hook为onegagdet。</li>
@@ -365,7 +365,7 @@
 <li>构造五个chunk，chunk0用来溢出chunk1，chunk1，2用于uaf，chunk4用来泄露libc，chunk3溢出修改chunk4</li>
 <li>查看堆布局，看看如何使得两个地址共同控制一个chunk：</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903162751498.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903162751498.bmp"></p>
 <ul>
 <li>由于内存的分页管理机制，我们第一次分配堆地址的最后三位十六进制数肯定为000</li>
 <li>此时我们溢出chunk0修改chunk1的fd指针，也就相当于修改chunk2的地址，此时我们需要利用chunk4,如果将1-&gt;fd所指向的chunk2的地址最后一字节修改为0x80，也就是1-&gt;fd &#x3D; chunk4,此时chunk2会和chunk4联系起来，即<strong>修改chunk2也会修改chunk4</strong>，<strong>也就做到了uaf的利用</strong></li>
@@ -379,7 +379,7 @@
 </ul>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 1</span></span><br><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 2 因为2的指针=0</span></span><br><span class="line"></span><br><span class="line">payload = cyclic(<span class="number">0x10</span>) + p64(<span class="number">0</span>) + p64(<span class="number">0x91</span>)</span><br><span class="line">edit(<span class="number">3</span>,<span class="built_in">len</span>(payload),payload)</span><br><span class="line"></span><br><span class="line">add(<span class="number">0x80</span>) <span class="comment"># 5 防止和topchunk合并</span></span><br><span class="line">free(<span class="number">4</span>)</span><br><span class="line">show(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">malloc_hook = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))-<span class="number">0x58</span>-<span class="number">0x10</span></span><br><span class="line"><span class="comment"># __malloc_hook和main_arena差了0x10</span></span><br><span class="line">success(<span class="string">&quot;malloc_hook:&quot;</span> + <span class="built_in">hex</span>(malloc_hook))</span><br></pre></td></tr></table></figure></div>
 
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903165642200.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903165642200.bmp"></p>
 <h3 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h3><ul>
 <li>Arbitrary Alloc 构造fake_chunk</li>
 </ul>
@@ -387,7 +387,7 @@
 <ul>
 <li>为了修改malloc_hook为one_gadget，我们要往malloc_hook上面构造fake_chunk，然后直接修改堆中内容即可，来看看malloc_hook上面又没有地方构造吧：</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903170254157.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903170254157.bmp"></p>
 <ul>
 <li>我们发现这个地方可以错位出一个size出来，对应于fastbin[5]（不是很懂可以看开头文章)，这个错位出来的chunk的size是0x60，为了使fastbin中已经存在的chunk-&gt;fd链接上fake_chunk，其size也应该是0x60</li>
 <li>该chunk的地址可以从图上看出：malloc_hook-0x13-0x8(size)-0x8(prev_size)</li>
@@ -397,7 +397,7 @@
 <ul>
 <li>下图可以发现修改chunk2其实也修改了chunk4</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903171316211.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903171316211.bmp"></p>
 <h3 id="4"><a href="#4" class="headerlink" title="4."></a>4.</h3><ul>
 <li>然后就很简单了，修改malloc_hook-&gt;one_gadget，再次malloc即可。</li>
 </ul>
@@ -708,7 +708,7 @@
     </div>
 
     <div class="image-viewer-container">
-    /img/loading.gif" data-original="<img src="">
+    <img src="">
 </div>
 
 
@@ -835,18 +835,5 @@
 
 
 
-
-        <style>
-            [bg-lazy] {
-                background-image: none !important;
-                background-color: #eee !important;
-            }
-        </style>
-        <script>
-            window.imageLazyLoadSetting = {
-                isSPA: false,
-                preloadRatio: 1,
-                processImages: null,
-            };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</body>
 </html>

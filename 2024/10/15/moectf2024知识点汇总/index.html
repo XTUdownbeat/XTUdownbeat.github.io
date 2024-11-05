@@ -137,7 +137,7 @@
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/img/loading.gif" data-original="/images/favicon.png" class="w-full h-full rounded-sm">
+                    <img src="/images/favicon.png" class="w-full h-full rounded-sm">
                 </a>
             
             <a class="logo-title" href="/">
@@ -255,7 +255,7 @@
         
             <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
                 <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/img/loading.gif" data-original="/images/avatar.jpg">
+                    <img src="/images/avatar.jpg">
                 </div>
                 <div class="info flex flex-col justify-between">
                     <div class="author flex items-center">
@@ -341,7 +341,7 @@
 <h1 id="这是什么？random！"><a href="#这是什么？random！" class="headerlink" title="这是什么？random！"></a><strong>这是什么？random！</strong></h1><p><mark>真随机数爆破<mark></mark></mark></p>
 <p>在我写的<a href="https://downbeat.top/2024/10/14/%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%B8%93%E9%A2%98/">这篇文章</a>里面已经提到过了</p>
 <h1 id="这是什么？GOT！"><a href="#这是什么？GOT！" class="headerlink" title="这是什么？GOT！"></a><strong>这是什么？GOT！</strong></h1><p><mark>理解plt和got表之间的关系，已经函数真实地址是从哪里来的<mark></mark></mark></p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015180637471.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015180637471.bmp"></p>
 <blockquote>
 <h3 id="调用过程解析"><a href="#调用过程解析" class="headerlink" title="调用过程解析"></a>调用过程解析</h3><ol>
 <li><strong>程序启动时</strong>：<ul>
@@ -417,7 +417,7 @@
 <h1 id="Catch-the-canary"><a href="#Catch-the-canary" class="headerlink" title="Catch_the_canary!"></a>Catch_the_canary!</h1><p><mark>arc4random真随机数爆破<mark> : <a href="https://downbeat.top/2024/10/14/%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%B8%93%E9%A2%98/">这篇文章</a></mark></mark></p>
 <p><mark>跳过scanf的输入<mark></mark></mark></p>
 <p><mark>泄露canary<mark></mark></mark></p>
-<h2 id="下面看如何跳过scanf输入的"><a href="#下面看如何跳过scanf输入的" class="headerlink" title="下面看如何跳过scanf输入的"></a>下面看如何跳过scanf输入的</h2><p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015195948758.bmp"></p>
+<h2 id="下面看如何跳过scanf输入的"><a href="#下面看如何跳过scanf输入的" class="headerlink" title="下面看如何跳过scanf输入的"></a>下面看如何跳过scanf输入的</h2><p><img lazyload src="/images/loading.svg" data-src="/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015195948758.bmp"></p>
 <ul>
 <li>要求输入的不变，我们可以:</li>
 </ul>
@@ -435,9 +435,9 @@
 <li>很明显0xd字节写入shellcode长度是不够的，那么我们可以再次调用read,写入shellcode</li>
 <li>为什么会想到<code>read</code>？观察执行shellcode前的寄存器，<code>rax=0</code>,只要<code>syscall</code>就会执行<code>read</code></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015215201688.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015215201688.bmp"></p>
 <p><mark>注意其他几个寄存器<mark></mark></mark></p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015215508725.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015215508725.bmp"></p>
 <ul>
 <li>因此在<code>syscall</code>之前还要修改rsi的值，因为我们往mmap地址写入了调用read的汇编代码</li>
 </ul>
@@ -760,7 +760,7 @@
     </div>
 
     <div class="image-viewer-container">
-    /img/loading.gif" data-original="<img src="">
+    <img src="">
 </div>
 
 
@@ -887,18 +887,5 @@
 
 
 
-
-        <style>
-            [bg-lazy] {
-                background-image: none !important;
-                background-color: #eee !important;
-            }
-        </style>
-        <script>
-            window.imageLazyLoadSetting = {
-                isSPA: false,
-                preloadRatio: 1,
-                processImages: null,
-            };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</body>
 </html>

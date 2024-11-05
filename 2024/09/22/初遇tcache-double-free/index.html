@@ -141,7 +141,7 @@
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/img/loading.gif" data-original="/images/favicon.png" class="w-full h-full rounded-sm">
+                    <img src="/images/favicon.png" class="w-full h-full rounded-sm">
                 </a>
             
             <a class="logo-title" href="/">
@@ -259,7 +259,7 @@
         
             <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
                 <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/img/loading.gif" data-original="/images/avatar.jpg">
+                    <img src="/images/avatar.jpg">
                 </div>
                 <div class="info flex flex-col justify-between">
                     <div class="author flex items-center">
@@ -341,12 +341,12 @@
 
 
 
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922202526933.bmp"></p>
-<h2 id="show"><a href="#show" class="headerlink" title="show"></a>show</h2><p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922202709261.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922202526933.bmp"></p>
+<h2 id="show"><a href="#show" class="headerlink" title="show"></a>show</h2><p><img lazyload src="/images/loading.svg" data-src="/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922202709261.bmp"></p>
 <h2 id="call-free"><a href="#call-free" class="headerlink" title="call(free)"></a>call(free)</h2><ul>
 <li><strong>很明显的uaf漏洞</strong></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922202720899.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922202720899.bmp"></p>
 <h1 id="简单分析"><a href="#简单分析" class="headerlink" title="简单分析"></a>简单分析</h1><ul>
 <li>漏洞点很明显，有uaf漏洞，free掉的指针没有清零</li>
 <li>先malloc(0x410) 绕过tcache进入unsorted bin，然后直接show就可以泄露libc，也可以malloc(0x80)，然后free8次，再show也是可以的，是因为此题目没有double free检查</li>
@@ -358,7 +358,7 @@
 <li>先malloc(0x410)（＞0x408）绕过tcache，后面两个malloc是为了修改free_hook和最后的getshell</li>
 <li>free(chunk0)之后,如下，此时fd和bk指向的是<strong>main_arena+96，而不是88了</strong></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922205929434.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922205929434.bmp"></p>
 <ul>
 <li>由于此时的指针没有清零，可以直接show，泄露libc</li>
 </ul>
@@ -367,21 +367,21 @@
 <ul>
 <li>double free之后：</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922210438537.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922210438537.bmp"></p>
 <ul>
 <li><font color="red">第一次add:</font></li>
 </ul>
 <p>修改了tcache bin中chunk的fd指针，指向__free_hook,只需要两次malloc就可以malloc到free_hook,进行修改</p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922211627712.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922211627712.bmp"></p>
 <ul>
 <li><font color="red">第二次add(无用的chunk):</font></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922211649330.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922211649330.bmp"></p>
 <ul>
 <li><font color="red">第三次add:</font></li>
 </ul>
 <p>可以看到__free_hook指向了system，调用free-&gt;free_hook-&gt;system</p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922212154845.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922212154845.bmp"></p>
 <ul>
 <li>最后直接free(2)即可，相当于system(“&#x2F;bin&#x2F;sh”)</li>
 </ul>
@@ -684,7 +684,7 @@
     </div>
 
     <div class="image-viewer-container">
-    /img/loading.gif" data-original="<img src="">
+    <img src="">
 </div>
 
 
@@ -811,18 +811,5 @@
 
 
 
-
-        <style>
-            [bg-lazy] {
-                background-image: none !important;
-                background-color: #eee !important;
-            }
-        </style>
-        <script>
-            window.imageLazyLoadSetting = {
-                isSPA: false,
-                preloadRatio: 1,
-                processImages: null,
-            };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</body>
 </html>

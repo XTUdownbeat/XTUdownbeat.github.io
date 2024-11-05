@@ -135,7 +135,7 @@
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/img/loading.gif" data-original="/images/favicon.png" class="w-full h-full rounded-sm">
+                    <img src="/images/favicon.png" class="w-full h-full rounded-sm">
                 </a>
             
             <a class="logo-title" href="/">
@@ -253,7 +253,7 @@
         
             <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
                 <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/img/loading.gif" data-original="/images/avatar.jpg">
+                    <img src="/images/avatar.jpg">
                 </div>
                 <div class="info flex flex-col justify-between">
                     <div class="author flex items-center">
@@ -323,7 +323,7 @@
             <h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><ul>
 <li>根据网上教学搭建博客，想要插入<strong>本地图片</strong>，但是图片始终无法加载出来：</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E8%AE%B0%E5%BD%95%E8%A7%A3%E5%86%B3hexo%E6%8F%92%E5%9B%BE%E7%89%87%E5%A4%B1%E8%B4%A5/%E5%A4%B1%E8%B4%A5%E6%A0%B7%E4%BE%8B.bmp" alt="失败样例"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/%E8%AE%B0%E5%BD%95%E8%A7%A3%E5%86%B3hexo%E6%8F%92%E5%9B%BE%E7%89%87%E5%A4%B1%E8%B4%A5/%E5%A4%B1%E8%B4%A5%E6%A0%B7%E4%BE%8B.bmp" alt="失败样例"></p>
 <p>类似于上面的情况，或者就一个小图案，无法加载出来。</p>
 <h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><ul>
 <li><p>按照网上说的，先修改Blog目录下的_config.yml中的<strong>post_asset_folde改为true</strong>,这个必须先该</p>
@@ -331,7 +331,7 @@
 <li><p>下载插件：</p>
 <div class="highlight-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="code"><pre><span class="line">npm install <span class="attr">https</span>:<span class="comment">//github.com/CodeFalling/hexo-asset-image --save</span></span><br></pre></td></tr></table></figure></div>
 </li>
-<li><p>修改Typora的图像偏好：<br><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/%E8%AE%B0%E5%BD%95%E8%A7%A3%E5%86%B3hexo%E6%8F%92%E5%9B%BE%E7%89%87%E5%A4%B1%E8%B4%A5/%E5%81%8F%E5%A5%BD%E8%AE%BE%E7%BD%AE.bmp" alt="偏好设置"></p>
+<li><p>修改Typora的图像偏好：<br><img lazyload src="/images/loading.svg" data-src="/%E8%AE%B0%E5%BD%95%E8%A7%A3%E5%86%B3hexo%E6%8F%92%E5%9B%BE%E7%89%87%E5%A4%B1%E8%B4%A5/%E5%81%8F%E5%A5%BD%E8%AE%BE%E7%BD%AE.bmp" alt="偏好设置"></p>
 </li>
 </ul>
 <p>像这样设置好，这样你在每一次hexo new XXX的时候，<strong>都会在_posts下面生成一个和.md同名的文件夹，这个文件夹就会专门来放你的图片</strong>，我们也可以，提前将图片放进去。</p>
@@ -635,7 +635,7 @@
     </div>
 
     <div class="image-viewer-container">
-    /img/loading.gif" data-original="<img src="">
+    <img src="">
 </div>
 
 
@@ -762,18 +762,5 @@
 
 
 
-
-        <style>
-            [bg-lazy] {
-                background-image: none !important;
-                background-color: #eee !important;
-            }
-        </style>
-        <script>
-            window.imageLazyLoadSetting = {
-                isSPA: false,
-                preloadRatio: 1,
-                processImages: null,
-            };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</body>
 </html>

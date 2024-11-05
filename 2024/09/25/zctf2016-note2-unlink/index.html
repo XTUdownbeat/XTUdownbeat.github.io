@@ -138,7 +138,7 @@
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/img/loading.gif" data-original="/images/favicon.png" class="w-full h-full rounded-sm">
+                    <img src="/images/favicon.png" class="w-full h-full rounded-sm">
                 </a>
             
             <a class="logo-title" href="/">
@@ -256,7 +256,7 @@
         
             <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
                 <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/img/loading.gif" data-original="/images/avatar.jpg">
+                    <img src="/images/avatar.jpg">
                 </div>
                 <div class="info flex flex-col justify-between">
                     <div class="author flex items-center">
@@ -328,13 +328,13 @@
 <h1 id="unlink完整表示"><a href="#unlink完整表示" class="headerlink" title="unlink完整表示"></a>unlink完整表示</h1><ul>
 <li><strong>以往的unlink都是可以堆溢出修改相邻chunk的prev_size以及其size_inuse</strong>，然后构造出一个fake_free_chunk，然后free相邻的chunk，这两个chunk就会合并，从而达到unlink的效果，如下图：</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/zctf2016-note2-unlink/unlink.drawio.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/zctf2016-note2-unlink/unlink.drawio.png"></p>
 <ul>
 <li>接着上图讲：chunk1是构造成了一个fake_chunk，接着free(chunk2),那么这两个chunk将会合并，从而绕过检测，达到unlink的效果。</li>
 </ul>
 <div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 对于unsorted bin 双向链表的检测</span></span><br><span class="line">chunk FD表示chunk的下一个chunk BK表示chunk的上一个chunk</span><br><span class="line">chunk.fd -&gt; FD  FD.bk -&gt; chunk      chunk.bk -&gt; BK   BK.fd -&gt; chunk</span><br></pre></td></tr></table></figure></div>
 
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/zctf2016-note2-unlink/unlink2.jpg"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/zctf2016-note2-unlink/unlink2.jpg"></p>
 <ul>
 <li>如上图，相当于把heap[0]迁移到了 -0x18的位置，这就是完整的unlink利用方法。</li>
 </ul>
@@ -364,7 +364,7 @@
 <h2 id="核心漏洞点-整数溢出"><a href="#核心漏洞点-整数溢出" class="headerlink" title="核心漏洞点-整数溢出"></a>核心漏洞点-整数溢出</h2><ul>
 <li>在add函数的input1函数中，存在难发现的整数溢出漏洞</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/zctf2016-note2-unlink/capture_20240925195730160.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/zctf2016-note2-unlink/capture_20240925195730160.bmp"></p>
 <ul>
 <li><font size="red">定义的i是一个无符号整型，但是a2(size)确是一个有符号整形，因此有整数溢出</font></li>
 <li>对于无符号与有符号的比较，会将<strong>有符号转化为无符号</strong>，所以若我们给a2赋值为0，a2 -1&#x3D;-1,对应于无符号整型是最大的数字，那么我们就可以任意写了。</li>
@@ -379,11 +379,11 @@
 <li>正常应该是溢出修改chunk2的prev_size为0xa0,以及size的inuse&#x3D;0，但是我们没有off_by_one，也无法直接溢出改，于是，我们利用add里面的整数溢出进行改写</li>
 <li>free(chunk1)，只要将size赋值为0，就可以溢出改写了，效果如下：</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/zctf2016-note2-unlink/capture_20240925201946698.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/zctf2016-note2-unlink/capture_20240925201946698.bmp"></p>
 <h2 id="泄露libc"><a href="#泄露libc" class="headerlink" title="泄露libc"></a>泄露libc</h2><ul>
 <li>接下来直接free相邻chunk，即chunk2，就可以达到unlink的效果</li>
 </ul>
-<p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/zctf2016-note2-unlink/capture_20240925202348973.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/zctf2016-note2-unlink/capture_20240925202348973.bmp"></p>
 <ul>
 <li>此时就是正常的unlink的利用，如下：</li>
 </ul>
@@ -693,7 +693,7 @@
     </div>
 
     <div class="image-viewer-container">
-    /img/loading.gif" data-original="<img src="">
+    <img src="">
 </div>
 
 
@@ -820,18 +820,5 @@
 
 
 
-
-        <style>
-            [bg-lazy] {
-                background-image: none !important;
-                background-color: #eee !important;
-            }
-        </style>
-        <script>
-            window.imageLazyLoadSetting = {
-                isSPA: false,
-                preloadRatio: 1,
-                processImages: null,
-            };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</body>
 </html>

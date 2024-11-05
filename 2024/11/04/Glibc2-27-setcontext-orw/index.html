@@ -134,7 +134,7 @@
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/img/loading.gif" data-original="/images/favicon.png" class="w-full h-full rounded-sm">
+                    <img src="/images/favicon.png" class="w-full h-full rounded-sm">
                 </a>
             
             <a class="logo-title" href="/">
@@ -252,7 +252,7 @@
         
             <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
                 <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/img/loading.gif" data-original="/images/avatar.jpg">
+                    <img src="/images/avatar.jpg">
                 </div>
                 <div class="info flex flex-col justify-between">
                     <div class="author flex items-center">
@@ -322,7 +322,7 @@
             <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>参考文章：<a class="link" target="_blank" rel="noopener" href="https://blog.wingszeng.top/pwn-glibc-setcontext/">https://blog.wingszeng.top/pwn-glibc-setcontext/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p><a class="link" target="_blank" rel="noopener" href="https://ctf-wiki.org/pwn/linux/user-mode/stackoverflow/x86/advanced-rop/srop/">https://ctf-wiki.org/pwn/linux/user-mode/stackoverflow/x86/advanced-rop/srop/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>在glibc2.27及之下，遇到堆题目开启了沙箱，通常是使用<code>setcontext+53 srop orw</code>去达到获得flag，下面便介绍一下这个方法。</p>
-<h2 id="setcontext的实现"><a href="#setcontext的实现" class="headerlink" title="setcontext的实现"></a><code>setcontext</code>的实现</h2><p><img lazyload src="/img/loading.gif" data-original="/images/loading.svg" data-src="/Glibc2-27-setcontext-orw/capture_20241104185642687.bmp"></p>
+<h2 id="setcontext的实现"><a href="#setcontext的实现" class="headerlink" title="setcontext的实现"></a><code>setcontext</code>的实现</h2><p><img lazyload src="/images/loading.svg" data-src="/Glibc2-27-setcontext-orw/capture_20241104185642687.bmp"></p>
 <p>可以发现，从<code>setcontext+53</code>开始，我们会通过<code>rdi</code>来给寄存器来赋值，所以也就是说，<mark>只要控制了rdi的值就可以控制所有寄存器的值<mark></mark></mark></p>
 <h2 id="srop的利用"><a href="#srop的利用" class="headerlink" title="srop的利用"></a><code>srop</code>的利用</h2><p>srop其实就是通过<code>sigreturn系统调用</code>来恢复各个寄存器的值,其中是依据<code>signal Frame</code>中储存的数值来进行回复的，但是系统并不会去检查找个是否改动，因此我们可以修改这里面的内容，从而使得控制任意寄存器。</p>
 <h2 id="setcontext-53-srop"><a href="#setcontext-53-srop" class="headerlink" title="setcontext+53 + srop"></a>setcontext+53 + srop</h2><p>这两者的结合可以使得我们控制所有寄存器的数值，即使在不进行<code>sigreturn</code>也可以达到相同的效果</p>
@@ -695,7 +695,7 @@
     </div>
 
     <div class="image-viewer-container">
-    /img/loading.gif" data-original="<img src="">
+    <img src="">
 </div>
 
 
@@ -822,18 +822,5 @@
 
 
 
-
-        <style>
-            [bg-lazy] {
-                background-image: none !important;
-                background-color: #eee !important;
-            }
-        </style>
-        <script>
-            window.imageLazyLoadSetting = {
-                isSPA: false,
-                preloadRatio: 1,
-                processImages: null,
-            };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</body>
 </html>
