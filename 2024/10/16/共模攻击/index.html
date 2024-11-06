@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-CH">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="downbeat">
+    
+    <meta name="author" content="D0wnBe@t">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://downbeat.top/2024/10/16/共模攻击/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="rsa中的共模攻击参考文章  介绍共模攻击是指在不分解d的情况下依旧可以求出m的一种算法，常见给出了c1,c2： 12c1 &#x3D; pow(m , e1 , N)c2 &#x3D; pow(m , e2 , N)  要求gcd(e1 , e2)&#x3D;1,即e1,e2互质,那么则有: 12e1*s1 + e2*s2 &#x3D; 1&#x2F;&#x2F; s1,s2一正一负  可以有:m &#x3D; ( c1^s1 * c2^s2)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="共模攻击">
+<meta property="og:url" content="http://downbeat.top/2024/10/16/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/index.html">
+<meta property="og:site_name" content="D0wnBe@t">
+<meta property="og:description" content="rsa中的共模攻击参考文章  介绍共模攻击是指在不分解d的情况下依旧可以求出m的一种算法，常见给出了c1,c2： 12c1 &#x3D; pow(m , e1 , N)c2 &#x3D; pow(m , e2 , N)  要求gcd(e1 , e2)&#x3D;1,即e1,e2互质,那么则有: 12e1*s1 + e2*s2 &#x3D; 1&#x2F;&#x2F; s1,s2一正一负  可以有:m &#x3D; ( c1^s1 * c2^s2)">
+<meta property="og:locale" content="zh_CH">
+<meta property="article:published_time" content="2024-10-16T11:13:19.000Z">
+<meta property="article:modified_time" content="2024-10-20T05:43:10.215Z">
+<meta property="article:author" content="downbeat">
+<meta property="article:tag" content="crypto">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            共模攻击 | D0wnBe@t
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"downbeat.top","root":"/","language":"zh-CH","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"300px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/index_img2.jpg","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Dream of Full Stack","subtitle":{"text":["keep going"],"hitokoto":{"enable":true,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                D0wnBe@t
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">9</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">32</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">共模攻击</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">D0wnBe@t</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-10-16 19:13:19</span>
+        <span class="mobile">2024-10-16 19:13:19</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-10-20 13:43:10</span>
+            <span class="mobile">2024-10-20 13:43:10</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/crypto/">crypto</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>856 Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>4 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="rsa中的共模攻击"><a href="#rsa中的共模攻击" class="headerlink" title="rsa中的共模攻击"></a>rsa中的共模攻击</h1><p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/serendipity1130/article/details/120154534">参考文章 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>共模攻击是指在不分解d的情况下依旧可以求出m的一种算法，常见给出了c1,c2：</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c1 = <span class="built_in">pow</span>(m , e1 , N)</span><br><span class="line">c2 = <span class="built_in">pow</span>(m , e2 , N)</span><br></pre></td></tr></table></figure></div>
+
+<p><mark>要求gcd(e1 , e2)&#x3D;1,即e1,e2互质<mark>,那么则有:</mark></mark></p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">e1*s1 + e2*s2 = <span class="number">1</span></span><br><span class="line">// s1,s2一正一负</span><br></pre></td></tr></table></figure></div>
+
+<p>可以有:<mark>m &#x3D; ( c1^s1 * c2^s2) % N<mark>，下面给出证明：</mark></mark></p>
+<p><color red>注意：<color red>此处并不是说c的s次方，而是c关于N的s次逆元是多少。</color></color></p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(c1^s1 * c2^s2) % N = ( ((m^e1)%N) ^ s1 * (((m^e2)%N) ^ s2)</span><br><span class="line">    				// 将%N 去除，具体可以看开头文章</span><br><span class="line">                    = ( m ^ (e1*s1 + e2*s2))%N</span><br><span class="line">                    = m     </span><br></pre></td></tr></table></figure></div>
+
+<p><mark>注意<mark></mark></mark></p>
+<p>假定s2为负数，并不是对c2开根号，而是<code>求c2的逆元</code>，交给pow函数即可</p>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> getPrime, inverse, long_to_bytes, bytes_to_long</span><br><span class="line"><span class="keyword">from</span> sympy <span class="keyword">import</span> gcd</span><br><span class="line"></span><br><span class="line">key_size = <span class="number">1024</span></span><br><span class="line">p = getPrime(key_size // <span class="number">2</span>)</span><br><span class="line">q = getPrime(key_size // <span class="number">2</span>)</span><br><span class="line">N = p * q</span><br><span class="line">phi = (p - <span class="number">1</span>) * (q - <span class="number">1</span>)</span><br><span class="line">e1 = <span class="number">3</span></span><br><span class="line">e2 = <span class="number">7</span></span><br><span class="line">message = <span class="string">b&quot;NSSCTF&#123;...............................................&#125;&quot;</span></span><br><span class="line">m = bytes_to_long(message)</span><br><span class="line"></span><br><span class="line"><span class="keyword">assert</span> gcd(m, N) == <span class="number">1</span></span><br><span class="line"></span><br><span class="line">c1 = <span class="built_in">pow</span>(m, e1, N)</span><br><span class="line">c2 = <span class="built_in">pow</span>(m, e2, N)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;N = <span class="subst">&#123;N&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;e1 = <span class="subst">&#123;e1&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;c1 = <span class="subst">&#123;c1&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;e2 = <span class="subst">&#123;e2&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;c2 = <span class="subst">&#123;c2&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#N =  80722936701364382749961243326484006977187702986017980842794443374132452156776306032868217795522046975068822236770836452911408536092460646410756678157902792329645719935468879960944028782788489463895870961967670931567205550383999951787250211085264314795753745003815839218062934564501884684565508432346164094171</span></span><br><span class="line"><span class="comment">#e1 = 3</span></span><br><span class="line"><span class="comment">#c1 = 77027474990431732719325428265107176934045610651944725251406683442684093440239073195437770144166442593914418380343458827052860752131667771506129334676070396374008929588455988149871039697387983766750148969695215583137356681988572655848921827794639096404716760310059622671470680330144220097050812716421370445797</span></span><br><span class="line"><span class="comment">#e2 = 7</span></span><br><span class="line"><span class="comment">#c2 = 13491956530007991248882899018888359080930858500993821006822695375714947537976202424265808646466853291165511243721829370428583392329886743499827454177786585477285598196204906977043127274613692623229137936467994670727274820568522666762615055848367486507714640497446688083840123758417442971555904294548595887600</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><ul>
+<li>e1 和 e2 明显互质，可以用共模攻击，先求出s1和s2，随便选取一个即可，然后直接求出m即可：</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> inverse, long_to_bytes</span><br><span class="line"><span class="keyword">from</span> sympy <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入的 RSA 参数</span></span><br><span class="line">N = <span class="number">80722936701364382749961243326484006977187702986017980842794443374132452156776306032868217795522046975068822236770836452911408536092460646410756678157902792329645719935468879960944028782788489463895870961967670931567205550383999951787250211085264314795753745003815839218062934564501884684565508432346164094171</span></span><br><span class="line">e1 = <span class="number">3</span></span><br><span class="line">c1 = <span class="number">77027474990431732719325428265107176934045610651944725251406683442684093440239073195437770144166442593914418380343458827052860752131667771506129334676070396374008929588455988149871039697387983766750148969695215583137356681988572655848921827794639096404716760310059622671470680330144220097050812716421370445797</span></span><br><span class="line">e2 = <span class="number">7</span></span><br><span class="line">c2 = <span class="number">13491956530007991248882899018888359080930858500993821006822695375714947537976202424265808646466853291165511243721829370428583392329886743499827454177786585477285598196204906977043127274613692623229137936467994670727274820568522666762615055848367486507714640497446688083840123758417442971555904294548595887600</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">99</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">99</span>):</span><br><span class="line">        <span class="keyword">if</span> e1 * i - e2 * j == <span class="number">1</span>:</span><br><span class="line">            <span class="built_in">print</span>(i , j, e1 * i + e2 * j )</span><br><span class="line">s1 = <span class="number">5</span></span><br><span class="line">s2 = -<span class="number">2</span></span><br><span class="line">m = (<span class="built_in">pow</span>(c1, s1, N) * <span class="built_in">pow</span>(c2, s2, N)) % N</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(m))</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h1 id="特例-gcd-e1-e2-1"><a href="#特例-gcd-e1-e2-1" class="headerlink" title="特例-gcd(e1,e2) !&#x3D; 1"></a>特例-gcd(e1,e2) !&#x3D; 1</h1><ul>
+<li>上述说了，共模攻击是要求e1和e2互质，即(e1,e2)&#x3D;1，才有<code>e1*s1+e2*s2=1</code>,才可以继续进行后续的操作</li>
+<li>但是若(e1,e2)!&#x3D;1，而有<code>(e1,e2)=e</code>呢？此时是有<code>e1*s1+e2*s2=e</code>的，按照上述的推理，我们得到的应该是</li>
+</ul>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(c1^s1 * c2^s2) % N = (m ^ e)%N</span><br></pre></td></tr></table></figure></div>
+
+<p>分两种情况：</p>
+<p><code>1: m^e &lt; N:</code> 那么此时直接开e次根即可</p>
+<p><code>2: m^e &gt; N:</code>此时直接开根答案并不对</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">M = (c1^s1 * c2^s2) % N = (m ^ e)%N</span><br><span class="line">-&gt; m^e = k*n + M (k=<span class="number">1</span>,<span class="number">2</span>,.....)</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">e1*e2= <span class="number">59653</span></span><br><span class="line">n= <span class="number">16282992590526808657350657123769110323293742472515808696156540766049532922340638986423163288656942484229334024198335416611687418341772216996129634991032127943095069143600315325916614910606100091970611448259491799589221889445348698100959509165262891180065554743420149168801638644589921791426690475846945077068114953844817073866258377206796158690941199907230130273657375727245023893672164113928189304228859412794067127721813637080447782673535996272223836127807775157150041664783263093604946744032762535394974814371771505843653571711445892969781888188805943142126747365056482511805191315474848971218180999336497135314654469910566730389765499603897685968204361422568601724914800686608628299192714352963744010136960423806304763245890692476493455775025753944860040020178234660999290356849442926396627701588938894161779071628447041006556793933320976506046066961014953196791133933438500843139378274786265308568167479880984705152809744111382599071097574636570516674122980589207824718402382459624138317432883921371298272851693734695823787102433937406420318428888224246291987404818042038201886113203158444083427668636941</span></span><br><span class="line">c1= <span class="number">15508846802476602732219982269293312372397631462289816533805702700260237855119470146237752798828431803179124957728439730580289236458563016332461725094295883030444173189424666004498359269921250956676320570006883951982237098373954348825003467019876101438948387668628518937831820206221522881150831840296199498447304138839838135264071071817072965792514115711621435317078108239744829134467948386247696344881838815422262901903767893118533887779588425725845820071451782420200868341564360095012698956683395031351656817392008005928265838760875070634021907630535014959579709368637536268853337028760833769278841040734409299575870823873616769863828516877971432999417800417684146077045836940988096634144368727546539602310924702126212020003620219218637652874119299016382481718659448722433296761241365473608283436835986184098161365747699791248301452334044327014782249692551362625130537300221641910570569803981153117200694806974917501061411963827755822672178568783269357196133308719688843211664095412087717861154226475203597889635926903753481174280305996204091501578865951177135086807765873529089048911740160698421289371229606</span></span><br><span class="line">c2= <span class="number">7038544062804420883340530319534054090343999593726615071597649914714397773106261660516938820194721330117082799104642674913839235601210294807255855747823709326405317366422536981850436536877639492293904186333547681934006229055311359852552059601531864585759120757265084674695094298158389804437120173997679271166467086009884419942249925895393890707373985126949313101489352481737754459985522998334847972008827503987883850638250024631354158979424169551575287515128697843093987592614974905262077415255065744686115142126350167970451060399517705823298929164793769442986603707135790651560436497661713972277808036463771768932747376668116480068277125579165831615220097562066809632099809702980365194257899499384219864311379004681733844738981954144617140038448109869114888325128710654235506628539192955240723379334422880368605005772426413018696218105733457019400100498450734710865067764542737004071080719589912326985050985424145053072697267879019954400205613591419766583673115931337146967400159040252514654983240188915104134405655336152730443436887872604467679522955837013574944135975481174502094839012368918547420588186051</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h2><ul>
+<li>直接上题解</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> inverse, long_to_bytes</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据均在上面，为了方便看，就不填入了</span></span><br><span class="line">n = ...</span><br><span class="line">c1 = ...</span><br><span class="line">c2 = ...</span><br><span class="line"><span class="comment"># e1 * e2 = 59653</span></span><br><span class="line">e1e2 = <span class="number">59653</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rsa_gong_N_def</span>(<span class="params">e1, e2, c1, c2, n</span>):</span><br><span class="line">    s = gmpy2.gcdext(e1, e2)</span><br><span class="line">    s1, s2 = s[<span class="number">1</span>], s[<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> s1 &lt; <span class="number">0</span>:</span><br><span class="line">        s1, c1 = -s1, gmpy2.invert(c1, n)</span><br><span class="line">    <span class="keyword">elif</span> s2 &lt; <span class="number">0</span>:</span><br><span class="line">        s2, c2 = -s2, gmpy2.invert(c2, n)</span><br><span class="line"></span><br><span class="line">    m = (<span class="built_in">pow</span>(c1, s1, n) * <span class="built_in">pow</span>(c2, s2, n)) % n</span><br><span class="line">    <span class="keyword">return</span> m</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">de</span>(<span class="params">c, e, n</span>):</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>):</span><br><span class="line">        mk = c + n * k</span><br><span class="line">        flag, true1 = gmpy2.iroot(mk, e)</span><br><span class="line">        <span class="keyword">if</span> true1:</span><br><span class="line">            <span class="keyword">return</span> flag</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> e1 <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, e1e2):</span><br><span class="line">    <span class="keyword">if</span> e1e2 % e1 == <span class="number">0</span>:</span><br><span class="line">        e2 = e1e2 // e1</span><br><span class="line">        c = rsa_gong_N_def(e1, e2, c1, c2, n)</span><br><span class="line">        e = gmpy2.gcd(e1, e2)</span><br><span class="line">        m1 = de(c, e, n)</span><br><span class="line">        <span class="keyword">if</span> m1 <span class="keyword">and</span> <span class="string">b&#x27;flag&#x27;</span> <span class="keyword">in</span> long_to_bytes(<span class="built_in">int</span>(m1)):</span><br><span class="line">            <span class="built_in">print</span>(long_to_bytes(<span class="built_in">int</span>(m1)))</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>下面对exp解释：</li>
+</ul>
+<ol>
+<li>先找到合适的e1,e2,以及对应的M</li>
+</ol>
+<p><code>gmpy2.gcdext(e1,e2)</code>:</p>
+<blockquote>
+<p>返回一个包含三个值的元组</p>
+<p>s[0]-&gt;gcd(e1,e2)，s[1]-&gt;s1, s[2] -&gt; s2 (e1<em>s1 + e2</em>s2 &#x3D;&#x3D;gcd(e1,e2))</p>
+</blockquote>
+<p><code>gmpy2.invert(c, n)</code></p>
+<blockquote>
+<p>计算c关于模m的逆元</p>
+</blockquote>
+<p>  2.c(M)带入爆破，此时满足<code> mk = c + n * k</code></p>
+<p><code>gmpy2.iroot</code></p>
+<blockquote>
+<p>用于计算整数 <code>x</code> 的 <code>k</code> 次根。它返回一个元组 <code>(root, is_exact)</code>，其中：</p>
+<ol>
+<li><strong>root</strong>：<code>x</code> 的 <code>k</code> 次根的整数部分。</li>
+<li><strong>is_exact</strong>：一个布尔值，指示 <code>root</code> 是否是 <code>x</code> 的确切 <code>k</code> 次根</li>
+</ol>
+</blockquote>
+<p>  3.判断爆破出来的是否包含flag即可</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 共模攻击</li>
+        <li><strong>Author:</strong> D0wnBe@t</li>
+        <li><strong>Created at
+                :</strong> 2024-10-16 19:13:19</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-10-20 13:43:10
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://downbeat.top/2024/10/16/共模攻击/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/crypto/">#crypto</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/10/17/House-Of-Botcake/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">House Of Botcake</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/10/15/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">moectf2024知识点汇总</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">共模攻击</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#rsa%E4%B8%AD%E7%9A%84%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB"><span class="nav-text">rsa中的共模攻击</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%B9%E4%BE%8B-gcd-e1-e2-1"><span class="nav-text">特例-gcd(e1,e2) !&#x3D; 1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-text">例题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EXP"><span class="nav-text">EXP</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">D0wnBe@t</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        32 posts in total
+                    </span>
+                    
+                        <span>
+                            32.9k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.3</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+</body>
+</html>

