@@ -25,19 +25,19 @@
 <meta property="og:site_name" content="D0wnBe@t">
 <meta property="og:description" content="介绍最初学的时候看的文章:this  栈迁移：在于溢出的长度不够布置ROP链，可以迁移栈到一个合适的地址，合适的空间，布置ROP链，然后执行ROP链，getshell。 原理修改ret address为leave ret，将rbp修改为要迁移的地址，即可栈迁移。 12leave 相当于 mov rsp, rbp; pop rbp ;ret 相当于 pop rip   第一次leave ret(函数">
 <meta property="og:locale" content="zh_CH">
-<meta property="og:image" content="http://downbeat.top/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/capture_20241023210007369.bmp">
-<meta property="og:image" content="http://downbeat.top/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/capture_20241023211519333.bmp">
-<meta property="og:image" content="http://downbeat.top/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/capture_20241024005908445.bmp">
-<meta property="og:image" content="http://downbeat.top/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/capture_20241024104747898.bmp">
-<meta property="og:image" content="http://downbeat.top/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/capture_20241024105020233.bmp">
-<meta property="og:image" content="http://downbeat.top/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/capture_20241024125053652.bmp">
-<meta property="og:image" content="http://downbeat.top/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/capture_20241024131138527.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241023210007369.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241023211519333.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241024005908445.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241024104747898.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241024105020233.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241024125053652.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241024131138527.bmp">
 <meta property="article:published_time" content="2024-10-23T11:40:32.000Z">
-<meta property="article:modified_time" content="2024-10-24T05:23:08.061Z">
+<meta property="article:modified_time" content="2024-11-06T05:02:27.257Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="ctf-pwn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://downbeat.top/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/capture_20241023210007369.bmp">
+<meta name="twitter:image" content="http://downbeat.top/capture_20241023210007369.bmp">
     
     
     <!--- Icon Part-->
@@ -244,8 +244,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-10-24 13:23:08</span>
-            <span class="mobile">2024-10-24 13:23:08</span>
+            <span class="desktop">2024-11-06 13:02:27</span>
+            <span class="mobile">2024-11-06 13:02:27</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -301,7 +301,7 @@
 </ul>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">leave: mov rsp,rbp; 将rbp的值给rsp，即将rsp拉到rbp的位置</span><br><span class="line">	   pop rbp; 将rsp此时对应的值弹给rbp，所以之前将aim_addr覆盖为rbp就是为了此时将rbp弹为aim_addr,完成这一步，rbp迁移到aim address</span><br><span class="line">	   ;同时由于pop，rsp往高地址移动一个机器字长,即此时rsp是ret address</span><br><span class="line">ret :  pop rip;将rsp此时的值弹给rip，即leave ret 弹给rip，会再次执行leave ret</span><br></pre></td></tr></table></figure></div>
 
-<p><img lazyload src="/images/loading.svg" data-src="/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/capture_20241023210007369.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241023210007369.bmp"></p>
 <ul>
 <li>第二次leave ret(溢出ret addr 得到的leave ret)</li>
 </ul>
@@ -309,7 +309,7 @@
 
 
 
-<p><img lazyload src="/images/loading.svg" data-src="/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/capture_20241023211519333.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241023211519333.bmp"></p>
 <ul>
 <li>核心的原理就是这样了</li>
 </ul>
@@ -346,7 +346,7 @@
 <ul>
 <li>代码很简单，64位程序，相当于上题去掉了第一个read，然后其余都是一样的，可以溢出两个字长，打栈迁移，但是我们没有栈地址，也没有提前往bss段布置好ROP链，那就不可以写了吗？看到<code>read的汇编</code></li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/capture_20241024005908445.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241024005908445.bmp"></p>
 <ul>
 <li><mark>关键点就在这里<mark></mark></mark></li>
 </ul>
@@ -362,9 +362,9 @@
 
 <p>这样程序会执行m_read，读入下方的payload</p>
 <p>（1）第一个payload可以看到,rbp覆盖为bss，ret_addr为m_read</p>
-<p><img lazyload src="/images/loading.svg" data-src="/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/capture_20241024104747898.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241024104747898.bmp"></p>
 <p>(2)第二个payload是在<code>m_read</code>开始写入数据，注意看到rsp还是在栈上面的，说明你还可以通过栈溢出继续打栈迁移,需要注意，我们一次栈迁移肯定是不够的，所以要注意此时rbp不能是之前一段栈迁移一样填充垃圾数据，要填充为bss。</p>
-<p><img lazyload src="/images/loading.svg" data-src="/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/capture_20241024105020233.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241024105020233.bmp"></p>
 <ul>
 <li>执行完ROP链之后会继续执行<code>m_read</code>，此时的rbp应该是多少呢？就是你给的<code>bss</code></li>
 </ul>
@@ -372,12 +372,12 @@
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">payload = cyclic(<span class="number">0x20</span>)</span><br><span class="line">payload += flat(pop_rdi_ret,bin_sh,system,m_read)</span><br><span class="line"></span><br><span class="line">p.send(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
 
 <p>解释一下这个payload，看下图：</p>
-<p><img lazyload src="/images/loading.svg" data-src="/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/capture_20241024125053652.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241024125053652.bmp"></p>
 <p>写入数据从<code>rbp-0x30</code>即0x601810写入，但是单纯的直接写入0x30的数据然后“栈溢出”写system(‘&#x2F;bin&#x2F;sh’)的ROP链能行吗？当然是不行的，你写了但是并不会执行，这里就要注意下面的<code>call read</code>了</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">call: push rip; jmp addr; ret</span><br></pre></td></tr></table></figure></div>
 
 <p><mark>从上面可以看出，call完函数之后，会执行ret，即<code>pop rip</code>，此时将rsp改为ROP链的开头即可，但是注意，<code>call</code>会先<code>push rip</code>，会将rsp往低地址移动一个字长，即此时的rsp应该是0x601830,所以填充0x20的垃圾数据，然后布置ROP链即可。执行完syscall如下</mark></p>
-<p><img lazyload src="/images/loading.svg" data-src="/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/capture_20241024131138527.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241024131138527.bmp"></p>
 <ul>
 <li>可以注意到下方我们已经布置好了ROP链，然后DISASM页面先放还有一个ret，即可以执行ROP链，从而get shell。</li>
 <li>其实也可以发现，最后的m_read可有可无</li>
@@ -399,7 +399,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-10-24 13:23:08
+                    :</strong> 2024-11-06 13:02:27
             </li>
         
         <li>

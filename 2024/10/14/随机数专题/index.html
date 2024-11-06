@@ -25,15 +25,15 @@
 <meta property="og:site_name" content="D0wnBe@t">
 <meta property="og:description" content="什么是伪随机？对于基本的随机数生成，比如说 123srand randsrandom random# 位于stdlib头文件里面  这两个函数的随机数生成都基于时间种子seed，通常来说，只要glibc相同，seed相同，那么所生成的随机数就是一样的。 下面简单介绍一下随机数生产的代码123456789#include &lt;stdio.h&gt;#include &lt;stdlib.h&amp;gt">
 <meta property="og:locale" content="zh_CH">
-<meta property="og:image" content="http://downbeat.top/%E4%BC%AA%E9%9A%8F%E6%9C%BA/capture_20241014131824312.bmp">
-<meta property="og:image" content="http://downbeat.top/%E4%BC%AA%E9%9A%8F%E6%9C%BA/capture_20241014131837873.bmp">
-<meta property="og:image" content="http://downbeat.top/%E4%BC%AA%E9%9A%8F%E6%9C%BA/capture_20241014131854890.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241014131824312.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241014131837873.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241014131854890.bmp">
 <meta property="article:published_time" content="2024-10-14T03:54:21.000Z">
-<meta property="article:modified_time" content="2024-11-06T03:27:23.996Z">
+<meta property="article:modified_time" content="2024-11-06T05:05:25.339Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="ctf-pwn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://downbeat.top/%E4%BC%AA%E9%9A%8F%E6%9C%BA/capture_20241014131824312.bmp">
+<meta name="twitter:image" content="http://downbeat.top/capture_20241014131824312.bmp">
     
     
     <!--- Icon Part-->
@@ -240,8 +240,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-06 11:27:23</span>
-            <span class="mobile">2024-11-06 11:27:23</span>
+            <span class="desktop">2024-11-06 13:05:25</span>
+            <span class="mobile">2024-11-06 13:05:25</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -304,10 +304,10 @@
 <h2 id="伪随机的利用"><a href="#伪随机的利用" class="headerlink" title="伪随机的利用"></a>伪随机的利用</h2><ul>
 <li>下图是在Ubuntu22.04的情况下运行同样的代码(上面是在ubuntu24.04运行)</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/%E4%BC%AA%E9%9A%8F%E6%9C%BA/capture_20241014131824312.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241014131824312.bmp"></p>
 <p>可以发现产生的随机数是相同的，为什么呢？</p>
-<p><img lazyload src="/images/loading.svg" data-src="/%E4%BC%AA%E9%9A%8F%E6%9C%BA/capture_20241014131837873.bmp"></p>
-<p><img lazyload src="/images/loading.svg" data-src="/%E4%BC%AA%E9%9A%8F%E6%9C%BA/capture_20241014131854890.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241014131837873.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241014131854890.bmp"></p>
 <p><mark>我们发现虽然是在不同的ubuntu版本，即glibc版本不同的环境下运行，但是程序所利用的libc版本和ld版本相同，算法相同，他们所产生的随机数依旧是相同的，这就是伪随机的概念<mark></mark></mark></p>
 <ul>
 <li>所以我们只需要找到相同的libc就可以掌握随机数，但是我们写pwn的脚本是拿python写的，在python下如何模拟c语言产生随机数呢，<mark>ctype库<mark></mark></mark></li>
@@ -458,7 +458,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-11-06 11:27:23
+                    :</strong> 2024-11-06 13:05:25
             </li>
         
         <li>

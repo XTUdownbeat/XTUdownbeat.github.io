@@ -30,11 +30,11 @@
 <meta property="og:image" content="http://downbeat.top/capture_20241017112807185-1730864904515-24.bmp">
 <meta property="og:image" content="http://downbeat.top/capture_20241017112656932.bmp">
 <meta property="og:image" content="http://downbeat.top/capture_20241017112828023.bmp">
-<meta property="og:image" content="http://downbeat.top/House-Of-Botcake/capture_20241017113852230.bmp">
-<meta property="og:image" content="http://downbeat.top/House-Of-Botcake/capture_20241017113915339.bmp">
-<meta property="og:image" content="http://downbeat.top/House-Of-Botcake/capture_20241017113934742.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241017113852230.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241017113915339.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241017113934742.bmp">
 <meta property="article:published_time" content="2024-10-17T02:01:56.000Z">
-<meta property="article:modified_time" content="2024-11-06T04:44:38.088Z">
+<meta property="article:modified_time" content="2024-11-06T04:58:05.265Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="ctf-pwn">
 <meta name="twitter:card" content="summary">
@@ -245,8 +245,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-06 12:44:38</span>
-            <span class="mobile">2024-11-06 12:44:38</span>
+            <span class="desktop">2024-11-06 12:58:05</span>
+            <span class="mobile">2024-11-06 12:58:05</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -386,15 +386,15 @@
 <ul>
 <li>edit(7,size(payload),payload)，修改tcache bin chunk fd</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017113852230.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241017113852230.bmp"></p>
 <ul>
 <li>第二次add之前，进行第二次add即可将__free_hook当作fake_chunk</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017113915339.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241017113915339.bmp"></p>
 <ul>
 <li>第二次add，修改fd为system，即free -&gt; __free_hook-&gt;system，此时执行free,即执行system</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017113934742.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241017113934742.bmp"></p>
 <ul>
 <li>最后free(11),即system(‘&#x2F;bin&#x2F;sh’)</li>
 </ul>
@@ -414,7 +414,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-11-06 12:44:38
+                    :</strong> 2024-11-06 12:58:05
             </li>
         
         <li>

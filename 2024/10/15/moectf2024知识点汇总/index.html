@@ -25,16 +25,16 @@
 <meta property="og:site_name" content="D0wnBe@t">
 <meta property="og:description" content="前言题目链接  本次比赛对基础的要求可谓是很深啊，记录一些自己需要学习的或者是基础不牢固，所需要学习的点 NotEnoughTime题目链接  运用正则匹配运算数学式子  贴一份官方wp  123456789101112131415161718from pwn import *io &#x3D; ...io.sendlineafter(b&quot;&#x3D;&quot;, b&quot;2&quot;)io.se">
 <meta property="og:locale" content="zh_CH">
-<meta property="og:image" content="http://downbeat.top/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015180637471.bmp">
-<meta property="og:image" content="http://downbeat.top/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015195948758.bmp">
-<meta property="og:image" content="http://downbeat.top/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015215201688.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241015180637471.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241015195948758.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241015215201688.bmp">
 <meta property="og:image" content="http://downbeat.top/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015215508725.bmp">
 <meta property="article:published_time" content="2024-10-15T09:56:24.000Z">
-<meta property="article:modified_time" content="2024-10-16T15:00:02.110Z">
+<meta property="article:modified_time" content="2024-11-06T05:04:36.215Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="ctf-pwn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://downbeat.top/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015180637471.bmp">
+<meta name="twitter:image" content="http://downbeat.top/capture_20241015180637471.bmp">
     
     
     <!--- Icon Part-->
@@ -241,8 +241,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-10-16 23:02</span>
-            <span class="mobile">2024-10-16 23:02</span>
+            <span class="desktop">2024-11-06 13:04:36</span>
+            <span class="mobile">2024-11-06 13:04:36</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -307,7 +307,7 @@
 <h1 id="这是什么？random！"><a href="#这是什么？random！" class="headerlink" title="这是什么？random！"></a><strong>这是什么？random！</strong></h1><p><mark>真随机数爆破<mark></mark></mark></p>
 <p>在我写的<a href="https://downbeat.top/2024/10/14/%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%B8%93%E9%A2%98/">这篇文章</a>里面已经提到过了</p>
 <h1 id="这是什么？GOT！"><a href="#这是什么？GOT！" class="headerlink" title="这是什么？GOT！"></a><strong>这是什么？GOT！</strong></h1><p><mark>理解plt和got表之间的关系，已经函数真实地址是从哪里来的<mark></mark></mark></p>
-<p><img lazyload src="/images/loading.svg" data-src="/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015180637471.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241015180637471.bmp"></p>
 <blockquote>
 <h3 id="调用过程解析"><a href="#调用过程解析" class="headerlink" title="调用过程解析"></a>调用过程解析</h3><ol>
 <li><strong>程序启动时</strong>：<ul>
@@ -383,7 +383,7 @@
 <h1 id="Catch-the-canary"><a href="#Catch-the-canary" class="headerlink" title="Catch_the_canary!"></a>Catch_the_canary!</h1><p><mark>arc4random真随机数爆破<mark> : <a href="https://downbeat.top/2024/10/14/%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%B8%93%E9%A2%98/">这篇文章</a></mark></mark></p>
 <p><mark>跳过scanf的输入<mark></mark></mark></p>
 <p><mark>泄露canary<mark></mark></mark></p>
-<h2 id="下面看如何跳过scanf输入的"><a href="#下面看如何跳过scanf输入的" class="headerlink" title="下面看如何跳过scanf输入的"></a>下面看如何跳过scanf输入的</h2><p><img lazyload src="/images/loading.svg" data-src="/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015195948758.bmp"></p>
+<h2 id="下面看如何跳过scanf输入的"><a href="#下面看如何跳过scanf输入的" class="headerlink" title="下面看如何跳过scanf输入的"></a>下面看如何跳过scanf输入的</h2><p><img lazyload src="/images/loading.svg" data-src="/../capture_20241015195948758.bmp"></p>
 <ul>
 <li>要求输入的不变，我们可以:</li>
 </ul>
@@ -401,7 +401,7 @@
 <li>很明显0xd字节写入shellcode长度是不够的，那么我们可以再次调用read,写入shellcode</li>
 <li>为什么会想到<code>read</code>？观察执行shellcode前的寄存器，<code>rax=0</code>,只要<code>syscall</code>就会执行<code>read</code></li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015215201688.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241015215201688.bmp"></p>
 <p><mark>注意其他几个寄存器<mark></mark></mark></p>
 <p><img lazyload src="/images/loading.svg" data-src="/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/capture_20241015215508725.bmp"></p>
 <ul>
@@ -443,7 +443,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-10-16 23:00:02
+                    :</strong> 2024-11-06 13:04:36
             </li>
         
         <li>

