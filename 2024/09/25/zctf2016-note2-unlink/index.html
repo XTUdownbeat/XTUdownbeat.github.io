@@ -31,17 +31,17 @@
 <meta property="og:site_name" content="D0wnBe@t">
 <meta property="og:description" content="无法堆溢出修改chunk的unlink+整数溢出题目链接  有符号整型与无符号整型比较 -&gt; 存在溢出 unlink完整表示 以往的unlink都是可以堆溢出修改相邻chunk的prev_size以及其size_inuse，然后构造出一个fake_free_chunk，然后free相邻的chunk，这两个chunk就会合并，从而达到unlink的效果，如下图：    接着上图讲：chunk1">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://downbeat.top/zctf2016-note2-unlink/unlink.drawio.png">
-<meta property="og:image" content="http://downbeat.top/zctf2016-note2-unlink/unlink2.jpg">
-<meta property="og:image" content="http://downbeat.top/zctf2016-note2-unlink/capture_20240925195730160.bmp">
-<meta property="og:image" content="http://downbeat.top/zctf2016-note2-unlink/capture_20240925201946698.bmp">
-<meta property="og:image" content="http://downbeat.top/zctf2016-note2-unlink/capture_20240925202348973.bmp">
+<meta property="og:image" content="http://downbeat.top/unlink.drawio.png">
+<meta property="og:image" content="http://downbeat.top/unlink2.jpg">
+<meta property="og:image" content="http://downbeat.top/capture_20240925195730160.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240925201946698.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240925202348973.bmp">
 <meta property="article:published_time" content="2024-09-25T10:55:36.000Z">
-<meta property="article:modified_time" content="2024-09-25T12:30:32.080Z">
+<meta property="article:modified_time" content="2024-11-07T14:43:44.316Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="ctf-pwn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://downbeat.top/zctf2016-note2-unlink/unlink.drawio.png">
+<meta name="twitter:image" content="http://downbeat.top/unlink.drawio.png">
     
     
     <!--- Icon Part-->
@@ -232,8 +232,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-09-25 20:30:32</span>
-            <span class="mobile">2024-09-25 20:30:32</span>
+            <span class="desktop">2024-11-07 22:43:44</span>
+            <span class="mobile">2024-11-07 22:43:44</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -284,13 +284,13 @@
 <h1 id="unlink完整表示"><a href="#unlink完整表示" class="headerlink" title="unlink完整表示"></a>unlink完整表示</h1><ul>
 <li><strong>以往的unlink都是可以堆溢出修改相邻chunk的prev_size以及其size_inuse</strong>，然后构造出一个fake_free_chunk，然后free相邻的chunk，这两个chunk就会合并，从而达到unlink的效果，如下图：</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/zctf2016-note2-unlink/unlink.drawio.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../unlink.drawio.png"></p>
 <ul>
 <li>接着上图讲：chunk1是构造成了一个fake_chunk，接着free(chunk2),那么这两个chunk将会合并，从而绕过检测，达到unlink的效果。</li>
 </ul>
 <div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对于unsorted bin 双向链表的检测</span></span><br><span class="line">chunk FD表示chunk的下一个chunk BK表示chunk的上一个chunk</span><br><span class="line">chunk.fd -&gt; FD  FD.bk -&gt; chunk      chunk.bk -&gt; BK   BK.fd -&gt; chunk</span><br></pre></td></tr></table></figure></div>
 
-<p><img lazyload src="/images/loading.svg" data-src="/zctf2016-note2-unlink/unlink2.jpg"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../unlink2.jpg"></p>
 <ul>
 <li>如上图，相当于把heap[0]迁移到了 -0x18的位置，这就是完整的unlink利用方法。</li>
 </ul>
@@ -320,7 +320,7 @@
 <h2 id="核心漏洞点-整数溢出"><a href="#核心漏洞点-整数溢出" class="headerlink" title="核心漏洞点-整数溢出"></a>核心漏洞点-整数溢出</h2><ul>
 <li>在add函数的input1函数中，存在难发现的整数溢出漏洞</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/zctf2016-note2-unlink/capture_20240925195730160.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240925195730160.bmp"></p>
 <ul>
 <li><font size="red">定义的i是一个无符号整型，但是a2(size)确是一个有符号整形，因此有整数溢出</font></li>
 <li>对于无符号与有符号的比较，会将<strong>有符号转化为无符号</strong>，所以若我们给a2赋值为0，a2 -1&#x3D;-1,对应于无符号整型是最大的数字，那么我们就可以任意写了。</li>
@@ -335,11 +335,11 @@
 <li>正常应该是溢出修改chunk2的prev_size为0xa0,以及size的inuse&#x3D;0，但是我们没有off_by_one，也无法直接溢出改，于是，我们利用add里面的整数溢出进行改写</li>
 <li>free(chunk1)，只要将size赋值为0，就可以溢出改写了，效果如下：</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/zctf2016-note2-unlink/capture_20240925201946698.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240925201946698.bmp"></p>
 <h2 id="泄露libc"><a href="#泄露libc" class="headerlink" title="泄露libc"></a>泄露libc</h2><ul>
 <li>接下来直接free相邻chunk，即chunk2，就可以达到unlink的效果</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/zctf2016-note2-unlink/capture_20240925202348973.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240925202348973.bmp"></p>
 <ul>
 <li>此时就是正常的unlink的利用，如下：</li>
 </ul>
@@ -366,7 +366,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-09-25 20:30:32
+                    :</strong> 2024-11-07 22:43:44
             </li>
         
         <li>
@@ -527,7 +527,7 @@
                     </span>
                     
                         <span>
-                            共 34.5k 字
+                            共 35.3k 字
                         </span>
                     
                 </p>

