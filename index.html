@@ -217,7 +217,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">13</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -225,7 +225,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">36</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">37</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -258,7 +258,7 @@
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">13</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -266,7 +266,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">36</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">37</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -283,6 +283,72 @@
                 
                     <div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/11/14/Seccomp%E5%AD%A6%E4%B9%A0-2/">
+                            Seccomp学习(2)
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            前言Seccomp(1)已经大致介绍了一下沙箱，并且在最后的结尾处我自己还写了一个orw的源码，简单介绍了一下orw的汇编，这篇文章简单介绍一下常见的沙箱绕过方法。
+参考文章：Linux X86架构 32 64系统调用表 ❤️❤️
+ORW还是先简单介绍一下ORW，上一篇文章介绍了64位的，这里简单介绍一下32位
+32位
+先编译源码，在开始编译32位之前，要先安装32位的libseccomp以...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Nov 14 2024 13:05:28 GMT+0800">
+                
+                    2024-11-14
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/seccomp/">seccomp</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/11/14/Seccomp%E5%AD%A6%E4%B9%A0-2/">阅读全文<span class="seo-reader-text">Seccomp学习(2)</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -338,6 +404,11 @@ Seccomp（Secure Computing Mode） 是 Linux 内核提供的一种安全机制..
                         <li>
                             | 
                             <a href="/tags/seccomp/">seccomp</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -834,65 +905,6 @@ tcachekey值的引进
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/10/16/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/">
-                            共模攻击
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            rsa中的共模攻击参考文章 
-介绍共模攻击是指在不分解d的情况下依旧可以求出m的一种算法，常见给出了c1,c2：
-12c1 = pow(m , e1 , N)c2 = pow(m , e2 , N)
-
-要求gcd(e1 , e2)&#x3D;1,即e1,e2互质,那么则有:
-12e1*s1 + e2*s2 = 1// s1,s2一正一负
-
-可以有:m &#x3D; ( c1^s1 * c2^...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Wed Oct 16 2024 19:13:19 GMT+0800">
-                
-                    2024-10-16
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/crypto/">crypto</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/10/16/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/">阅读全文<span class="seo-reader-text">共模攻击</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
@@ -927,11 +939,11 @@ tcachekey值的引进
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 36 篇文章
+                        共撰写了 37 篇文章
                     </span>
                     
                         <span>
-                            共 41.4k 字
+                            共 44k 字
                         </span>
                     
                 </p>
