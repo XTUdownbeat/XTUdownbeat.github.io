@@ -31,15 +31,15 @@
 <meta property="og:site_name" content="D0wnBe@t">
 <meta property="og:description" content="典型的ORW+mmap参数理解题目连接  知识点 1.典型的沙箱，ORW 2.mmap参数的理解，参考这篇文章  1.ida速览 已经修改了函数名，加入了沙箱    发现是典型的ORW可用：    查看一下主要部分：   存在明显的栈溢出，并且此题保护全关，可以直接写入shellcode。 简单思路 关于mmap函数的参数可以参考开头的文章，此处的mmap会在指定的地址开辟一个0x1000的可写可">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://downbeat.top/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-Not-Bad/capture_20240916154952629.bmp">
-<meta property="og:image" content="http://downbeat.top/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-Not-Bad/capture_20240916155021894.bmp">
-<meta property="og:image" content="http://downbeat.top/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-Not-Bad/capture_20240916155002230.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240916154952629.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240916155021894.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240916155002230.bmp">
 <meta property="article:published_time" content="2024-09-16T07:43:19.000Z">
-<meta property="article:modified_time" content="2024-09-16T12:38:12.154Z">
+<meta property="article:modified_time" content="2024-11-14T03:41:55.022Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="ctf-pwn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://downbeat.top/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-Not-Bad/capture_20240916154952629.bmp">
+<meta name="twitter:image" content="http://downbeat.top/capture_20240916154952629.bmp">
     
     
     <!--- Icon Part-->
@@ -230,8 +230,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-09-16 20:38:12</span>
-            <span class="mobile">2024-09-16 20:38:12</span>
+            <span class="desktop">2024-11-14 11:41:55</span>
+            <span class="mobile">2024-11-14 11:41:55</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -284,15 +284,15 @@
 <h2 id="1-ida速览"><a href="#1-ida速览" class="headerlink" title="1.ida速览"></a>1.ida速览</h2><ul>
 <li>已经修改了函数名，加入了沙箱</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-Not-Bad/capture_20240916154952629.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240916154952629.bmp"></p>
 <ul>
 <li>发现是典型的ORW可用：</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-Not-Bad/capture_20240916155021894.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240916155021894.bmp"></p>
 <ul>
 <li>查看一下主要部分：</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-Not-Bad/capture_20240916155002230.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240916155002230.bmp"></p>
 <p>存在明显的栈溢出，并且此题保护全关，可以直接写入shellcode。</p>
 <h3 id="简单思路"><a href="#简单思路" class="headerlink" title="简单思路"></a>简单思路</h3><ul>
 <li>关于mmap函数的参数可以参考开头的文章，此处的mmap会在指定的地址开辟一个0x1000的可写可执行区域(prot&#x3D;6，不可读)，因此我们可以在该地址写入shellcode，然后使之被调用就可以getflag。</li>
@@ -333,7 +333,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-09-16 20:38:12
+                    :</strong> 2024-11-14 11:41:55
             </li>
         
         <li>
