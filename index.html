@@ -217,7 +217,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">16</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -225,7 +225,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">37</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">38</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -258,7 +258,7 @@
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">16</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -266,7 +266,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">37</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">38</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -283,6 +283,74 @@
                 
                     <div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/11/20/XSS/">
+                            XSS
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            例题[第二章 web进阶]XSS闯关题目链接：[BUUCTF在线评测](https://buuoj.cn/challenges#[第二章  web进阶]XSS闯关)
+
+根据提示直接开始游戏，利用alert函数即可
+
+
+非预期既然知道是个闯关游戏，那我们直接试level即可，到第七关的时候就有flag了
+
+1n1book&#123;xss_is_so_interesting&#125;
+
+
+
+...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Nov 20 2024 21:16:38 GMT+0800">
+                
+                    2024-11-20
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/web/">web</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/XSS/">XSS</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/11/20/XSS/">阅读全文<span class="seo-reader-text">XSS</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -846,65 +914,6 @@ Franklin-Reiter介绍该攻击方法在于两个明文m1,m2，这两个明文利
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/10/17/House-Of-Botcake/">
-                            House Of Botcake
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            介绍参考文章 
-House Of Botcache是用于绕过tcache double free检查的一种方法，在glibc2.29-2.31，对于tcache加入了key值来检测该tcache是否已经存在于tcache bins中，该方法就是借用unsorted bin来绕过double free的检查,下面跟着源码来分析一下。
-源码源码文档 
-tcachekey值的引进
-
-2984行
-
-...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Oct 17 2024 10:01:56 GMT+0800">
-                
-                    2024-10-17
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/10/17/House-Of-Botcake/">阅读全文<span class="seo-reader-text">House Of Botcake</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
@@ -939,11 +948,11 @@ tcachekey值的引进
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 37 篇文章
+                        共撰写了 38 篇文章
                     </span>
                     
                         <span>
-                            共 45.3k 字
+                            共 46.9k 字
                         </span>
                     
                 </p>
