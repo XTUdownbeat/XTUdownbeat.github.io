@@ -195,7 +195,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">18</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -203,7 +203,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">39</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">41</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -236,7 +236,7 @@
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">18</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -244,7 +244,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">39</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">41</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -261,6 +261,118 @@
                 
                     <div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/11/04/Glibc2-27-setcontext-orw/">
+                            Glibc2.27_setcontext+orw
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            介绍参考文章：https://blog.wingszeng.top/pwn-glibc-setcontext/ 
+https://ctf-wiki.org/pwn/linux/user-mode/stackoverflow/x86/advanced-rop/srop/ 
+在glibc2.27及之下，遇到堆题目开启了沙箱，通常是使用setcontext+53 srop orw去达到获得flag...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Nov 04 2024 18:50:24 GMT+0800">
+                
+                    2024-11-04
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/11/04/Glibc2-27-setcontext-orw/">阅读全文<span class="seo-reader-text">Glibc2.27_setcontext+orw</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/10/23/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/">
+                            栈迁移-Pivoting
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            介绍最初学的时候看的文章:this 
+栈迁移：在于溢出的长度不够布置ROP链，可以迁移栈到一个合适的地址，合适的空间，布置ROP链，然后执行ROP链，getshell。
+原理修改ret address为leave ret，将rbp修改为要迁移的地址，即可栈迁移。
+12leave 相当于 mov rsp, rbp; pop rbp ;ret 相当于 pop rip
+
+
+第一次leave ret...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Oct 23 2024 19:40:32 GMT+0800">
+                
+                    2024-10-23
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/10/23/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/">阅读全文<span class="seo-reader-text">栈迁移-Pivoting</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -736,130 +848,11 @@ unlink完整表示
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/09/23/tcache-double-free-overlap/">
-                            tcache_double_free_overlap
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            ciscn_2019_final_3题目链接 
-overlap：参考文章 
-题解参考文章：参考题解 
-ida速览
-main函数只有add和free可以使用
-
-12345678910111213141516171819202122232425void __fastcall __noreturn main(__int64 a1, char **a2, char **a3)&#123;  __in...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Sep 23 2024 15:58:04 GMT+0800">
-                
-                    2024-09-23
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/09/23/tcache-double-free-overlap/">阅读全文<span class="seo-reader-text">tcache_double_free_overlap</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/09/22/%E5%88%9D%E9%81%87tcache-double-free/">
-                            初遇tcache-double_free
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            ciscn_2019_es_1题目链接 
-要点：
-
-虽然说tcache的double free漏洞在glibc2.30之后才完备，但是glibc2.27中也有版本具备该检测
-我最开始用的2.27-3ubuntu1.5_amd64就是不可以的，但是此题目是没有该检查的，本地测试可以用2.27-3ubuntu1_amd64
-
-ida速览
-经典的堆菜单，但是glibc2.27具有tcache
-
-1...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Sep 22 2024 20:06:12 GMT+0800">
-                
-                    2024-09-22
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/09/22/%E5%88%9D%E9%81%87tcache-double-free/">阅读全文<span class="seo-reader-text">初遇tcache-double_free</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
         <div class="paginator">
-    <a class="extend prev" rel="prev" href="/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa-regular fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa-regular fa-angle-right"></i></a>
 </div>
 
     </div>
@@ -889,11 +882,11 @@ ida速览
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 39 篇文章
+                        共撰写了 41 篇文章
                     </span>
                     
                         <span>
-                            共 48.9k 字
+                            共 51.2k 字
                         </span>
                     
                 </p>

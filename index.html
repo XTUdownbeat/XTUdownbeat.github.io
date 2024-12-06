@@ -217,7 +217,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">18</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -225,7 +225,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">39</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">41</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -258,7 +258,7 @@
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">18</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -266,7 +266,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">39</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">41</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -283,6 +283,145 @@
                 
                     <div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/12/06/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">
+                            文件上传
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            [极客大挑战 2019]Upload一句话木马
+打开便是上传文件，那我们直接上传一句话木马：
+
+1&lt;? php @eval($_POST[&#x27;cmd&#x27;]); ?&gt;
+
+
+修改content-type
+尝试抓包修改Content-Type
+
+
+php后缀绕过
+尝试修改后缀绕过
+
+1.phtml .php1 .php2 .phar
+
+
+又显示file里面不能包含&lt...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Dec 06 2024 17:06:43 GMT+0800">
+                
+                    2024-12-06
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/ctf-web/">ctf-web</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">文件上传</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/12/06/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">阅读全文<span class="seo-reader-text">文件上传</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/12/05/%E5%88%A9%E7%94%A8-IO-FILE%E7%BB%93%E6%9E%84/">
+                            利用_IO_FILE结构
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            参考《CTF竞赛权威指南(PWN篇)》,ctf.wiki
+1.FILE结构体文章:https://www.yuque.com/yuqueyonghupiiwso/gixo00/bekmilyu3sn6sh3e?singleDoc#  《FILE结构》
+可以参考上面写的文章，下面简单说一下吧。
+FILE结构体
+FILE结构被被一系列流操作函数(fopen(),fread,fclose()等)所...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Dec 05 2024 14:53:51 GMT+0800">
+                
+                    2024-12-05
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">学习资料</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/IO-FILE/">IO_FILE</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/12/05/%E5%88%A9%E7%94%A8-IO-FILE%E7%BB%93%E6%9E%84/">阅读全文<span class="seo-reader-text">利用_IO_FILE结构</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -808,123 +947,11 @@ checksec+ida1234567pwn@ctfpwn:~/Desktop/buuctf/wdb_2018_1st_babyheap$ checksec p
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/11/04/Glibc2-27-setcontext-orw/">
-                            Glibc2.27_setcontext+orw
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            介绍参考文章：https://blog.wingszeng.top/pwn-glibc-setcontext/ 
-https://ctf-wiki.org/pwn/linux/user-mode/stackoverflow/x86/advanced-rop/srop/ 
-在glibc2.27及之下，遇到堆题目开启了沙箱，通常是使用setcontext+53 srop orw去达到获得flag...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Nov 04 2024 18:50:24 GMT+0800">
-                
-                    2024-11-04
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/11/04/Glibc2-27-setcontext-orw/">阅读全文<span class="seo-reader-text">Glibc2.27_setcontext+orw</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/10/23/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/">
-                            栈迁移-Pivoting
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            介绍最初学的时候看的文章:this 
-栈迁移：在于溢出的长度不够布置ROP链，可以迁移栈到一个合适的地址，合适的空间，布置ROP链，然后执行ROP链，getshell。
-原理修改ret address为leave ret，将rbp修改为要迁移的地址，即可栈迁移。
-12leave 相当于 mov rsp, rbp; pop rbp ;ret 相当于 pop rip
-
-
-第一次leave ret...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Wed Oct 23 2024 19:40:32 GMT+0800">
-                
-                    2024-10-23
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/10/23/%E6%A0%88%E8%BF%81%E7%A7%BB-Pivoting/">阅读全文<span class="seo-reader-text">栈迁移-Pivoting</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
         <div class="paginator">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa-regular fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa-regular fa-angle-right"></i></a>
 </div>
 
     </div>
@@ -954,11 +981,11 @@ https://ctf-wiki.org/pwn/linux/user-mode/stackoverflow/x86/advanced-rop/srop/
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 39 篇文章
+                        共撰写了 41 篇文章
                     </span>
                     
                         <span>
-                            共 48.9k 字
+                            共 51.2k 字
                         </span>
                     
                 </p>
