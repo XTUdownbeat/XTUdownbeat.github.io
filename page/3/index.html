@@ -203,7 +203,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">41</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">42</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -244,7 +244,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">41</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">42</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -261,6 +261,65 @@
                 
                     <div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/09/25/zctf2016-note2-unlink/">
+                            zctf2016_note2-unlink(unlink精讲)
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            无法堆溢出修改chunk的unlink+整数溢出题目链接 
+有符号整型与无符号整型比较 -&gt; 存在溢出
+unlink完整表示
+以往的unlink都是可以堆溢出修改相邻chunk的prev_size以及其size_inuse，然后构造出一个fake_free_chunk，然后free相邻的chunk，这两个chunk就会合并，从而达到unlink的效果，如下图：
+
+
+
+接着上图讲：chu...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Sep 25 2024 18:55:36 GMT+0800">
+                
+                    2024-09-25
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/09/25/zctf2016-note2-unlink/">阅读全文<span class="seo-reader-text">zctf2016_note2-unlink(unlink精讲)</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -798,71 +857,6 @@ edit：
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/09/03/0ctf-2017-babyheap-fastbin-attack/">
-                            0ctf_2017_babyheap--fastbin_attack
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            0ctf_2017_babyheap题目链接 
-libc.so文件链接 
-知识点：
-glibc2.24 fastbin_attack, unsortedbin泄露main_arena ,Arbitrary Alloc
-Fastbin Attack - CTF Wiki (ctf-wiki.org) 
-
-题目速览：
-典型的堆菜单题目，但是没有后门函数，system函数也没有
-
-
-
-add：
-
-...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Tue Sep 03 2024 13:42:37 GMT+0800">
-                
-                    2024-09-03
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/09/03/0ctf-2017-babyheap-fastbin-attack/">阅读全文<span class="seo-reader-text">0ctf_2017_babyheap--fastbin_attack</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
@@ -892,16 +886,16 @@ add：
               <span>2024</span>
               -
             
-            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">D0wnBe@t</a>
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">D0wnBe@t</a>
             
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 41 篇文章
+                        共撰写了 42 篇文章
                     </span>
                     
                         <span>
-                            共 51.6k 字
+                            共 54.1k 字
                         </span>
                     
                 </p>

