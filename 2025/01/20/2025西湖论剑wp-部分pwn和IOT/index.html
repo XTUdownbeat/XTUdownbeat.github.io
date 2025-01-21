@@ -35,8 +35,16 @@
 <meta property="og:image" content="http://downbeat.top/image-20250120225111355.png">
 <meta property="og:image" content="http://downbeat.top/image-20250121002148752.png">
 <meta property="og:image" content="http://downbeat.top/image-20250121002434862.png">
+<meta property="og:image" content="http://downbeat.top/image-20250121132949286.png">
+<meta property="og:image" content="http://downbeat.top/image-20250121133030743.png">
+<meta property="og:image" content="http://downbeat.top/image-20250121133230557.png">
+<meta property="og:image" content="http://downbeat.top/image-20250121140806191.png">
+<meta property="og:image" content="http://downbeat.top/image-20250121141831254.png">
+<meta property="og:image" content="http://downbeat.top/image-20250121142430291.png">
+<meta property="og:image" content="http://downbeat.top/image-20250121142729159.png">
+<meta property="og:image" content="http://downbeat.top/image-20250121142715813.png">
 <meta property="article:published_time" content="2025-01-20T14:32:04.000Z">
-<meta property="article:modified_time" content="2025-01-20T16:24:58.484Z">
+<meta property="article:modified_time" content="2025-01-21T06:29:47.222Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="ctf-pwn">
 <meta name="twitter:card" content="summary">
@@ -231,8 +239,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-01-21 00:24:58</span>
-            <span class="mobile">2025-01-21 00:24:58</span>
+            <span class="desktop">2025-01-21 14:29:47</span>
+            <span class="mobile">2025-01-21 14:29:47</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -254,12 +262,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>2.5k 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>2.8k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>13 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>14 分钟</span>
         </span>
     
     
@@ -338,18 +346,30 @@
 
 
 
+<h1 id="sharkp"><a href="#sharkp" class="headerlink" title="sharkp"></a>sharkp</h1><p>参考文章：<a class="link" target="_blank" rel="noopener" href="https://la13x.github.io/2024/01/24/MSF-C2/#32%E4%BD%8D">https://la13x.github.io/2024/01/24/MSF-C2/#32%E4%BD%8D <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">小李的摄像头被黑客入侵了，但只捕获到了单向的流量包，请分析摄像头固件与对应的流量，回答以下问题：</span><br><span class="line">1.攻击者利用摄像头哪个接口实现的RCE？</span><br><span class="line">2.攻击者回连的C2服务器ip地址是什么？</span><br><span class="line">flag格式：flag&#123;接口名称_ip地址&#125;  例：flag&#123;qweasd_127.0.0.1&#125;</span><br></pre></td></tr></table></figure></div>
 
+<p>先查看流量包，只需查看http即可</p>
+<p>由于是单向的流量包，但是在其中有一个返回给服务器的流量包，点击查看一下：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250121132949286.png" alt="image-20250121132949286"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250121133030743.png" alt="image-20250121133030743"></p>
+<p>发现有个ELF文件，dump下来丢到ida查看：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250121133230557.png" alt="image-20250121133230557"></p>
+<p>部分代码如上，其实这就是一个mips下的shellcode，往下面看一点也是可以看到 <code>/bin</code>出现的</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250121140806191.png" alt="image-20250121140806191"></p>
+<p>而要求的C2回连地址就是第一张图片的光标处,可以参考开头的文章可以猜测。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250121141831254.png" alt="image-20250121141831254"></p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">115.195.88.161</span><br></pre></td></tr></table></figure></div>
 
-
-
-
-
-
-
-
-
-
-
+<p>也可以丢进安恒云沙箱</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250121142430291.png" alt="image-20250121142430291"></p>
+<ul>
+<li>下面找接口，在上述的流量包上方发现有个POST的包，点进去看：</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250121142729159.png" alt="image-20250121142729159"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250121142715813.png" alt="image-20250121142715813"></p>
+<p>很明显RCE就是利用这个 <code>setSystemAdmin</code>接口</p>
+<p>那么flag就是<code>flag&#123;setSystemAdmin_115.195.88.161&#125;</code></p>
 
         </div>
 
@@ -364,7 +384,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-01-21 00:24:58
+                    :</strong> 2025-01-21 14:29:47
             </li>
         
         <li>
@@ -473,7 +493,7 @@
     <div class="post-toc">
         <div class="toc-title">目录</div>
         <div class="page-title">2025西湖论剑wp-部分pwn和IOT</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vpwn"><span class="nav-text">Vpwn</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E7%82%B9%E8%B0%83%E8%AF%95"><span class="nav-text">漏洞点调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4EXP"><span class="nav-text">完整EXP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Heaven%E2%80%99s-door"><span class="nav-text">Heaven’s door</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#EXP"><span class="nav-text">EXP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IOT-blink"><span class="nav-text">IOT-blink</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vpwn"><span class="nav-text">Vpwn</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E7%82%B9%E8%B0%83%E8%AF%95"><span class="nav-text">漏洞点调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4EXP"><span class="nav-text">完整EXP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Heaven%E2%80%99s-door"><span class="nav-text">Heaven’s door</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#EXP"><span class="nav-text">EXP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IOT-blink"><span class="nav-text">IOT-blink</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sharkp"><span class="nav-text">sharkp</span></a></li></ol>
 
     </div>
 </div>
@@ -510,7 +530,7 @@
                     </span>
                     
                         <span>
-                            共 54.1k 字
+                            共 54.4k 字
                         </span>
                     
                 </p>
