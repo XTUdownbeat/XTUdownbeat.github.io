@@ -195,7 +195,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">22</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -203,7 +203,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">42</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -236,7 +236,7 @@
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">22</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -244,7 +244,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">42</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -261,6 +261,61 @@
                 
                     <div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/11/08/wdb-2018-1st-babyheap/">
+                            wdb_2018_1st_babyheap
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            前言Glibc2.24 UAF Unlink
+参考：这篇文章 
+Unlink可以看我写的这个文章： http://downbeat.top/2024/09/25/zctf2016-note2-unlink/
+checksec+ida1234567pwn@ctfpwn:~/Desktop/buuctf/wdb_2018_1st_babyheap$ checksec pwn[*] &#x27;/...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Nov 08 2024 16:25:09 GMT+0800">
+                
+                    2024-11-08
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/11/08/wdb-2018-1st-babyheap/">阅读全文<span class="seo-reader-text">wdb_2018_1st_babyheap</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -790,66 +845,6 @@ House of Orange - CTF Wiki (ctf-wiki.org)
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/09/26/House-Of-Force/">
-                            House_Of_Force
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            提要参考文章：ctfwiki 
-神奇的泄露libc:通过malloc大于top chunk size的chunk，泄露出的chunk地址与libc存在固定的偏移
-原理介绍运用条件
-可以修改top chunk的size大小
-可以控制分配任意大小的chunk
-
-原理分析当我们malloc的时候，若是空闲的堆块无法满足malloc的要求，就会从top chunk中分割合适的chunk
-
-如果top...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Sep 26 2024 12:49:57 GMT+0800">
-                
-                    2024-09-26
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ctfpwn/">ctfpwn</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/09/26/House-Of-Force/">阅读全文<span class="seo-reader-text">House_Of_Force</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
@@ -884,11 +879,11 @@ House of Orange - CTF Wiki (ctf-wiki.org)
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 42 篇文章
+                        共撰写了 43 篇文章
                     </span>
                     
                         <span>
-                            共 54.4k 字
+                            共 56.1k 字
                         </span>
                     
                 </p>

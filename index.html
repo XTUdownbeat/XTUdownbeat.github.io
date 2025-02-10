@@ -217,7 +217,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">22</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -225,7 +225,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">42</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -258,7 +258,7 @@
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">22</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -266,7 +266,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">42</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -283,6 +283,66 @@
                 
                     <div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/02/10/2025VNCTF-pwn-re/">
+                            2025VNCTF-pwn&amp;re
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            RE好多的安卓逆向啊，但是都差一点😫😫😫
+hook_fish算是签到题目来着
+拿到雷电模拟器里面直接启动，会出现什么什么 鱼，jadx启动！！搜索关键字 鱼，然后就有下面的函数了：
+
+但这些不重要，注意中间有一个encrypt的调用，
+
+返回值就是加密之后的函数，但是有什么用呢？往下看
+
+这里调用了hoo_fish.dex的check方法，但这个文件哪来的呢？我们全局搜索字符串可以看到...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Feb 10 2025 16:04:41 GMT+0800">
+                
+                    2025-02-10
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E2%80%9Cctf-pwn-ctf-re/">“ctf-pwn&#34; - &#34;ctf-re&#34;</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/02/10/2025VNCTF-pwn-re/">阅读全文<span class="seo-reader-text">2025VNCTF-pwn&amp;re</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -888,61 +948,6 @@ yakit抓包构造http请求头1.修改访问网站
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/11/08/wdb-2018-1st-babyheap/">
-                            wdb_2018_1st_babyheap
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            前言Glibc2.24 UAF Unlink
-参考：这篇文章 
-Unlink可以看我写的这个文章： http://downbeat.top/2024/09/25/zctf2016-note2-unlink/
-checksec+ida1234567pwn@ctfpwn:~/Desktop/buuctf/wdb_2018_1st_babyheap$ checksec pwn[*] &#x27;/...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Nov 08 2024 16:25:09 GMT+0800">
-                
-                    2024-11-08
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/11/08/wdb-2018-1st-babyheap/">阅读全文<span class="seo-reader-text">wdb_2018_1st_babyheap</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
@@ -977,11 +982,11 @@ checksec+ida1234567pwn@ctfpwn:~/Desktop/buuctf/wdb_2018_1st_babyheap$ checksec p
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 42 篇文章
+                        共撰写了 43 篇文章
                     </span>
                     
                         <span>
-                            共 54.4k 字
+                            共 56.1k 字
                         </span>
                     
                 </p>
