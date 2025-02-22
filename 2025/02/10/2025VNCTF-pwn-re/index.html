@@ -50,8 +50,11 @@
 <meta property="og:image" content="http://downbeat.top/image-20250210213838529.png">
 <meta property="og:image" content="http://downbeat.top/image-20250210223102503.png">
 <meta property="og:image" content="http://downbeat.top/image-20250210223442143.png">
+<meta property="og:image" content="http://downbeat.top/image-20250222171733987.png">
+<meta property="og:image" content="http://downbeat.top/image-20250222172112212.png">
+<meta property="og:image" content="http://downbeat.top/image-20250222172357292.png">
 <meta property="article:published_time" content="2025-02-10T08:04:41.000Z">
-<meta property="article:modified_time" content="2025-02-10T16:24:20.191Z">
+<meta property="article:modified_time" content="2025-02-22T09:27:02.975Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="“ctf-pwn&quot; - &quot;ctf-re&quot;">
 <meta name="twitter:card" content="summary">
@@ -246,8 +249,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-02-11 00:24:20</span>
-            <span class="mobile">2025-02-11 00:24:20</span>
+            <span class="desktop">2025-02-22 17:27:02</span>
+            <span class="mobile">2025-02-22 17:27:02</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -269,12 +272,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.7k 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>2.1k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>7 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>9 分钟</span>
         </span>
     
     
@@ -377,7 +380,7 @@
 <p>写个脚本也行</p>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"></span><br><span class="line">hex_key = <span class="string">&quot;09e5fdeb683175b6b13b840891eb78d2&quot;</span></span><br><span class="line">hex_ciphertext = <span class="string">&quot;3d011c190ba090815f672731a89aa47497362167ab2eb4a09418d37d93e646e7&quot;</span></span><br><span class="line"></span><br><span class="line">key = binascii.unhexlify(hex_key)</span><br><span class="line">ciphertext = binascii.unhexlify(hex_ciphertext)</span><br><span class="line"></span><br><span class="line">cipher = AES.new(key,AES.MODE_ECB)</span><br><span class="line">decrypted = cipher.decrypt(ciphertext)</span><br><span class="line"><span class="built_in">print</span>(decrypted) <span class="comment"># b&quot;VNCTF&#123;W0w_u_g0t_Fuk0&#x27;s_st4rf1sh&#125;&quot;</span></span><br></pre></td></tr></table></figure></div>
 
-<h1 id="kotlindroid"><a href="#kotlindroid" class="headerlink" title="kotlindroid"></a>kotlindroid</h1><p>主要部分如下：</p>
+<h2 id="kotlindroid"><a href="#kotlindroid" class="headerlink" title="kotlindroid"></a>kotlindroid</h2><p>主要部分如下：</p>
 <p><img lazyload src="/images/loading.svg" data-src="/../image-20250210200615961.png" alt="image-20250210200615961"></p>
 <p>前面的key很好获得，key1^23,key2^8拼接起来就是了：<code>atrikeyssyekirta</code></p>
 <p>跟进check继续看看：</p>
@@ -389,7 +392,24 @@
 <p><img lazyload src="/images/loading.svg" data-src="/../image-20250210223102503.png" alt="image-20250210223102503"></p>
 <p><img lazyload src="/images/loading.svg" data-src="/../image-20250210223442143.png" alt="image-20250210223442143"></p>
 <p>调用了so文件中的 native_natget方法，从里面传入了上面的数组</p>
-<p>由于每次的AAD都是一样的，可以直接frida或者动调获得，但是还都不会，先看一下静态分析。</p>
+<p>由于每次的AAD都是一样的，可以直接frida或者动调获得。这里简单介绍一下动调出AAD</p>
+<ul>
+<li>动调</li>
+</ul>
+<p>用JEB的动调，关于下载安装可以看这篇文章</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://plastic-tire-e58.notion.site/JEB-1a2ca45ea8a480a0b576f249b42306bc?pvs=73">https://plastic-tire-e58.notion.site/JEB-1a2ca45ea8a480a0b576f249b42306bc?pvs=73 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>进入之后，我们找到核心的函数：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250222171733987.png" alt="image-20250222171733987"></p>
+<p>也就是这里会添加AAD，我们在开头处下断点，注意要先tap到字节码的页面，然后才能下断点(ctrl+b下断点)</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250222172112212.png" alt="image-20250222172112212"></p>
+<p>在这里下一个断点，然后步过到这里的时候转为步入，因为该处是native层的处理，直接步过我们无法看到具体的数据</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250222172357292.png" alt="image-20250222172357292"></p>
+<p>然后就可以看到数据了 <code>mysecretadd</code></p>
+<p>直接模拟该逻辑用java写个代码直接输出就行：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.crypto.Cipher;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.SecretKey;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.spec.GCMParameterSpec;</span><br><span class="line"><span class="keyword">import</span> java.util.Base64;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.StandardCharsets;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AESGCMExample</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// AES GCM 解密方法，使用 AAD</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">aesGcmDecryptWithAAD</span><span class="params">(<span class="type">byte</span>[] cipherTextWithTag, <span class="type">byte</span>[] key, <span class="type">byte</span>[] iv, <span class="type">byte</span>[] aad)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 从密文中分离出 tag (最后 16 字节) 和密文部分</span></span><br><span class="line">        <span class="type">byte</span>[] tag = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">16</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 初始化解密器</span></span><br><span class="line">        <span class="type">Cipher</span> <span class="variable">cipher</span> <span class="operator">=</span> Cipher.getInstance(<span class="string">&quot;AES/GCM/NoPadding&quot;</span>);</span><br><span class="line">        <span class="type">GCMParameterSpec</span> <span class="variable">spec</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">GCMParameterSpec</span>(<span class="number">128</span>, iv);  <span class="comment">// 128-bit tag</span></span><br><span class="line">        cipher.init(Cipher.DECRYPT_MODE, <span class="keyword">new</span> <span class="title class_">javax</span>.crypto.spec.SecretKeySpec(key, <span class="string">&quot;AES&quot;</span>), spec);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置 AAD</span></span><br><span class="line">        cipher.updateAAD(aad);  <span class="comment">// 添加 AAD 数据</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 执行解密</span></span><br><span class="line">        <span class="type">byte</span>[] decryptedData = cipher.doFinal(cipherTextWithTag);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 返回解密后的明文</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">String</span>(decryptedData, StandardCharsets.UTF_8);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 假设的密文，密钥和 IV</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">cipherTextBase64</span> <span class="operator">=</span> <span class="string">&quot;HMuJKLOW1BqCAi2MxpHYjGjpPq82XXQ/jgx5WYrZ2MV53a9xjQVbRaVdRiXFrSn6EcQPzA==&quot;</span>;</span><br><span class="line">            <span class="type">byte</span>[] key = <span class="string">&quot;atrikeyssyekirta&quot;</span>.getBytes();  <span class="comment">// AES 密钥</span></span><br><span class="line">            <span class="type">byte</span>[] iv = <span class="string">&quot;114514&quot;</span>.getBytes();  <span class="comment">// IV</span></span><br><span class="line">            <span class="type">byte</span>[] cipherTextWithTag = Base64.getDecoder().decode(cipherTextBase64);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 假设的 AAD 数据</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">aad</span> <span class="operator">=</span> <span class="string">&quot;mysecretadd&quot;</span>;</span><br><span class="line">            <span class="type">byte</span>[] aadBytes = aad.getBytes(StandardCharsets.UTF_8);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 解密过程</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">decryptedText</span> <span class="operator">=</span> aesGcmDecryptWithAAD(cipherTextWithTag, key, iv, aadBytes);</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">&quot;解密后的文本: &quot;</span> + decryptedText);</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// VNCTF&#123;Y0U_@re_th3_Ma5t3r_0f_C0mp0s3&#125;</span></span><br></pre></td></tr></table></figure></div>
+
+
+
 
         </div>
 
@@ -404,7 +424,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-02-11 00:24:20
+                    :</strong> 2025-02-22 17:27:02
             </li>
         
         <li>
@@ -513,7 +533,7 @@
     <div class="post-toc">
         <div class="toc-title">目录</div>
         <div class="page-title">2025VNCTF-pwn&amp;re</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RE"><span class="nav-text">RE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hook-fish"><span class="nav-text">hook_fish</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fuko%E2%80%99s-starfish"><span class="nav-text">Fuko’s_starfish</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kotlindroid"><span class="nav-text">kotlindroid</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RE"><span class="nav-text">RE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hook-fish"><span class="nav-text">hook_fish</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fuko%E2%80%99s-starfish"><span class="nav-text">Fuko’s_starfish</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kotlindroid"><span class="nav-text">kotlindroid</span></a></li></ol></li></ol>
 
     </div>
 </div>
@@ -550,7 +570,7 @@
                     </span>
                     
                         <span>
-                            共 56.1k 字
+                            共 56.5k 字
                         </span>
                     
                 </p>
