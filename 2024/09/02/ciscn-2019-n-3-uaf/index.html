@@ -31,23 +31,23 @@
 <meta property="og:site_name" content="D0wnBe@t">
 <meta property="og:description" content="ciscn_2019_n_3(32位uaf)题目链接  1.题目分析  又是典型的堆菜单题目，但是注意此题是32位的，接着看各个功能块：  do_new  do_del  do_dump  ask  1.1功能块分析 do_new里面是生成两个chunk(type&#x3D;2)，注意其中第一个chunk，malloc(0xc)，对于32位来说，他是0x8+0x4，这样malloc的chunk涉及">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://downbeat.top/ciscn-2019-n-3-uaf/capture_20240902124827761.bmp">
-<meta property="og:image" content="http://downbeat.top/ciscn-2019-n-3-uaf/capture_20240902124929281.bmp">
-<meta property="og:image" content="http://downbeat.top/ciscn-2019-n-3-uaf/capture_20240902124936477.bmp">
-<meta property="og:image" content="http://downbeat.top/ciscn-2019-n-3-uaf/capture_20240902124944351.bmp">
-<meta property="og:image" content="http://downbeat.top/ciscn-2019-n-3-uaf/capture_20240902124950987.bmp">
-<meta property="og:image" content="http://downbeat.top/ciscn-2019-n-3-uaf/heap.drawio.png">
-<meta property="og:image" content="http://downbeat.top/ciscn-2019-n-3-uaf/capture_20240902130932374.bmp">
-<meta property="og:image" content="http://downbeat.top/ciscn-2019-n-3-uaf/capture_20240902131659259.bmp">
-<meta property="og:image" content="http://downbeat.top/ciscn-2019-n-3-uaf/capture_20240902132413024.bmp">
-<meta property="og:image" content="http://downbeat.top/ciscn-2019-n-3-uaf/capture_20240902132856868.bmp">
-<meta property="og:image" content="http://downbeat.top/ciscn-2019-n-3-uaf/capture_20240902132909502.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240902124827761.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240902124929281.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240902124936477.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240902124944351.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240902124950987.bmp">
+<meta property="og:image" content="http://downbeat.top/heap.drawio.png">
+<meta property="og:image" content="http://downbeat.top/capture_20240902130932374.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240902131659259.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240902132413024.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240902132856868.bmp">
+<meta property="og:image" content="http://downbeat.top/capture_20240902132909502.bmp">
 <meta property="article:published_time" content="2024-09-02T04:46:30.000Z">
-<meta property="article:modified_time" content="2024-09-02T05:34:47.617Z">
+<meta property="article:modified_time" content="2025-02-23T13:18:35.690Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="ctf-pwn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://downbeat.top/ciscn-2019-n-3-uaf/capture_20240902124827761.bmp">
+<meta name="twitter:image" content="http://downbeat.top/capture_20240902124827761.bmp">
     
     
     <!--- Icon Part-->
@@ -176,7 +176,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">22</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">23</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -238,8 +238,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-09-02 13:34:47</span>
-            <span class="mobile">2024-09-02 13:34:47</span>
+            <span class="desktop">2025-02-23 21:18:35</span>
+            <span class="mobile">2025-02-23 21:18:35</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -286,26 +286,26 @@
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
             <h1 id="ciscn-2019-n-3-32位uaf"><a href="#ciscn-2019-n-3-32位uaf" class="headerlink" title="ciscn_2019_n_3(32位uaf)"></a>ciscn_2019_n_3(32位uaf)</h1><p><font size="4"><a class="link" target="_blank" rel="noopener" href="https://buuoj.cn/challenges#ciscn_2019_n_3">题目链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></font></p>
-<h2 id="1-题目分析"><a href="#1-题目分析" class="headerlink" title="1.题目分析"></a>1.题目分析</h2><p><img lazyload src="/images/loading.svg" data-src="/ciscn-2019-n-3-uaf/capture_20240902124827761.bmp"></p>
+<h2 id="1-题目分析"><a href="#1-题目分析" class="headerlink" title="1.题目分析"></a>1.题目分析</h2><p><img lazyload src="/images/loading.svg" data-src="/../capture_20240902124827761.bmp" alt="capture_20240902124827761"></p>
 <ul>
 <li>又是典型的堆菜单题目，但是注意此题是32位的，接着看各个功能块：</li>
 </ul>
 <p><font size="4"><strong>do_new</strong></font></p>
-<p><img lazyload src="/images/loading.svg" data-src="/ciscn-2019-n-3-uaf/capture_20240902124929281.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240902124929281.bmp" alt="capture_20240902124929281"></p>
 <p><font size="4"><strong>do_del</strong></font></p>
-<p><img lazyload src="/images/loading.svg" data-src="/ciscn-2019-n-3-uaf/capture_20240902124936477.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240902124936477.bmp" alt="capture_20240902124936477"></p>
 <p><font size="4"><strong>do_dump</strong></font></p>
-<p><img lazyload src="/images/loading.svg" data-src="/ciscn-2019-n-3-uaf/capture_20240902124944351.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240902124944351.bmp" alt="capture_20240902124944351"></p>
 <p><font size="4"><strong>ask</strong></font></p>
-<p><img lazyload src="/images/loading.svg" data-src="/ciscn-2019-n-3-uaf/capture_20240902124950987.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240902124950987.bmp" alt="capture_20240902124950987"></p>
 <h3 id="1-1功能块分析"><a href="#1-1功能块分析" class="headerlink" title="1.1功能块分析"></a>1.1功能块分析</h3><ul>
 <li>do_new里面是生成两个chunk(type&#x3D;2)，注意其中第一个chunk，malloc(0xc)，<strong>对于32位来说，他是0x8+0x4，这样malloc的chunk涉及到了prev_size的复用</strong>，下一个chunk的prev_size将会充当上一个chunk的user_data部分，因为prev_size记录上一个chunk是否被利用，没利用记作0，空着不用太浪费了就会被利用，**对应于64位，malloc(0xn0 + 0x8)**。</li>
 <li>prev_size的复用通常会用于off_by_one漏洞利用，但这里没有off_by_one</li>
 <li>do_new中的chunk结构如下：</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/ciscn-2019-n-3-uaf/heap.drawio.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../heap.drawio.png" alt="heap.drawio"></p>
 <p><font size="4" color="red">漏洞点就在rec_int_free和do_del里面：</font></p>
-<p><img lazyload src="/images/loading.svg" data-src="/ciscn-2019-n-3-uaf/capture_20240902130932374.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240902130932374.bmp" alt="capture_20240902130932374"></p>
 <p><em><em>do_del以地址执行函数，</em>(record[i]+4)对应的就是rec_int_free函数，record[i]就是指针参数。</em>*</p>
 <ul>
 <li>思路应该很清晰了,和之前一样的，修改free_got -&gt; system_plt，然后往record[i]传入&#x2F;bin&#x2F;sh\x00，进行do_del,就可以getshell，但是此题有点区别，<strong>由于是32位，&#x2F;bin&#x2F;sh\x00有8字节，一个机器字长无法写下，其实这里写入sh\x00\x00也可以getshell。</strong></li>
@@ -313,7 +313,7 @@
 </ul>
 <h2 id="2-gdb调试"><a href="#2-gdb调试" class="headerlink" title="2.gdb调试"></a>2.gdb调试</h2><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">add</span>(<span class="number">0</span>,<span class="number">2</span>,<span class="number">0x10</span>,b<span class="string">&#x27;aaaa&#x27;</span>)</span><br><span class="line"><span class="title function_">add</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">0x10</span>,b<span class="string">&#x27;bbbb&#x27;</span>)</span><br></pre></td></tr></table></figure></div>
 
-<p><img lazyload src="/images/loading.svg" data-src="/ciscn-2019-n-3-uaf/capture_20240902131659259.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240902131659259.bmp" alt="capture_20240902131659259"></p>
 <ul>
 <li><strong>查看堆布局可以明显看出prev_size的复用</strong></li>
 </ul>
@@ -322,15 +322,15 @@
 </ul>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># free指针不清零,record[idx]依然有数值</span></span><br><span class="line">free(<span class="number">0</span>)</span><br><span class="line">free(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># fastbins 0x10 1-&gt;0</span></span><br><span class="line">add(<span class="number">2</span>,<span class="number">2</span>,<span class="number">0xc</span>,<span class="string">b&#x27;sh\x00\x00&#x27;</span>+p32(system_plt))</span><br></pre></td></tr></table></figure></div>
 
-<p><img lazyload src="/images/loading.svg" data-src="/ciscn-2019-n-3-uaf/capture_20240902132413024.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240902132413024.bmp" alt="capture_20240902132413024"></p>
 <ul>
 <li>我们再次malloc，首先就会malloc(0xc)，将record[1]malloc(0xc)给拿走，我们的目的就是修改record处的地址，<strong>那么我们再次malloc(0xc)，系统会将record[0]malloc(0xc)给你，那么我们修改这部分的内容了</strong></li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/ciscn-2019-n-3-uaf/capture_20240902132856868.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240902132856868.bmp" alt="capture_20240902132856868"></p>
 <ul>
 <li><font size="4" color="red">下图可以发现record[0]发生了改变</font></li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/ciscn-2019-n-3-uaf/capture_20240902132909502.bmp"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../capture_20240902132909502.bmp" alt="capture_20240902132909502"></p>
 <h3 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h3><ul>
 <li>此时我们free(0)就可以getshell了</li>
 </ul>
@@ -350,7 +350,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-09-02 13:34:47
+                    :</strong> 2025-02-23 21:18:35
             </li>
         
         <li>
@@ -511,7 +511,7 @@
                     </span>
                     
                         <span>
-                            共 56.5k 字
+                            共 57.3k 字
                         </span>
                     
                 </p>
