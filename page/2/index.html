@@ -195,7 +195,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">23</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">26</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -203,7 +203,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">45</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -236,7 +236,7 @@
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">23</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">26</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -244,7 +244,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">45</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -261,6 +261,136 @@
                 
                     <div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/11/09/hitcon-2018-children-tcache/">
+                            hitcon_2018_children_tcache
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            前言off_by_null``Glibc2.27``Double Free
+第一次遇到off_by_null,关键函数是strcpy
+该题目要有较强的分析能力，时刻明白chunk被分配给谁了！！！！
+分析add12345678910111213141516171819202122232425262728293031323334unsigned __int64 add()&#123;  int...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sat Nov 09 2024 15:06:10 GMT+0800">
+                
+                    2024-11-09
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/off-by-null/">off_by_null</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Glibc2-27/">Glibc2.27</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/11/09/hitcon-2018-children-tcache/">阅读全文<span class="seo-reader-text">hitcon_2018_children_tcache</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/11/09/HTTP%E5%A4%B4%E4%BC%AA%E9%80%A0/">
+                            HTTP头伪造
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            前言完成上课的web作业，顺便做一些记录。
+该部分主要是讲HTTP头的构造和cookie注入
+[极客大挑战 2019]Http打开网站之后查看源码，发现：
+
+于是打开看看
+
+
+很明显是要我们自己构造HTTP的请求头，这里分为两种工具，一个是yakit，还有个是浏览器hackbar插件(我用的是Google)
+
+yakit抓包构造http请求头1.修改访问网站
+
+2.指定浏览器
+
+3.从本地访...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sat Nov 09 2024 13:25:13 GMT+0800">
+                
+                    2024-11-09
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/ctf-web/">ctf-web</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/11/09/HTTP%E5%A4%B4%E4%BC%AA%E9%80%A0/">阅读全文<span class="seo-reader-text">HTTP头伪造</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -733,118 +863,6 @@ NotEnoughTime题目链接
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/10/14/%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%B8%93%E9%A2%98/">
-                            随机数专题
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            什么是伪随机？对于基本的随机数生成，比如说
-123srand randsrandom random# 位于stdlib头文件里面
-
-这两个函数的随机数生成都基于时间种子seed，通常来说，只要glibc相同，seed相同，那么所生成的随机数就是一样的。
-下面简单介绍一下随机数生产的代码123456789#include &lt;stdio.h&gt;#include &lt;stdlib.h...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Oct 14 2024 11:54:21 GMT+0800">
-                
-                    2024-10-14
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/10/14/%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%B8%93%E9%A2%98/">阅读全文<span class="seo-reader-text">随机数专题</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/10/08/House-Of-Orange/">
-                            House_Of_Orange
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            参考：
-House of Orange - CTF Wiki (ctf-wiki.org) 
-1.介绍house of orange 在于我们没有free的时候，一样可以达到free的效果，将一个chunk放进unsorted bin中，然后达到泄露libc的效果
-
-操作的原理简单来说是当前堆的 top chunk 尺寸不足以满足申请分配的大小的时候，原来的 top chunk 会被释放并被...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Tue Oct 08 2024 18:35:05 GMT+0800">
-                
-                    2024-10-08
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/10/08/House-Of-Orange/">阅读全文<span class="seo-reader-text">House_Of_Orange</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
@@ -879,11 +897,11 @@ House of Orange - CTF Wiki (ctf-wiki.org)
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 43 篇文章
+                        共撰写了 45 篇文章
                     </span>
                     
                         <span>
-                            共 57.3k 字
+                            共 61.1k 字
                         </span>
                     
                 </p>

@@ -217,7 +217,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">23</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">26</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -225,7 +225,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">45</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -258,7 +258,7 @@
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">23</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">26</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -266,7 +266,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">45</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -283,6 +283,128 @@
                 
                     <div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/03/07/2024ciscn-PWN%E5%A4%8D%E7%8E%B0/">
+                            2024ciscn-PWN复现
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            orange_cat_diary漏洞分析主代码逻辑还是一样的菜单堆，而且只是Glibc2.23的堆题目，保护全开，下面来看看各个部分的实现：
+
+add
+
+1234567891011121314151617181920212223__int64 add()&#123;  int v1; // [rsp+4h] [rbp-Ch]  printf(&quot;Please input the le...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Mar 07 2025 13:37:54 GMT+0800">
+                
+                    2025-03-07
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/pwn/">pwn</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/2024ciscn/">2024ciscn</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/03/07/2024ciscn-PWN%E5%A4%8D%E7%8E%B0/">阅读全文<span class="seo-reader-text">2024ciscn-PWN复现</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/03/05/VMpwn%E5%85%A5%E9%97%A8/">
+                            VMpwn入门
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            前言由于在 2025GHCTF新生赛上看到了 VMpwn，所以打算浅浅入个门，参考一下出题人的文章吧，写的挺详细的。
+😘😘文章链接 
+VMpwn的介绍VMpwn可以理解为让我们自己去输入opcode，然后程序会读取对应的opcode来执行对应的操作，常见的有
+
+模拟寄存器操作，比如说寄存器加减乘除，异或等。
+模拟stack，入栈出栈
+模拟data段
+模拟text段
+
+除了上述还有蛮多，暂...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Mar 05 2025 20:26:02 GMT+0800">
+                
+                    2025-03-05
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/VMpwn/">VMpwn</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/03/05/VMpwn%E5%85%A5%E9%97%A8/">阅读全文<span class="seo-reader-text">VMpwn入门</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -816,136 +938,6 @@ Seccomp（Secure Computing Mode） 是 Linux 内核提供的一种安全机制..
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/11/09/hitcon-2018-children-tcache/">
-                            hitcon_2018_children_tcache
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            前言off_by_null``Glibc2.27``Double Free
-第一次遇到off_by_null,关键函数是strcpy
-该题目要有较强的分析能力，时刻明白chunk被分配给谁了！！！！
-分析add12345678910111213141516171819202122232425262728293031323334unsigned __int64 add()&#123;  int...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Nov 09 2024 15:06:10 GMT+0800">
-                
-                    2024-11-09
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/off-by-null/">off_by_null</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Glibc2-27/">Glibc2.27</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/11/09/hitcon-2018-children-tcache/">阅读全文<span class="seo-reader-text">hitcon_2018_children_tcache</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/11/09/HTTP%E5%A4%B4%E4%BC%AA%E9%80%A0/">
-                            HTTP头伪造
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            前言完成上课的web作业，顺便做一些记录。
-该部分主要是讲HTTP头的构造和cookie注入
-[极客大挑战 2019]Http打开网站之后查看源码，发现：
-
-于是打开看看
-
-
-很明显是要我们自己构造HTTP的请求头，这里分为两种工具，一个是yakit，还有个是浏览器hackbar插件(我用的是Google)
-
-yakit抓包构造http请求头1.修改访问网站
-
-2.指定浏览器
-
-3.从本地访...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Nov 09 2024 13:25:13 GMT+0800">
-                
-                    2024-11-09
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ctf-web/">ctf-web</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/11/09/HTTP%E5%A4%B4%E4%BC%AA%E9%80%A0/">阅读全文<span class="seo-reader-text">HTTP头伪造</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
@@ -980,11 +972,11 @@ yakit抓包构造http请求头1.修改访问网站
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 43 篇文章
+                        共撰写了 45 篇文章
                     </span>
                     
                         <span>
-                            共 57.3k 字
+                            共 61.1k 字
                         </span>
                     
                 </p>
