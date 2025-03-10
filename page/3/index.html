@@ -195,7 +195,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">26</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -203,7 +203,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">45</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">48</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -236,7 +236,7 @@
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">26</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -244,7 +244,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">45</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">48</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -261,6 +261,183 @@
                 
                     <div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/10/17/House-Of-Botcake/">
+                            House Of Botcake
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            介绍参考文章 
+House Of Botcache是用于绕过tcache double free检查的一种方法，在glibc2.29-2.31，对于tcache加入了key值来检测该tcache是否已经存在于tcache bins中，该方法就是借用unsorted bin来绕过double free的检查,下面跟着源码来分析一下。
+源码源码文档 
+tcachekey值的引进
+
+2984行
+
+...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Oct 17 2024 10:01:56 GMT+0800">
+                
+                    2024-10-17
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/10/17/House-Of-Botcake/">阅读全文<span class="seo-reader-text">House Of Botcake</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/10/16/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/">
+                            共模攻击
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            rsa中的共模攻击参考文章 
+介绍共模攻击是指在不分解d的情况下依旧可以求出m的一种算法，常见给出了c1,c2：
+12c1 = pow(m , e1 , N)c2 = pow(m , e2 , N)
+
+要求gcd(e1 , e2)&#x3D;1,即e1,e2互质,那么则有:
+12e1*s1 + e2*s2 = 1// s1,s2一正一负
+
+可以有:m &#x3D; ( c1^s1 * c2^...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Oct 16 2024 19:13:19 GMT+0800">
+                
+                    2024-10-16
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/crypto/">crypto</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/10/16/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/">阅读全文<span class="seo-reader-text">共模攻击</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/10/15/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/">
+                            moectf2024知识点汇总
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            前言题目链接 
+本次比赛对基础的要求可谓是很深啊，记录一些自己需要学习的或者是基础不牢固，所需要学习的点
+NotEnoughTime题目链接 
+运用正则匹配运算数学式子
+
+贴一份官方wp
+
+123456789101112131415161718from pwn import *io = ...io.sendlineafter(b&quot;=&quot;, b&quot;2&quot;)io...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Oct 15 2024 17:56:24 GMT+0800">
+                
+                    2024-10-15
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/10/15/moectf2024%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/">阅读全文<span class="seo-reader-text">moectf2024知识点汇总</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -666,186 +843,6 @@ checksec+ida速览12345678910checksec pwnArch:       amd64-64-littleRELRO:      
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/09/18/%E6%B2%99%E7%AE%B1%E7%A6%81%E7%94%A8ORW-BaseCTF/">
-                            沙箱禁用ORW-BaseCTF
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            典型的沙箱禁用题目链接 
-题解链接 
-linux64位系统调用表 
-未禁用ORW
-1.ida速览123456789101112131415161718192021int __fastcall main(int argc, const char **argv, const char **envp)&#123;  void *buf; // [rsp+28h] [rbp-8h]  buf = m...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Wed Sep 18 2024 20:56:08 GMT+0800">
-                
-                    2024-09-18
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ctfpwn/">ctfpwn</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/09/18/%E6%B2%99%E7%AE%B1%E7%A6%81%E7%94%A8ORW-BaseCTF/">阅读全文<span class="seo-reader-text">沙箱禁用ORW-BaseCTF</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/09/17/%E8%AF%A5%E6%96%87%E7%AB%A0%E6%9A%82%E5%BD%93%E5%9B%BE%E5%BA%8A/">
-                            该文章暂当图床
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-
-
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Tue Sep 17 2024 11:19:39 GMT+0800">
-                
-                    2024-09-17
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/trash/">trash</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/09/17/%E8%AF%A5%E6%96%87%E7%AB%A0%E6%9A%82%E5%BD%93%E5%9B%BE%E5%BA%8A/">阅读全文<span class="seo-reader-text">该文章暂当图床</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/09/16/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-Not-Bad/">
-                            极客大挑战_2019-Not_Bad
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            典型的ORW+mmap参数理解题目连接 
-知识点
-1.典型的沙箱，ORW
-2.mmap参数的理解，参考这篇文章 
-1.ida速览
-已经修改了函数名，加入了沙箱
-
-
-
-发现是典型的ORW可用：
-
-
-
-查看一下主要部分：
-
-
-存在明显的栈溢出，并且此题保护全关，可以直接写入shellcode。
-简单思路
-关于mmap函数的参数可以参考开头的文章，此处的mmap会在指定的地址开辟一个0x1000的...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Sep 16 2024 15:43:19 GMT+0800">
-                
-                    2024-09-16
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/09/16/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-Not-Bad/">阅读全文<span class="seo-reader-text">极客大挑战_2019-Not_Bad</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
@@ -880,11 +877,11 @@ linux64位系统调用表
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 45 篇文章
+                        共撰写了 48 篇文章
                     </span>
                     
                         <span>
-                            共 61.1k 字
+                            共 63.5k 字
                         </span>
                     
                 </p>
