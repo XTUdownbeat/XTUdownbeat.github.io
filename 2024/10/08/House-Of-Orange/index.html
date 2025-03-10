@@ -24,15 +24,15 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="参考： House of Orange - CTF Wiki (ctf-wiki.org)  1.介绍house of orange 在于我们没有free的时候，一样可以达到free的效果，将一个chunk放进unsorted bin中，然后达到泄露libc的效果  操作的原理简单来说是当前堆的 top chunk 尺寸不足以满足申请分配的大小的时候，原来的 top chunk 会被释放并被置入">
+        <meta name="description" content="参考： House of Orange - CTF Wiki (ctf-wiki.org)  介绍house of orange 在于我们没有free的时候，一样可以达到free的效果，将一个chunk放进unsorted bin中，然后达到泄露libc的效果  操作的原理简单来说是当前堆的 top chunk 尺寸不足以满足申请分配的大小的时候，原来的 top chunk 会被释放并被置入 un">
 <meta property="og:type" content="article">
 <meta property="og:title" content="House_Of_Orange">
 <meta property="og:url" content="http://downbeat.top/2024/10/08/House-Of-Orange/index.html">
 <meta property="og:site_name" content="D0wnBe@t">
-<meta property="og:description" content="参考： House of Orange - CTF Wiki (ctf-wiki.org)  1.介绍house of orange 在于我们没有free的时候，一样可以达到free的效果，将一个chunk放进unsorted bin中，然后达到泄露libc的效果  操作的原理简单来说是当前堆的 top chunk 尺寸不足以满足申请分配的大小的时候，原来的 top chunk 会被释放并被置入">
+<meta property="og:description" content="参考： House of Orange - CTF Wiki (ctf-wiki.org)  介绍house of orange 在于我们没有free的时候，一样可以达到free的效果，将一个chunk放进unsorted bin中，然后达到泄露libc的效果  操作的原理简单来说是当前堆的 top chunk 尺寸不足以满足申请分配的大小的时候，原来的 top chunk 会被释放并被置入 un">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-08T10:35:05.000Z">
-<meta property="article:modified_time" content="2025-02-22T14:40:35.885Z">
+<meta property="article:modified_time" content="2025-03-10T13:46:22.591Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="ctf-pwn">
 <meta name="twitter:card" content="summary">
@@ -164,7 +164,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">29</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -172,7 +172,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">48</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">49</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -226,8 +226,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-02-22 22:40:35</span>
-            <span class="mobile">2025-02-22 22:40:35</span>
+            <span class="desktop">2025-03-10 21:46:22</span>
+            <span class="mobile">2025-03-10 21:46:22</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -249,7 +249,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>392 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>415 字</span>
         </span>
     
     
@@ -275,7 +275,7 @@
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
             <p><strong>参考</strong>：</p>
 <p><a class="link" target="_blank" rel="noopener" href="https://ctf-wiki.org/pwn/linux/user-mode/heap/ptmalloc2/house-of-orange/">House of Orange - CTF Wiki (ctf-wiki.org) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1.介绍"></a>1.介绍</h1><p><em><strong>house of orange 在于我们没有free的时候，一样可以达到free的效果，将一个chunk放进unsorted bin中，然后达到泄露libc的效果</strong></em></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p><em><strong>house of orange 在于我们没有free的时候，一样可以达到free的效果，将一个chunk放进unsorted bin中，然后达到泄露libc的效果</strong></em></p>
 <blockquote>
 <p>操作的原理简单来说是当前堆的 top chunk 尺寸不足以满足申请分配的大小的时候，原来的 top chunk 会被释放并被置入 unsorted bin 中，通过这一点可以在没有 free 函数情况下获取到 unsorted bins。</p>
 </blockquote>
@@ -305,6 +305,8 @@
 <p> <mark>size的prev inuse位必须是1<mark></mark></mark></p>
 <p>然后top chunk就会执行_int_free进入unsorted bin中</p>
 </blockquote>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><h2 id="2024ciscn-orange-cat-diary"><a href="#2024ciscn-orange-cat-diary" class="headerlink" title="2024ciscn orange_cat_diary"></a>2024ciscn orange_cat_diary</h2><p>文章：<a href="http://downbeat.top/2025/03/07/2024ciscn-PWN%E5%A4%8D%E7%8E%B0/">http://downbeat.top/2025/03/07/2024ciscn-PWN%E5%A4%8D%E7%8E%B0/</a></p>
+<h2 id="CTFHUB-house-of-einherjar"><a href="#CTFHUB-house-of-einherjar" class="headerlink" title="CTFHUB house_of_einherjar"></a>CTFHUB house_of_einherjar</h2><p>文章：</p>
 
         </div>
 
@@ -319,7 +321,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-02-22 22:40:35
+                    :</strong> 2025-03-10 21:46:22
             </li>
         
         <li>
@@ -443,7 +445,7 @@
     <div class="post-toc">
         <div class="toc-title">目录</div>
         <div class="page-title">House_Of_Orange</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E4%BB%8B%E7%BB%8D"><span class="nav-text">1.介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9Bcheck"><span class="nav-text">一些check</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9Bcheck"><span class="nav-text">一些check</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024ciscn-orange-cat-diary"><span class="nav-text">2024ciscn orange_cat_diary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CTFHUB-house-of-einherjar"><span class="nav-text">CTFHUB house_of_einherjar</span></a></li></ol></li></ol>
 
     </div>
 </div>
@@ -476,11 +478,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 48 篇文章
+                        共撰写了 49 篇文章
                     </span>
                     
                         <span>
-                            共 63.5k 字
+                            共 65.4k 字
                         </span>
                     
                 </p>

@@ -195,7 +195,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">29</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -203,7 +203,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">48</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">49</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -236,7 +236,7 @@
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">29</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -244,7 +244,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">48</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">49</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -261,6 +261,72 @@
                 
                     <div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/10/22/Franklin-Reiter%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF%E6%94%BB%E5%87%BB/">
+                            Franklin-Reiter相关信息攻击
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            前言参考:这篇文章 
+装好sage：下载链接 
+Franklin-Reiter介绍该攻击方法在于两个明文m1,m2，这两个明文利用同一个e和m，并且m2和m1间具有线性关系,例如：
+1m2 = a*m1 + b
+
+
+并且给出了c1,c2
+
+12c1 = pow(m1, e, n)c2 = pow(m2, e, n)
+
+知道c1,c2,a,b,n，那么m1是可解的
+原理
+
+
+因此最后的解的形式...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Oct 22 2024 16:25:53 GMT+0800">
+                
+                    2024-10-22
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/crypto/">crypto</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/10/22/Franklin-Reiter%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF%E6%94%BB%E5%87%BB/">阅读全文<span class="seo-reader-text">Franklin-Reiter相关信息攻击</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -514,9 +580,9 @@ NotEnoughTime题目链接
                             
                             参考：
 House of Orange - CTF Wiki (ctf-wiki.org) 
-1.介绍house of orange 在于我们没有free的时候，一样可以达到free的效果，将一个chunk放进unsorted bin中，然后达到泄露libc的效果
+介绍house of orange 在于我们没有free的时候，一样可以达到free的效果，将一个chunk放进unsorted bin中，然后达到泄露libc的效果
 
-操作的原理简单来说是当前堆的 top chunk 尺寸不足以满足申请分配的大小的时候，原来的 top chunk 会被释放并被...
+操作的原理简单来说是当前堆的 top chunk 尺寸不足以满足申请分配的大小的时候，原来的 top chunk 会被释放并被置入...
                         
                     </div>
 
@@ -789,60 +855,6 @@ ida速览
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/09/21/%E4%BC%AA%E9%9A%8F%E6%9C%BA-%E7%88%86%E7%A0%B4canary-%E7%88%86%E7%A0%B4PIE/">
-                            伪随机+爆破canary+爆破PIE
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            ida速览前言题目来自：basectf
-题解参考：官方wp 
-checksec+ida速览12345678910checksec pwnArch:       amd64-64-littleRELRO:      Full RELROStack:      Canary foundNX:         NX enabledPIE:        PIE enabledSHSTK:     ...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Sep 21 2024 14:50:05 GMT+0800">
-                
-                    2024-09-21
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ctf-pwn/">ctf-pwn</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/09/21/%E4%BC%AA%E9%9A%8F%E6%9C%BA-%E7%88%86%E7%A0%B4canary-%E7%88%86%E7%A0%B4PIE/">阅读全文<span class="seo-reader-text">伪随机+爆破canary+爆破PIE</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
@@ -877,11 +889,11 @@ checksec+ida速览12345678910checksec pwnArch:       amd64-64-littleRELRO:      
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 48 篇文章
+                        共撰写了 49 篇文章
                     </span>
                     
                         <span>
-                            共 63.5k 字
+                            共 65.4k 字
                         </span>
                     
                 </p>

