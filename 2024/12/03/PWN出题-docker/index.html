@@ -39,8 +39,11 @@
 <meta property="og:image" content="http://downbeat.top/capture_20241203135646366.bmp">
 <meta property="og:image" content="http://downbeat.top/capture_20241203140003753.bmp">
 <meta property="og:image" content="http://downbeat.top/capture_20241203141138002.bmp">
+<meta property="og:image" content="http://downbeat.top/image-20250416185740414.png">
+<meta property="og:image" content="http://downbeat.top/image-20250416192042026.png">
+<meta property="og:image" content="http://downbeat.top/image-20250416192231139.png">
 <meta property="article:published_time" content="2024-12-03T05:10:49.000Z">
-<meta property="article:modified_time" content="2024-12-03T06:17:44.619Z">
+<meta property="article:modified_time" content="2025-04-16T14:11:10.232Z">
 <meta property="article:author" content="downbeat">
 <meta property="article:tag" content="ctf-pwn">
 <meta property="article:tag" content="学习资料">
@@ -237,8 +240,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-12-03 14:17:44</span>
-            <span class="mobile">2024-12-03 14:17:44</span>
+            <span class="desktop">2025-04-16 22:11:10</span>
+            <span class="mobile">2025-04-16 22:11:10</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -268,7 +271,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.6k 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.7k 字</span>
         </span>
     
     
@@ -476,8 +479,23 @@
 <h2 id="start-sh"><a href="#start-sh" class="headerlink" title="start.sh"></a>start.sh</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment"># Add your startup script</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$TQ_FLAG</span>&gt;/home/ctf/flag</span><br><span class="line"><span class="built_in">chmod</span> 755 /home/ctf/flag</span><br></pre></td></tr></table></figure></div>
 
 <h1 id="上传GZ-CTF"><a href="#上传GZ-CTF" class="headerlink" title="上传GZ-CTF"></a>上传GZ-CTF</h1><ul>
-<li>这部分以后有时间再写吧</li>
+<li><p>直接用开头说过的这个项目即可：<a class="link" target="_blank" rel="noopener" href="https://github.com/CTF-Archives/ctf-docker-template">https://github.com/CTF-Archives/ctf-docker-template <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+</li>
+<li><p>上传题目的时候可以先将docker镜像push到dockerhub上：</p>
+</li>
 </ul>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先给镜像打tag</span></span><br><span class="line">docker tag &lt;image_ID&gt; name/filename:latest <span class="comment"># name是你的dockerhub名字，filename就是你要上传的镜像名字</span></span><br><span class="line">docker push name/filename:latest</span><br></pre></td></tr></table></figure></div>
+
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250416185740414.png" alt="image-20250416185740414"></p>
+<ul>
+<li>上传到GZCTF</li>
+</ul>
+<p>注意端口号要和你Dockerfile写的一致</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250416192042026.png" alt="image-20250416192042026"></p>
+<ul>
+<li>测试情况：</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/../image-20250416192231139.png" alt="image-20250416192231139"></p>
 
         </div>
 
@@ -492,7 +510,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-12-03 14:17:44
+                    :</strong> 2025-04-16 22:11:10
             </li>
         
         <li>
@@ -661,7 +679,7 @@
                     </span>
                     
                         <span>
-                            共 69.9k 字
+                            共 70k 字
                         </span>
                     
                 </p>
